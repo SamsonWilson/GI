@@ -27,3 +27,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/admin', [App\Http\Controllers\Admin::class, 'index'])->name('admin');
 Route::get('/sadmin', [App\Http\Controllers\Sadmin::class, 'index'])->name('sadmin');
+Route::get('/ajouter', [App\Http\Controllers\ajouter::class, 'index'])->name('ajouter');
+Route::post('/ajouterville', [App\Http\Controllers\Sadmin::class, 'store'])->name('ajouterville');
+Route::get('/ville={id}', [App\Http\Controllers\Sadmin::class, 'edit'])->name ('edit_ville');
+Route::put('/update_ville/{id}', [App\Http\Controllers\Sadmin::class, 'update'])->name ('update_ville');
+Route::delete('/delete/{ville}', [App\Http\Controllers\Sadmin::class, 'destroy'])->name ('delete_ville');

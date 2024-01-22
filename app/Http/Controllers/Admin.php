@@ -12,6 +12,7 @@ class Admin extends Controller
     public function index()
     {
         $datas = Ville::all();
-        return View("admin.index", compact("datas"));
+        return View("indexAdmin", compact("datas"));
     }
+   
 }
