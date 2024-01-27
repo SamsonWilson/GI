@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('quatiers', function (Blueprint $table) {
             $table->id();
-            $table->string('nom',100);
+            $table->string('nom', 100);
             $table->text('description');
+            $table->string('imagequartier');
             $table->foreignId('ville_id')->constrained('villes');
             $table->timestamps();
         });
@@ -27,9 +28,8 @@ return new class extends Migration
     public function down(): void
     {
 
-        schema::table('quatiers',function(Blueprint $table) {
+        schema::table('quatiers', function (Blueprint $table) {
             $table->dropForeign('ville_id');
-
         });
         Schema::dropIfExists('quatiers');
     }

@@ -13,8 +13,10 @@ class Sadmin extends Controller
      */
     public function index()
     {
-        $datas = Ville::all();
-        dd($datas);
+        $datas = Ville::orderbydesc("id")->get();
+        return View("admin.affichage", compact("datas"));
+        //
+        // dd($datas);
     }
 
     /**
@@ -30,11 +32,26 @@ class Sadmin extends Controller
      */
     public function store(Request $request)
     {
-        $ajouterVille = new Ville();
-        $ajouterVille->nom = $request->nom;
-        $ajouterVille->description = $request->description;
-        $ajouterVille->save();
-        return back();
+        $request->validate([
+            'imageville' => 'required|mimes:jpeg,png,jpg,gif|max:2048',
+            "nom" => "required|unique:villes,nom",
+            "description" => "required",
+        ]);
+        if ($request->hasFile("imageville")) {
+            $fileNameWithExt = $request->file("imageville")->getClientOriginalName();
+            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file("imageville")->getClientOriginalExtension();
+            $fileNameToStore = $fileName . "_" . time() . '.' . $extension;
+            $path = $request->file('imageville')->storeAs('public/imageville', $fileNameToStore);
+
+            $ajouterVille = new Ville();
+            $ajouterVille->nom = $request->nom;
+            $ajouterVille->description = $request->description;
+            $ajouterVille->imageville = $fileNameToStore;
+            $ajouterVille->save();
+            $datas = Ville::orderbydesc("id")->get();
+            return View("admin.affichage", compact("datas"));
+        }
     }
 
     /**
@@ -42,7 +59,12 @@ class Sadmin extends Controller
      */
     public function show(string $id)
     {
-        //
+    }
+
+    public function afficher()
+    {
+
+        return View("admin.ajouter");
     }
 
     /**
@@ -52,7 +74,7 @@ class Sadmin extends Controller
     {
         $villes = Ville::find($id);
 
-         return view ('admin.modification',compact('villes'));
+        return view('admin.modification', compact('villes'));
     }
 
     /**
@@ -61,16 +83,16 @@ class Sadmin extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-             'nom' => 'required|' . Rule::unique('villes')->ignore($id),
-           'description' => 'required',
+            'nom' => 'required|' . Rule::unique('villes')->ignore($id),
+            'description' => 'required',
 
-       ]);
+        ]);
         $villes = Ville::find($id);
-         $villes->nom = $request->nom;
-         $villes->description = $request->description;
+        $villes->nom = $request->nom;
+        $villes->description = $request->description;
 
-         $villes->update($request->all());
-         return back();
+        $villes->update($request->all());
+        return back();
     }
     /**
      * Remove the specified resource from storage.
@@ -78,9 +100,7 @@ class Sadmin extends Controller
     public function destroy(string $ville)
     {
         $villeModel = Ville::find($ville);
-
         $villeModel->delete();
-
         return back();
     }
 }

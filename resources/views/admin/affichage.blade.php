@@ -1,84 +1,57 @@
-
 @extends('layouts.admin')
 
 @section('content')
 
-@endsection
 
+<div class="container">
+    <div class="row justify-content-center">
+      <div class="card-body">
+        <table class="table table-bordered">
+        <a name="" id="" class="btn btn-primary" href="{{ route('ajouterville') }}" role="button">Ajouter une ville</a>
+        <br>
+        <br>
 
+          <thead>
+            <tr class=" table-primary">
+                <th> image de la ville  </th>
+                <th> Nom </th>
+              <th> Description </th>
+              <th> Action </th>
 
+            </tr>
+          </thead>
+          <tbody >
 
+                @foreach ($datas as $data )
+                <tr>
+                   <td><img src= "/storage/imageville/{{$data->imageville}}" alt="Uploaded Image"> </td>
+                     <td> {{ $data->nom }} </td>
+                     <td> {{ $data->description }} </td>
 
+                     <td style="text-align:center">
+                    <div class="d-flex order-actions d-flex justify-content-center">
 
+                         <a href="{{ url('ville=' . $data->id) }}"><button type="button"
+                            class="btn btn-light btn-sm radius-30 px-4 ms-3"> Edit</button></a>
 
+                            <form action="{{ route('delete_ville', ['ville' => $data->id]) }}" method="POST">
+                                @method('DELETE')
+                                @csrf
+                                <button type="submit" style="color:red">Supprimer</button>
+                            </form>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="main-panel">
-    <div class="content-wrapper">
-      <div class="row">
-            <div class="col-md-12 grid-margin stretch-card">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">Basic form</h4>
-                        <p class="card-description"> Basic form elements </p>
-                        <form class="forms-sample">
-                            <div class="form-group">
-                                <label for="exampleInputName1">Nom</label>
-                                <input type="text" class="form-control" id="exampleInputName1" placeholder="Name">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail3">Email address</label>
-                                <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword4">Password</label>
-                                <input type="password" class="form-control" id="exampleInputPassword4" placeholder="Password">
-                            </div>
-                            <div class="form-group">
-                                <label>File upload</label>
-                                <input type="file" name="img[]" class="file-upload-default">
-                                <div class="input-group col-xs-12">
-                                    <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
-                                    <span class="input-group-append">
-                                        <button class="file-upload-browse btn btn-info" type="button">Upload</button>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputCity1">City</label>
-                                <input type="text" class="form-control" id="exampleInputCity1" placeholder="Location">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleTextarea1">Textarea</label>
-                                <textarea class="form-control" id="exampleTextarea1" rows="2"></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-success mr-2">Submit</button>
-                             <button class="btn btn-light">Cancel</button>
-                        </form>
                     </div>
-                </div>
-            </div>
-        </div>
+
+                </td>
+
+                </tr>
+                @endforeach
+          </tbody>
+        </table>
+        <br>
+        <br>
     </div>
+  </div>
 </div>
+
+@endsection

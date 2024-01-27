@@ -25,10 +25,17 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // Route::get('/Admin', [App\Http\Controllers\Admin::class, 'index'])->name('Admin');
 // Auth::routes();
 
-Route::get('/admin', [App\Http\Controllers\Admin::class, 'index'])->name('admin');
+// pour la ville
+
+// Route::get('/admin', [App\Http\Controllers\Admin::class, 'index'])->name('admin');
 Route::get('/sadmin', [App\Http\Controllers\Sadmin::class, 'index'])->name('sadmin');
-Route::get('/ajouter', [App\Http\Controllers\ajouter::class, 'index'])->name('ajouter');
-Route::post('/ajouterville', [App\Http\Controllers\Sadmin::class, 'store'])->name('ajouterville');
-Route::get('/ville={id}', [App\Http\Controllers\Sadmin::class, 'edit'])->name ('edit_ville');
-Route::put('/update_ville/{id}', [App\Http\Controllers\Sadmin::class, 'update'])->name ('update_ville');
-Route::delete('/delete/{ville}', [App\Http\Controllers\Sadmin::class, 'destroy'])->name ('delete_ville');
+// Route::get('/ajouter', [App\Http\Controllers\ajouter::class, 'index'])->name('ajouter');
+Route::get('/ville={id}', [App\Http\Controllers\Sadmin::class, 'edit'])->name('edit_ville');
+Route::put('/update_ville/{id}', [App\Http\Controllers\Sadmin::class, 'update'])->name('update_ville');
+Route::delete('/delete/{ville}', [App\Http\Controllers\Sadmin::class, 'destroy'])->name('delete_ville');
+Route::get('/ajouterville', [App\Http\Controllers\Sadmin::class, 'afficher'])->name('ajouterville');
+Route::post('/enregistrerVille', [App\Http\Controllers\Sadmin::class, 'store'])->name('enregistrerVille');
+
+// pour le quatier
+Route::get('/ajouterQuartier', [App\Http\Controllers\Sadminquartier::class, 'index'])->name('ajouterQuatier');
+Route::post('/enregistrerQuartier', [App\Http\Controllers\Sadminquartier::class, 'store'])->name('enregistrerQuartier');

@@ -12,15 +12,15 @@ class ajouter extends Controller
 {
     public function index()
     {
-        return View("admin.ajouter");
+        return View("indexAdmin");
     }
 
     public function ajouterV(Request $request)
     {
-        $ajouterVille = new Ville();
-        $ajouterVille->nom= $request->input->nom;
-        $ajouterVille->description = $request->description;
-        $ajouterVille->save();
+        // $ajouterVille = new Ville();
+        // $ajouterVille->nom= $request->input->nom;
+        // $ajouterVille->description = $request->description;
+        // $ajouterVille->save();
         // return View("admin.ajouter");
     }
 }

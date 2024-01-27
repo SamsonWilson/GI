@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('villes', function (Blueprint $table) {
             $table->id();
-            $table->string('nom',100);
-            $table->string('description',100);
+            $table->string('nom', 100);
+            $table->string('description', 100);
+            $table->string('imageville');
             $table->timestamps();
         });
     }
