@@ -13,8 +13,11 @@ class Sadmin extends Controller
      */
     public function index()
     {
+
         $datas = Ville::orderbydesc("id")->get();
-        return View("admin.affichage", compact("datas"));
+        return View("sadmin.liste", compact("datas"));
+        // $datas = Ville::orderbydesc("id")->get();
+        // return View("admin.affichage", compact("datas"));
         //
         // dd($datas);
     }
@@ -50,7 +53,7 @@ class Sadmin extends Controller
             $ajouterVille->imageville = $fileNameToStore;
             $ajouterVille->save();
             $datas = Ville::orderbydesc("id")->get();
-            return View("admin.affichage", compact("datas"));
+            return View("sadmin.liste", compact("datas"));
         }
     }
 
@@ -64,7 +67,7 @@ class Sadmin extends Controller
     public function afficher()
     {
 
-        return View("admin.ajouter");
+        return View("sadmin.create");
     }
 
     /**
@@ -74,7 +77,7 @@ class Sadmin extends Controller
     {
         $villes = Ville::find($id);
 
-        return view('admin.modification', compact('villes'));
+        return view('sadmin.modif', compact('villes'));
     }
 
     /**
@@ -101,6 +104,9 @@ class Sadmin extends Controller
     {
         $villeModel = Ville::find($ville);
         $villeModel->delete();
-        return back();
+
+        $datas = Ville::orderbydesc("id")->get();
+        return View("sadmin.liste", compact("datas"));
+        // return back();
     }
 }

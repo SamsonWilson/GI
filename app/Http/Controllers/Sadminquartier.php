@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\quatier;
+use App\Models\quartiers;
 use App\Models\Ville;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class Sadminquartier extends Controller
 {
@@ -13,8 +14,10 @@ class Sadminquartier extends Controller
      */
     public function index()
     {
-        $datas = Ville::orderbydesc("id")->get();
-        return view("admin.quatier.createQuartier", compact("datas"));
+        $quartiers = quartiers::orderbydesc("id")->get();
+        return view("Sadmin.QUARTIER.liste", compact("quartiers"));
+        // $datas = Ville::orderbydesc("id")->get();
+        // return view("admin.quatier.createQuartier", compact("datas"));
     }
 
     /**
@@ -42,15 +45,15 @@ class Sadminquartier extends Controller
             $fileNameToStore = $fileName . "_" . time() . '.' . $extension;
             $path = $request->file('imagequartier')->storeAs('public/imagequartier', $fileNameToStore);
 
-            $ajouterVille = new quatier;
+            $ajouterVille = new quartiers;
             $ajouterVille->nom = $request->nom;
             $ajouterVille->description = $request->description;
             $ajouterVille->imagequartier = $fileNameToStore;
             $ajouterVille->ville_id = $request->ville_id;
-            // dd($ajouterVille);
             $ajouterVille->save();
-            $datas = quatier::orderbydesc("id")->get();
-            return View("admin.affichage", compact("datas"));
+            // dd($ajouterVille);
+            // $datas = quartiers::orderbydesc("id")->get();
+            // return View("admin.affichage", compact("datas"));
         }
     }
 
@@ -59,15 +62,24 @@ class Sadminquartier extends Controller
      */
     public function show(string $id)
     {
-        //
+        //return view("Sadmin.QUARTIER.create");
     }
+    public function afficher()
+    {
+        $datas = Ville::orderbydesc("id")->get();
+        return view("Sadmin.QUARTIER.create", compact("datas"));
+    }
+
+
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
-        //
+        $quartier = quartiers::find($id);
+
+        return view('Sadmin.QUARTIER.modifi', compact('quartier'));
     }
 
     /**
@@ -75,7 +87,17 @@ class Sadminquartier extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $this->validate($request, [
+            'nom' => 'required|' . Rule::unique('villes')->ignore($id),
+            'description' => 'required',
+
+        ]);
+        $quartier = quartiers::find($id);
+        $quartier->nom = $request->nom;
+        $quartier->description = $request->description;
+
+        $quartier->update($request->all());
+        return back();
     }
 
     /**
@@ -83,6 +105,7 @@ class Sadminquartier extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $quartier = quartiers::find($id);
+        $quartier->delete();
     }
 }

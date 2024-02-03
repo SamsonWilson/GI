@@ -11,8 +11,8 @@ class Admin extends Controller
 
     public function index()
     {
-        $datas = Ville::all();
-        return View("indexAdmin", compact("datas"));
+
+        $datas = Ville::orderbydesc("id")->get();
+        return View("sadmin.liste", compact("datas"));
     }
-   
 }
