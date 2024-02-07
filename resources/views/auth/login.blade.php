@@ -1,7 +1,69 @@
-@extends('layouts.app')
+@extends('layouts.auth')
 
 @section('content')
-<div class="container">
+
+<div class="form-body">
+
+    <form class="row g-3" method="POST" action="{{ route('login') }}">
+        @csrf
+        <div class="col-12">
+            <label for="inputEmailAddress" class="form-label">{{ __('Email Address') }}</label>
+            <input type="email" placeholder="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+            @error('email')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+           @enderror
+        </div>
+        <div class="col-12">
+            <label for="inputChoosePassword" class="form-label">{{ __('Password') }}</label>
+            <div class="input-group" id="show_hide_password">
+                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password"> <a href="javascript:;" class="input-group-text bg-transparent"><i class="bx bx-hide"></i></a>
+                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                <label class="form-check-label" for="flexSwitchCheckChecked">{{ __('Remember Me') }}</label>
+            </div>
+        </div>
+        <div class="col-md-6 text-end">	<a href="auth-cover-forgot-password.html">Forgot Password ?</a>
+        </div>
+        <div class="col-12">
+            <div class="d-grid">
+                <button type="submit" class="btn btn-light">{{ __('Login') }}</button>
+                <div class="text-center">
+                @if (Route::has('password.request'))
+                    <a class="mb-0" class="btn btn-link" href="{{ route('password.request') }}">
+                        {{ __('Mot de Passe oublier ?') }}
+                    </a>
+                @endif
+            </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="text-center">
+                <p class="mb-0">voulez-vous céer un compte ?  <a href="auth-cover-signup.html">Sign up here</a>
+                </p>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+
+
+
+
+
+
+{{--  <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -15,7 +77,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                <input id="email" type="email" placeholder="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -69,5 +131,5 @@
             </div>
         </div>
     </div>
-</div>
+</div>  --}}
 @endsection

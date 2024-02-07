@@ -2,21 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\quartiers;
-use App\Models\Ville;
+use App\Models\typeUtilisateur;
 use Illuminate\Http\Request;
 
-class index extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $datas = Ville::orderbydesc("id")->get();
-        $quartiers = quartiers::orderbydesc("id")->get();
-        return View("welcome", compact("quartiers", "datas"));
-        // return view("auth.login");
+        //
     }
 
     /**
@@ -24,7 +20,7 @@ class index extends Controller
      */
     public function create()
     {
-        return view("auth.login");
+        //
     }
 
     /**
@@ -38,7 +34,7 @@ class index extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(typeUtilisateur $typeUtilisateur)
     {
         //
     }
@@ -46,7 +42,7 @@ class index extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(typeUtilisateur $typeUtilisateur)
     {
         //
     }
@@ -54,7 +50,7 @@ class index extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, typeUtilisateur $typeUtilisateur)
     {
         //
     }
@@ -62,7 +58,7 @@ class index extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(typeUtilisateur $typeUtilisateur)
     {
         //
     }

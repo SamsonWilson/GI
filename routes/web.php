@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -97,3 +98,4 @@ Route::post('/enregistrer_client', [App\Http\Controllers\clientController::class
 
 // <-----------------POUR LA PAGE D'ACCUIEL------------------------->
 Route::get('/cc', [App\Http\Controllers\index::class, 'index'])->name('cc');
+Route::get('/login', [App\Http\Controllers\index::class, 'create'])->name('login');
