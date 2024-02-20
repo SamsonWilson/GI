@@ -51,6 +51,7 @@ class Sadminquartier extends Controller
             $ajouterVille->imagequartier = $fileNameToStore;
             $ajouterVille->ville_id = $request->ville_id;
             $ajouterVille->save();
+            return redirect()->route('liste_Quartier')->with('success', ' le Quartier vient d\' être Enregistrer ');
             // dd($ajouterVille);
             // $datas = quartiers::orderbydesc("id")->get();
             // return View("admin.affichage", compact("datas"));
@@ -97,7 +98,8 @@ class Sadminquartier extends Controller
         $quartier->description = $request->description;
 
         $quartier->update($request->all());
-        return back();
+        // return back();
+        return redirect()->route('liste_Quartier')->with('success', ' le Quartier vient d\' être Enregistrer ');
     }
 
     /**
@@ -107,5 +109,7 @@ class Sadminquartier extends Controller
     {
         $quartier = quartiers::find($id);
         $quartier->delete();
+        return redirect()->route('liste_Quartier')->with('success', ' le Quartier vient d\' être Enregistrer ');
+
     }
 }

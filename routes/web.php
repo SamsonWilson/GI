@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Utilisateur;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -16,12 +17,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    // return view('welcome');
+    return view('auth.login');
 });
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// ->middleware("can:superadmin");
 // les route des Admins
 // Route::get('/Admin', [App\Http\Controllers\Admin::class, 'index'])->name('Admin');
 // Auth::routes();
@@ -46,12 +49,12 @@ Route::get('/quartier={id}', [App\Http\Controllers\Sadminquartier::class, 'edit'
 Route::get('/ajouter_Quartier', [App\Http\Controllers\Sadminquartier::class, 'afficher'])->name('ajouter_Quartier');
 
 //  <-----------------POUR UTILISATEUR------------------------->
-// Route::get('/liste_Quartier', [App\Http\Controllers\Sadminquartier::class, 'index'])->name('liste_Quartier');
-// Route::post('/enregistrer_Quartier', [App\Http\Controllers\Sadminquartier::class, 'store'])->name('enregistrer_Quartier');
-// Route::delete('/delete/{quartier}', [App\Http\Controllers\Sadminquartier::class, 'destroy'])->name('delete_quartier');
-// Route::put('/update_quartier/{id}', [App\Http\Controllers\Sadminquartier::class, 'update'])->name('update_quartier');
-// Route::get('/quartier={id}', [App\Http\Controllers\Sadminquartier::class, 'edit'])->name('edit_quartier');
-// Route::post('/enregistrer_quartier', [App\Http\Controllers\Sadminquartier::class, 'store'])->name('enregistrer_quartier');
+Route::get('/liste_utilisateur', [App\Http\Controllers\UserController::class, 'index'])->name('liste_utilisateur');
+Route::post('/enregistrer_utilisateur', [App\Http\Controllers\UserController::class, 'store'])->name('enregistrer_utilisateur');
+Route::delete('/delete/{utilisateur}', [App\Http\Controllers\UserController::class, 'destroy'])->name('delete_utilisateur');
+Route::put('/update_utilisateur/{id}', [App\Http\Controllers\UserController::class, 'update'])->name('update_utilisateur');
+Route::get('/utilisateur={id}', [App\Http\Controllers\UserController::class, 'edit'])->name('edit_utilisateur');
+Route::get('/ajouter_utilisateur', [App\Http\Controllers\UserController::class, 'affichage'])->name('ajouter_utilisateur');
 
 // <-----------------POUR TYPE_UTILITEUR------------------------->
 Route::get('/liste_Type_Utilisateur', [App\Http\Controllers\typeUtilisateurController::class, 'index'])->name('liste_Type_Utilisateur');
@@ -76,7 +79,7 @@ Route::post('/enregistrer_type_logement', [App\Http\Controllers\typeLogementCont
 Route::delete('/delete/{type_logement}', [App\Http\Controllers\typeLogementController::class, 'destroy'])->name('delete_type_logement');
 Route::put('/update_type_logement/{id}', [App\Http\Controllers\typeLogementController::class, 'update'])->name('update_type_logement');
 Route::get('/Type_type_logement={id}', [App\Http\Controllers\typeLogementController::class, 'edit'])->name('edit_type_logement');
-Route::post('/enregistrer_type_logement', [App\Http\Controllers\typeLogementController::class, 'store'])->name('enregistrer_type_logement');
+Route::get('/ajouter_type_logement', [App\Http\Controllers\typeLogementController::class, 'affichage'])->name('ajouter_type_logement');
 
 // <-----------------POUR LOCATION------------------------->
 Route::get('/liste_location', [App\Http\Controllers\locationController::class, 'index'])->name('liste_location');
@@ -94,8 +97,13 @@ Route::put('/update_client/{id}', [App\Http\Controllers\clientController::class,
 Route::get('/client={id}', [App\Http\Controllers\clientController::class, 'edit'])->name('edit_client');
 Route::post('/enregistrer_client', [App\Http\Controllers\clientController::class, 'store'])->name('enregistrer_client');
 
-// <-----------------POUR VILLE------------------------->
+// <----------------- POUR VILLE ------------------------->
 
-// <-----------------POUR LA PAGE D'ACCUIEL------------------------->
+// <----------------- POUR LA PAGE D'ACCUIEL ------------------------->
+
 Route::get('/cc', [App\Http\Controllers\index::class, 'index'])->name('cc');
 Route::get('/login', [App\Http\Controllers\index::class, 'create'])->name('login');
+
+// <-----------------POUR LA PAGE SUPER_ADMIN------------------------->
+
+Route::get('/utilisateur', [App\Http\Controllers\UserController::class, 'index'])->name('utilisateur')->middleware("auth.superadmin");

@@ -2,20 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\typeLogement;
-use App\Models\Ville;
-use Illuminate\Http\Request;
+use App\Models\user_role;
+use App\Http\Requests\Storeuser_roleRequest;
+use App\Http\Requests\Updateuser_roleRequest;
 
-class typeLogementController extends Controller
+class UserRoleController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $datas = Ville::orderbydesc("id")->get();
-        // return View("sadmin.type", compact("datas"));
-        return view("Sadmin.TYPELOGEMENT.liste", compact("datas"));
+        //
     }
 
     /**
@@ -26,15 +24,10 @@ class typeLogementController extends Controller
         //
     }
 
-    public function affichage()
-    {
-        return view("Sadmin.TYPELOGEMENT.create");
-    }
-
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Storeuser_roleRequest $request)
     {
         //
     }
@@ -42,7 +35,7 @@ class typeLogementController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(typeLogement $typeLogement)
+    public function show(user_role $user_role)
     {
         //
     }
@@ -50,7 +43,7 @@ class typeLogementController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(typeLogement $typeLogement)
+    public function edit(user_role $user_role)
     {
         //
     }
@@ -58,7 +51,7 @@ class typeLogementController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, typeLogement $typeLogement)
+    public function update(Updateuser_roleRequest $request, user_role $user_role)
     {
         //
     }
@@ -66,7 +59,8 @@ class typeLogementController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(typeLogement $typeLogement)
+    public function destroy(user_role $user_role)
     {
+        //
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -12,21 +12,25 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
+    // Définition des attributs fillables, hidden et casts...
+
+    // Relation many-to-many avec TypeUtilisateur
+
     protected $fillable = [
         'name',
+        'prenom',
+        'sexe',
+        'photo',
+        'datenais',
+        'tel',
         'email',
         'password',
     ];
 
     /**
-     * The attributes that should be hidden for serialization.
+     * The attributes that should be hidden for arrays.
      *
-     * @var array<int, string>
+     * @var array
      */
     protected $hidden = [
         'password',
@@ -34,21 +38,23 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes that should be cast.
+     * The attributes that should be cast to native types.
      *
-     * @var array<string, string>
+     * @var array
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+
     // public function paiements(){
     //     return $this->hasMany(Paiement::class);
     // }
 
-    public function role()
+    public function roles()
     {
-        return $this->belongsToMany(Role::class, "user_role", "user_id", "role_id");
+        return $this->belongsToMany(role::class, "role_users", "role_id", "user_id");
     }
 
     // public function permissions(){
@@ -57,16 +63,16 @@ class User extends Authenticatable
 
     public function hasRole($role)
     {
-        return $this->role()->where("nom", $role)->first() !== null;
+        return $this->roles()->where("nom", $role)->first() !== null;
     }
 
     public function hasAnyRoles($roles)
     {
-        return $this->role()->whereIn("nom", $roles)->first() !== null;
+        return $this->roles()->whereIn("nom", $roles)->first() !== null;
     }
 
-    // public function getAllRoleNamesAttribute()
-    // {
-    //     return $this->roles->implode("nom", ' | ');
-    // }
+    public function getAllRoleNamesAttribute()
+    {
+        return $this->roles->implode("nom", ' | ');
+    }
 }

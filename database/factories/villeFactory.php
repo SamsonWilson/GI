@@ -19,8 +19,10 @@ class villeFactory extends Factory
     public function definition(): array
     {
         return [
-            "nom" => fake()->sentence(10),
-            "description" =>fake()->sentence(12),
+            "nom" => $this->faker->name(),
+            "description" => $this->faker->name(),
+            "imageville" => "",
+
         ];
     }
 }

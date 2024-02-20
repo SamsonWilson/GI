@@ -11,17 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('utilisateurs', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('nom');
+            $table->string('name');
+            $table->string('email')->unique();
             $table->string('prenom');
             $table->string('adress');
-            $table->integer('tel');
+            $table->string('tel');
             $table->string('photo');
-            $table->foreignId('typeutilisateur_id')->constrained('typeutilisateur');
+            $table->char('sexe');
+            $table->string('datenais');
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->rememberToken();
             $table->timestamps();
         });
-        schema::enableForeignKeyConstraints();
     }
 
     /**
@@ -29,9 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        schema::table('utilisateurs', function (Blueprint $table) {
-            $table->dropForeign('typeutilisateur_id');
-        });
-        Schema::dropIfExists('utilisateurs');
+        Schema::dropIfExists('users');
     }
 };

@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_role', function (Blueprint $table) {
+        Schema::create('role_users', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users');
             $table->foreignId('role_id')->constrained('roles');
+            $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
         });
-
         schema::enableForeignKeyConstraints();
     }
 
@@ -26,10 +25,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        schema::table('user_role', function (Blueprint $table) {
-            $table->dropForeign('user_id');
+        schema::table('role_userss', function (Blueprint $table) {
             $table->dropForeign('role_id');
+            $table->dropForeign('user_id');
         });
-        Schema::dropIfExists('user_role');
+        Schema::dropIfExists('role_users');
     }
 };

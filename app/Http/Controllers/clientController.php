@@ -12,7 +12,7 @@ class clientController extends Controller
      */
     public function index()
     {
-        //
+        return view("Sadmin.CLIENT.liste");
     }
 
     /**

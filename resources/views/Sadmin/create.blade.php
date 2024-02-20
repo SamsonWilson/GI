@@ -1,6 +1,6 @@
 @extends('layouts.Sadmin')
 
-@section('content')
+@section('contenu')
 
     <div class="page-wrapper">
 			<div class="page-content">

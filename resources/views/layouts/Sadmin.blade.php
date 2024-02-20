@@ -37,17 +37,13 @@
 		<!--start header -->
 		<header>
 
-            <x-HautMenu/>
+        <x-HautMenu/>
 
 		</header>
 
 
-
-         @yield('form')
-
-
-
-
+        {{--  page d'accueil  --}}
+         @yield('contenu')
 
 
    <x-color/>

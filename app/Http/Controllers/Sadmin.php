@@ -93,9 +93,10 @@ class Sadmin extends Controller
         $villes = Ville::find($id);
         $villes->nom = $request->nom;
         $villes->description = $request->description;
-
         $villes->update($request->all());
-        return back();
+        $datas = Ville::orderbydesc("id")->get();
+        return View("sadmin.liste", compact("datas"));
+        // return back();
     }
     /**
      * Remove the specified resource from storage.
@@ -105,8 +106,8 @@ class Sadmin extends Controller
         $villeModel = Ville::find($ville);
         $villeModel->delete();
 
-        $datas = Ville::orderbydesc("id")->get();
-        return View("sadmin.liste", compact("datas"));
-        // return back();
+        // $datas = Ville::orderbydesc("id")->get();
+        // return View("sadmin.liste", compact("datas"));
+        return back();
     }
 }

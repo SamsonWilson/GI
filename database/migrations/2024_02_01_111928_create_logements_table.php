@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('surperficie');
             $table->string('mt_logement_par_mois');
             $table->foreignId('quartier_id')->constrained('quartiers');
-            $table->foreignId('utilisateur_id')->constrained('utilisateurs');
+            $table->foreignId('users_id')->constrained('users');
             $table->foreignId('typelogement_id')->constrained('typelogement');
             $table->timestamps();
         });

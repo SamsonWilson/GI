@@ -12,7 +12,13 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        // return view("user");
+        return view("Sadmin.UTILISATEUR.liste");
+    }
+
+    public function affichage()
+    {
+        return view("auth.register");
     }
 
     /**
@@ -34,32 +40,10 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(typeUtilisateur $typeUtilisateur)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(typeUtilisateur $typeUtilisateur)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, typeUtilisateur $typeUtilisateur)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(typeUtilisateur $typeUtilisateur)
-    {
-        //
-    }
+
+
+   
 }

@@ -2,20 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\typeLogement;
-use App\Models\Ville;
-use Illuminate\Http\Request;
+use App\Models\role;
+use App\Http\Requests\StoreroleRequest;
+use App\Http\Requests\UpdateroleRequest;
 
-class typeLogementController extends Controller
+class RoleController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $datas = Ville::orderbydesc("id")->get();
-        // return View("sadmin.type", compact("datas"));
-        return view("Sadmin.TYPELOGEMENT.liste", compact("datas"));
+        //
     }
 
     /**
@@ -26,15 +24,10 @@ class typeLogementController extends Controller
         //
     }
 
-    public function affichage()
-    {
-        return view("Sadmin.TYPELOGEMENT.create");
-    }
-
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreroleRequest $request)
     {
         //
     }
@@ -42,7 +35,7 @@ class typeLogementController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(typeLogement $typeLogement)
+    public function show(role $role)
     {
         //
     }
@@ -50,7 +43,7 @@ class typeLogementController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(typeLogement $typeLogement)
+    public function edit(role $role)
     {
         //
     }
@@ -58,7 +51,7 @@ class typeLogementController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, typeLogement $typeLogement)
+    public function update(UpdateroleRequest $request, role $role)
     {
         //
     }
@@ -66,7 +59,8 @@ class typeLogementController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(typeLogement $typeLogement)
+    public function destroy(role $role)
     {
+        //
     }
 }

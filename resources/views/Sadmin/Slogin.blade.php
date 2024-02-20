@@ -1,6 +1,6 @@
 @extends('layouts.Sadmin')
 
-@section('content')
+@section('contenu')
 <body class="bg-theme bg-theme1">
 	<!-- wrapper -->
 	<div class="wrapper">
