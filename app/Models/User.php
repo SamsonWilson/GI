@@ -12,20 +12,13 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+
     // Définition des attributs fillables, hidden et casts...
 
     // Relation many-to-many avec TypeUtilisateur
 
-    protected $fillable = [
-        'name',
-        'prenom',
-        'sexe',
-        'photo',
-        'datenais',
-        'tel',
-        'email',
-        'password',
-    ];
+    protected $fillable = ['name', 'email', 'prenom', 'tel', 'photo', 'sexe', 'datenais', 'adress', 'password'];
+
 
     /**
      * The attributes that should be hidden for arrays.

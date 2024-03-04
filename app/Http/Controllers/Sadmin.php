@@ -16,10 +16,11 @@ class Sadmin extends Controller
 
         $datas = Ville::orderbydesc("id")->get();
         return View("sadmin.liste", compact("datas"));
+        // dd($datas);
+
         // $datas = Ville::orderbydesc("id")->get();
         // return View("admin.affichage", compact("datas"));
         //
-        // dd($datas);
     }
 
     /**
@@ -52,8 +53,9 @@ class Sadmin extends Controller
             $ajouterVille->description = $request->description;
             $ajouterVille->imageville = $fileNameToStore;
             $ajouterVille->save();
-            $datas = Ville::orderbydesc("id")->get();
-            return View("sadmin.liste", compact("datas"));
+            // $datas = Ville::orderbydesc("id")->get();
+            // return View("sadmin.liste", compact("datas"));
+            return redirect()->route('sadmin')->with('success', ' la ville vient d\' être Enregistrer ');
         }
     }
 
@@ -76,7 +78,6 @@ class Sadmin extends Controller
     public function edit($id)
     {
         $villes = Ville::find($id);
-
         return view('sadmin.modif', compact('villes'));
     }
 
@@ -94,9 +95,12 @@ class Sadmin extends Controller
         $villes->nom = $request->nom;
         $villes->description = $request->description;
         $villes->update($request->all());
-        $datas = Ville::orderbydesc("id")->get();
-        return View("sadmin.liste", compact("datas"));
+        // $datas = Ville::orderbydesc("id")->get();
+        // return View("sadmin.liste", compact("datas"));
+        return redirect()->route('sadmin')->with('success', ' la ville vient d\' être Enregistrer ');
+
         // return back();
+
     }
     /**
      * Remove the specified resource from storage.
@@ -105,9 +109,9 @@ class Sadmin extends Controller
     {
         $villeModel = Ville::find($ville);
         $villeModel->delete();
-
         // $datas = Ville::orderbydesc("id")->get();
         // return View("sadmin.liste", compact("datas"));
-        return back();
+        // return back();
+        return redirect()->route('sadmin')->with('success', ' la ville vient d\' être Enregistrer ');
     }
 }

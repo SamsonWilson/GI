@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('mt_logement_par_mois');
             $table->foreignId('quartier_id')->constrained('quartiers');
             $table->foreignId('users_id')->constrained('users');
-            $table->foreignId('typelogement_id')->constrained('typelogement');
+            $table->foreignId('typelogement_id')->constrained('type_logements');
             $table->timestamps();
         });
         schema::enableForeignKeyConstraints();

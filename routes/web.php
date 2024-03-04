@@ -52,8 +52,8 @@ Route::get('/ajouter_Quartier', [App\Http\Controllers\Sadminquartier::class, 'af
 Route::get('/liste_utilisateur', [App\Http\Controllers\UserController::class, 'index'])->name('liste_utilisateur');
 Route::post('/enregistrer_utilisateur', [App\Http\Controllers\UserController::class, 'store'])->name('enregistrer_utilisateur');
 Route::delete('/delete/{utilisateur}', [App\Http\Controllers\UserController::class, 'destroy'])->name('delete_utilisateur');
-Route::put('/update_utilisateur/{id}', [App\Http\Controllers\UserController::class, 'update'])->name('update_utilisateur');
-Route::get('/utilisateur={id}', [App\Http\Controllers\UserController::class, 'edit'])->name('edit_utilisateur');
+// Route::put('/update_quartier/{id}', [App\Http\Controllers\UserController::class, 'update'])->name('update_utilisateur');
+// Route::get('/quartier={id}', [App\Http\Controllers\UserController::class, 'edit'])->name('edit_utilisateur');
 Route::get('/ajouter_utilisateur', [App\Http\Controllers\UserController::class, 'affichage'])->name('ajouter_utilisateur');
 
 // <-----------------POUR TYPE_UTILITEUR------------------------->
@@ -71,14 +71,14 @@ Route::post('/enregistrer_logement', [App\Http\Controllers\logementController::c
 Route::delete('/delete/{logement}', [App\Http\Controllers\logementController::class, 'destroy'])->name('delete_logement');
 Route::put('/update_logement/{id}', [App\Http\Controllers\logementController::class, 'update'])->name('update_logement');
 Route::get('/Type_logement={id}', [App\Http\Controllers\logementController::class, 'edit'])->name('edit_Type_logement');
-Route::post('/enregistrer_logement', [App\Http\Controllers\logementController::class, 'store'])->name('enregistrer_logement');
+Route::get('/ajouter_logement', [App\Http\Controllers\logementController::class, 'create'])->name('ajouter_logement');
 
 // <-----------------POUR TYPE_LOGEMENT------------------------->
 Route::get('/liste_type_logement', [App\Http\Controllers\typeLogementController::class, 'index'])->name('liste_type_logement');
 Route::post('/enregistrer_type_logement', [App\Http\Controllers\typeLogementController::class, 'store'])->name('enregistrer_type_logement');
-Route::delete('/delete/{type_logement}', [App\Http\Controllers\typeLogementController::class, 'destroy'])->name('delete_type_logement');
+Route::delete('/delete_type_logement/{type_logement}', [App\Http\Controllers\typeLogementController::class, 'destroy'])->name('delete_type_logement');
 Route::put('/update_type_logement/{id}', [App\Http\Controllers\typeLogementController::class, 'update'])->name('update_type_logement');
-Route::get('/Type_type_logement={id}', [App\Http\Controllers\typeLogementController::class, 'edit'])->name('edit_type_logement');
+Route::get('/type_logement={id}', [App\Http\Controllers\typeLogementController::class, 'edit'])->name('type_logement');
 Route::get('/ajouter_type_logement', [App\Http\Controllers\typeLogementController::class, 'affichage'])->name('ajouter_type_logement');
 
 // <-----------------POUR LOCATION------------------------->
