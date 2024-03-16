@@ -91,18 +91,31 @@ Route::post('/enregistrer_location', [App\Http\Controllers\locationController::c
 
 // <-----------------POUR CLIENT------------------------->
 Route::get('/liste_client', [App\Http\Controllers\clientController::class, 'index'])->name('liste_client');
-Route::post('/enregistrer_client', [App\Http\Controllers\clientController::class, 'store'])->name('enregistrer_client');
+Route::get('/ajouterClient', [App\Http\Controllers\clientController::class, 'affichage'])->name('ajouterClient');
 Route::delete('/delete/{client}', [App\Http\Controllers\clientController::class, 'destroy'])->name('delete_client');
 Route::put('/update_client/{id}', [App\Http\Controllers\clientController::class, 'update'])->name('update_client');
 Route::get('/client={id}', [App\Http\Controllers\clientController::class, 'edit'])->name('edit_client');
-Route::post('/enregistrer_client', [App\Http\Controllers\clientController::class, 'store'])->name('enregistrer_client');
+Route::post('/enregistrerClient', [App\Http\Controllers\clientController::class, 'store'])->name('enregistrerClient');
 
-// <----------------- POUR VILLE ------------------------->
+// <----------------- POUR type clients ------------------------->
+Route::get('/liste_typeclient', [App\Http\Controllers\typeclientsController::class, 'index'])->name('liste_typeclient');
+Route::get('/ajoutertypeClient', [App\Http\Controllers\typeclientsController::class, 'affichage'])->name('ajoutertypeClient');
+// Route::delete('/delete/{client}', [App\Http\Controllers\clientController::class, 'destroy'])->name('delete_client');
+// Route::put('/update_client/{id}', [App\Http\Controllers\clientController::class, 'update'])->name('update_client');
+// Route::get('/client={id}', [App\Http\Controllers\clientController::class, 'edit'])->name('edit_client');
+Route::post('/enregistrer_typeclient', [App\Http\Controllers\typeclientsController::class, 'store'])->name('enregistrer_typeclient');
 
 // <----------------- POUR LA PAGE D'ACCUIEL ------------------------->
 
 Route::get('/cc', [App\Http\Controllers\index::class, 'index'])->name('cc');
 Route::get('/login', [App\Http\Controllers\index::class, 'create'])->name('login');
+// Route::get('/vis', [App\Http\Controllers\index::class, 'visite'])->name('vis');
+Route::get('/visiter/{id}', [App\Http\Controllers\index::class, 'edit'])->name('vis');
+// Route::get('/visiter/{id}', [App\Http\Controllers\index::class, 'edit'])->name('vis');
+
+Route::post('/enregistrerVisite', [App\Http\Controllers\index::class, 'EnreVisite'])->name('enregistrerVisite');
+
+
 
 // <-----------------POUR LA PAGE SUPER_ADMIN------------------------->
 

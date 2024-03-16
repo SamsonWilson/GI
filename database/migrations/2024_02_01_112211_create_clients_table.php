@@ -16,9 +16,13 @@ return new class extends Migration
             $table->string('nom');
             $table->string('prenom');
             $table->string('adress');
-            $table->string('tel');
+            $table->string('tel1');
+            $table->string('tel2');
+            $table->string('email');
+            $table->foreignId('typeclient_id')->constrained('type_clients');
             $table->timestamps();
         });
+        schema::enableForeignKeyConstraints();
     }
 
     /**
@@ -26,6 +30,9 @@ return new class extends Migration
      */
     public function down(): void
     {
+        schema::table('clients', function (Blueprint $table) {
+            $table->dropForeign('typeclient_id');
+        });
         Schema::dropIfExists('clients');
     }
 };

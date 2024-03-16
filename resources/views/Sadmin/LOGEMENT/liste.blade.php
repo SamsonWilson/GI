@@ -36,7 +36,7 @@
             <hr>
 
             <div><a name="" id="" class="btn btn-primary" href="{{ route('ajouter_logement') }}"
-                    role="button">AJOUTER UN QUARTIER </a></div>
+                    role="button">AJOUTER UN logement </a></div>
 
             <hr>
             <div class="card">

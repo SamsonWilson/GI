@@ -82,7 +82,8 @@
 
                                         <hr>
                                         <div class="mb-4">
-                                            <label for="single-select-field" class="form-label">Choisir un quartier</label>
+                                            <label for="single-select-field" class="form-label">Choisir un type de logemnt
+                                            </label>
                                             <select class="form-select" id="single-select-field"
                                                 data-placeholder="Sélectionnez un quartier" name="quartier_id">
                                                 @foreach ($quartiers as $quatier)

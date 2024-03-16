@@ -81,7 +81,7 @@ class logementController extends Controller
             $ajouterlogement->quartier_id = $request->quartier_id;
             $ajouterlogement->typelogement_id = $request->typelogement_id;
             $ajouterlogement->save();
-            return redirect()->route('liste_Quartier')->with('success', ' le Quartier vient d\' être Enregistrer ');
+            return redirect()->route('liste_logement')->with('success', ' le Quartier vient d\' être Enregistrer ');
         }
     }
 

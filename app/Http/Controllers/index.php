@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\client;
 use App\Models\logement;
 use App\Models\quartiers;
 use App\Models\Ville;
+use App\Models\visite;
 use Illuminate\Http\Request;
 
 class index extends Controller
@@ -34,6 +36,44 @@ class index extends Controller
         return view("auth.login");
     }
 
+
+    public function EnreVisite(Request $request)
+    {
+        $request->validate([
+            "nom" => "required",
+            "prenom" => "required",
+            "email" => "required",
+            "tel1" => "required",
+            "tel2" => "required",
+            "adress" => "required",
+
+        ]);
+
+        $ajouterClient = new client;
+        $ajouterClient->nom = $request->nom;
+        $ajouterClient->prenom = $request->prenom;
+        $ajouterClient->adress = $request->adress;
+        $ajouterClient->email = $request->email;
+        $ajouterClient->tel1 = $request->tel1;
+        $ajouterClient->tel2 = $request->tel2;
+        $ajouterClient->save();
+
+        $ajouterVisite = new visite();
+        $ajouterVisite->client_id = $ajouterClient->id;
+        $ajouterVisite->logement_id = $request->logement_id;
+        $ajouterVisite->save();
+
+
+
+
+        // $datas = Ville::orderbydesc("id")->get();
+        // return View("sadmin.liste", compact("datas"));
+        // return redirect()->route('vis')->with('success', ' la ville vient d\' être Enregistrer ');
+    }
+
+
+
+
     /**
      * Store a newly created resource in storage.
      */
@@ -55,7 +95,16 @@ class index extends Controller
      */
     public function edit(string $id)
     {
-        //
+
+        $logement = Logement::join('type_logements', 'logements.typelogement_id', '=', 'type_logements.id')
+            ->join('quartiers', 'logements.quartier_id', '=', 'quartiers.id')
+            ->join('villes', 'quartiers.ville_id', '=', 'villes.id') // Jointure avec la table `villes`
+            ->orderByDesc('logements.id')
+            ->select('logements.*', 'type_logements.nom AS type_logement_nom', 'quartiers.imagequartier AS quartier_image', 'quartiers.nom AS quartier_nom', 'villes.nom AS ville_nom', 'villes.imageville AS ville_image') // Sélection du nom de la ville
+            ->find($id);
+        return view('user', compact('logement'));
+        // $logement = logement::find($id);
+        // return view('user', compact('logement'));
     }
 
     /**

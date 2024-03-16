@@ -47,7 +47,7 @@ class typeLogementController extends Controller
         $ajouterVille->save();
         // $datas = Ville::orderbydesc("id")->get();
         // return View("sadmin.liste", compact("datas"));
-        // return redirect()->route('Sadmin.TYPELOGEMENT.liste')->with('success', ' la ville vient d\' être Enregistrer ');
+        return redirect()->route('liste_type_logement')->with('success', ' la ville vient d\' être Enregistrer ');
     }
 
     /**

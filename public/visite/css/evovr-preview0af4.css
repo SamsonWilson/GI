@@ -1,0 +1,3320 @@
+body {
+    margin: 0px;
+}
+
+.evovr-call-editor-content {
+    text-align: center;
+    max-width: 250px;
+}
+
+.evovr_view-container *,
+::after,
+::before {
+    box-sizing: border-box;
+}
+
+.evovr_view-container * {
+    font-weight: 400;
+    line-height: 1.5;
+    font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+}
+
+.evovr_view-container *,
+button,
+input,
+optgroup,
+select,
+textarea,
+div {
+    font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif !important;
+}
+
+.evovr_view-container *,
+img {
+    vertical-align: middle;
+    border-style: none;
+    border-radius: 1px;
+}
+
+.evovr_view-loading-cover {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+    background-color: #222;
+    pointer-events: auto;
+    opacity: 1;
+    transition: opacity .3s;
+    z-index: 10000;
+    cursor: pointer;
+}
+
+.evovr_view-loading-faded-out {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.35);
+}
+
+.evovr_view-loading-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    text-align: center;
+    width: 80px;
+    height: 80px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 50%;
+    border: solid 2px rgba(255, 255, 255, .8);
+    -webkit-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out, background-color 0.3s ease-in-out, transform 0.3s ease;
+    transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out, background-color 0.3s ease-in-out, transform 0.3s ease;
+    -webkit-box-shadow: 0px 2px 8px 0px rgb(0 0 0 / 50%);
+    box-shadow: 0px 2px 8px 0px rgb(0 0 0 / 50%);
+    z-index: 9;
+}
+
+.evovr_view-loading-play-btn {
+    margin-top: 25%;
+    opacity: .8;
+    -webkit-transition: opacity 0.3s ease-in-out;
+    -moz-transition: opacity 0.3s ease-in-out;
+    -o-transition: opacity 0.3s ease-in-out;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease;
+}
+
+.evovr_view-loading-play p {
+    color: #ffffff;
+    opacity: 0.8;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 1.61em;
+    margin: 0px;
+    transition: transform 0.3s ease;
+    transform: scaleX(1) scaleY(1);
+}
+
+.evovr_view-loading-powered-by {
+    position: absolute;
+    bottom: 15%;
+    left: 50%;
+    width: 80%;
+    padding: 0 25px;
+    transform: translate(-50%, 50%);
+    text-align: center;
+    z-index: 8;
+}
+
+.evovr_view-loading-vtp {
+    font-size: 10px;
+    letter-spacing: 1.7px;
+    line-height: 22px;
+    font-family: IBM Plex Sans;
+    font-weight: 500;
+    color: #f5f4f3;
+    text-transform: uppercase;
+    text-shadow: 0 0 40px rgb(0 0 0 / 20%);
+    text-shadow: 0 0 10px #0f1011;
+}
+
+.evovr_view-loading-vt {
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 2px 2px 1px black;
+    line-height: 1.1;
+    letter-spacing: .6px;
+    text-align: center;
+}
+
+.evovr_view-loading-title {
+    position: absolute;
+    bottom: 85%;
+    left: 50%;
+    width: 80%;
+    padding: 0 25px;
+    transform: translate(-50%, 50%);
+    font-size: 22px;
+    font-weight: 300;
+    color: #fff;
+    text-shadow: 0 0 10px #0f1011;
+    line-height: 1.1;
+    letter-spacing: .6px;
+    text-align: center;
+    z-index: 8;
+}
+
+.evovr_view-container:hover .evovr_view-loading-play {
+    background-color: rgba(255, 255, 255, 1);
+    transform: translate(-50%, -50%) scale(1.1);
+    transition: transform 0.3s ease;
+}
+
+.evovr_view-container:hover .evovr_view-loading-play-btn {
+    filter: invert(1);
+    transform: scaleX(1.1) scaleY(1.1);
+    transition: transform 0.3s ease;
+}
+
+.evovr_view-container:hover p {
+    color: #000000;
+    transform: scaleX(1) scaleY(1);
+    transition: transform 0.3s ease;
+}
+
+.evovr-infohotspot-content {
+    opacity: 0;
+    animation-name: imgopacity;
+    animation-duration: 1.2s;
+    animation-delay: 0.2s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+.evovr_view-tour-thumbnails {
+    opacity: 0;
+    animation-name: imgopacity;
+    animation-duration: 0.5s;
+    animation-delay: 0.5s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+.evovr_view-tour-thumbnails .evovr_view-tour-thumbnails-content .slick-list .slick-track .slick-slide img {
+    opacity: 0;
+    animation-name: imgopacity;
+    animation-duration: 2s;
+    animation-delay: 0.1s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+    object-fit: cover;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+}
+
+.evovr-tour-thumbnails-hidden {
+    opacity: 1;
+    animation-name: none;
+    animation-duration: unset;
+    animation-delay: unset;
+    animation-timing-function: unset;
+    animation-fill-mode: none;
+}
+
+.evovr-tour-thumbnails-hidden .evovr_view-tour-thumbnails-content .slick-list .slick-track .slick-slide img {
+    opacity: 1;
+    animation-name: none;
+    animation-duration: unset;
+    animation-delay: unset;
+    animation-timing-function: unset;
+    animation-fill-mode: none;
+    object-fit: cover;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+}
+
+#evovr-user-logo {
+    opacity: 0;
+    animation-name: imgopacity;
+    animation-duration: 0.5s;
+    animation-delay: 0s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+.evovr_view-c-btn {
+    opacity: 0;
+    animation-name: imgopacity;
+    animation-duration: 0.5s;
+    animation-delay: 0.5s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+.evovr_view-autoplay-btn {
+    opacity: 0;
+    animation-name: imgopacity;
+    animation-duration: 0.5s;
+    animation-delay: 0s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+.evovr_view-contact-btn {
+    opacity: 0;
+    animation-name: imgopacity;
+    animation-duration: 0.5s;
+    animation-delay: 0.5s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+.evovr_view-autoplay-speed-btn {
+    opacity: 0;
+    animation-name: imgopacity;
+    animation-duration: 0.5s;
+    animation-delay: 0s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+.evovr_view-tour-plan {
+    opacity: 0;
+    animation-name: imgopacity;
+    animation-duration: 0.5s;
+    animation-delay: 0.5s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes imgopacity {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes imgopacity2 {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+.evovr-call-editor-img {
+    max-width: 150px;
+}
+
+.modal-view .evovr-close-editor {}
+
+.modal-view .evovr-close-editor:hover {}
+
+.modal-view .evovr-close-editor img {}
+
+.modal-view .evovr-close-view,
+.modal-view-ifr .evovr-close-view,
+.modal-view .evovr-close-editor {
+    z-index: 1;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    text-align: center;
+    flex: 10000 1 0%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: 200ms;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, .65);
+    opacity: 0;
+    animation-name: imgopacity;
+    animation-duration: 0.5s;
+    animation-delay: 0.5s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+.modal-view .evovr-close-view:hover,
+.modal-view-ifr .evovr-close-view:hover,
+.modal-view .evovr-close-editor:hover {
+    background-color: rgba(0, 0, 0, .85);
+}
+
+.modal-view .evovr-close-view img,
+.modal-view-ifr .evovr-close-view img,
+.modal-view .evovr-close-editor img {
+    width: 26px !important;
+    height: 26px !important;
+    padding: 0 !important;
+    background-color: transparent !important;
+}
+
+.modal-view .evovr-modal-close-icon:active {
+    box-shadow: none
+}
+
+.modal-view .evovr_view-fullscreen-btn {
+    display: none !important;
+    text-align: center;
+    flex: 10000 1 0%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: 200ms;
+    cursor: pointer;
+    position: absolute;
+    bottom: 105px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, .65);
+}
+
+.modal-view .evovr_view-fullscreen-btn:hover {
+    background-color: rgba(0, 0, 0, .85);
+}
+
+.modal-view .evovr_view-fullscreen-btn img {
+    width: 26px !important;
+    height: 26px !important;
+}
+
+.modal-view .evovr_view-info-btn,
+.modal-view .evovr_view-contact-btn,
+.modal-view .evovr_view-speaker-btn {
+    text-align: center;
+    flex: 10000 1 0%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-bottom: 8px;
+    transition: 200ms;
+    cursor: pointer;
+}
+
+.modal-view .evovr_view-info-btn:hover,
+.modal-view .evovr_view-contact-btn:hover,
+.modal-view .evovr_view-speaker-btn:hover,
+.modal-view .evovr-gyro:hover {
+    background-color: rgba(0, 0, 0, .15);
+}
+
+.modal-view .evovr_view-info-btn img,
+.modal-view .evovr_view-contact-btn img,
+.modal-view .evovr_view-speaker-btn img {
+    width: 26px !important;
+    height: 26px !important;
+}
+
+.modal-view .evovr_view-autoplay-btn,
+.modal-view-ifr .evovr_view-autoplay-btn {
+    top: 10px;
+    right: 84px !important;
+    height: 40px !important;
+}
+
+.modal-view .evovr_view-autoplay-speed-btn,
+.modal-view-ifr .evovr_view-autoplay-speed-btn {
+    top: 10px;
+    right: 56px;
+    height: 40px;
+}
+
+.modal-view .evovr_view-speaker-btn {
+    position: absolute;
+    top: 58px !important;
+    right: 10px;
+}
+
+.modal-view .evovr-gyro {
+    position: absolute;
+    right: 10px;
+    bottom: 16px;
+    text-align: center;
+    flex: 10000 1 0%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: 200ms;
+    cursor: pointer;
+}
+
+.modal-view .a-enter-vr {
+    right: 58px !important;
+    bottom: 16px !important;
+}
+
+.modal-view .evovr_view-evovr-show-hide-thumbnails {
+    width: 100%;
+    text-align: center;
+}
+
+.modal-view .evovr_view-evovr-show-hide-thumbnails img {
+    margin-top: -35px;
+    transition: 0.3s;
+    position: absolute;
+    background-color: rgba(0, 0, 0, .65);
+    border-radius: 50%;
+    padding: 4.5px;
+    width: 25px;
+    height: 25px;
+    animation-name: imgopacity;
+    animation-duration: 0.1s;
+    animation-delay: 0s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+.modal-view .evovr_view-evovr-show-hide-thumbnails img:hover {
+    background-color: rgba(0, 0, 0, .85);
+}
+
+.modal-view .evovr_view-tour-plan-btn {
+    text-align: center;
+    flex: 10000 1 0%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    height: 40px;
+    background-color: rgba(0, 0, 0, .65);
+    border-radius: 100px;
+    padding: 0px 16px;
+    color: #ffffff;
+    text-decoration: none;
+    position: relative;
+}
+
+.modal-view .evovr_view-tour-plan-btn:hover {
+    background-color: rgba(0, 0, 0, .85);
+}
+
+.modal-view .evovr_view-tour-plan-btn img {
+    margin-right: 6px;
+    width: 26px !important;
+    height: 26px !important;
+}
+
+.evovr_view-tour-plan-btn span {
+    font-weight: 600;
+}
+
+#evrcontact {
+    display: none !important;
+}
+
+.modal-view .evovr_view-group-btn {
+    position: absolute !important;
+    right: 10px !important;
+    top: 106px !important;
+    width: 38px !important;
+}
+
+
+.evovr_view-tour-scene-content {
+    display: flex;
+    flex-flow: column;
+    height: 100% !important;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.evovr_view-tour-scene {
+    height: 100% !important;
+    width: 100%;
+    position: relative;
+}
+
+.evovr-scene-loading {
+    background-image: url("../icons/svg/loalding-tour.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.evovr-page-loading {
+    background-color: #000000;
+    background-image: url("../icons/svg/loalding-tour.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100% !important;
+    width: 100%;
+}
+
+/* Info hotspot */
+.evovr-flex-modal-fade *,
+::after,
+::before {
+    box-sizing: border-box;
+}
+
+.evovr-flex-modal-fade {
+    position: fixed;
+    top: 0px;
+    right: 0;
+    z-index: 99999;
+    display: block;
+    overflow-x: hidden;
+    overflow-y: auto;
+    opacity: 1;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    outline: 0;
+    transition: opacity .15s linear;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.evovr-flex-madal {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: auto;
+    overflow-x: hidden;
+    padding: 20px 0px;
+}
+
+.evovr-flex-madal {
+    opacity: 0;
+    animation-name: imgopacity;
+    animation-duration: 0.8s;
+    animation-delay: 0.2s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+/* modal animation effect */
+.evovr-infohotspot .evovr-flex-madal {
+    /* hideModal */
+    z-index: -1;
+    opacity: 0;
+    animation: hide .25s;
+    transform: scale(0);
+}
+
+@keyframes hide {
+    from {
+        z-index: 2;
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    to {
+        z-index: -1;
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+.evovr-infohotspot .evovr-flex-madal {
+    /* showModal */
+    opacity: 1;
+    z-index: 2;
+    animation: show .8s;
+
+    transform: scale(1);
+}
+
+@keyframes show {
+    from {
+
+        transform: scale(0);
+        opacity: 0;
+        z-index: -1;
+    }
+
+    to {
+
+        transform: scale(1);
+        opacity: 1;
+        z-index: 2;
+    }
+}
+
+/* END modal animation effect */
+
+
+.evovr-flex-modal-content {
+    padding: 0px;
+    resize: vertical;
+    -webkit-box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.9);
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.9);
+    margin-left: auto;
+    margin-right: auto;
+    width: 512px;
+    border-radius: 6px;
+}
+
+.evovr-flex-modal-body {
+    position: relative;
+    display: block;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 1);
+    color: #2c2c2c;
+}
+
+.evovr-flex-modal-content-scrollbar-overlay {
+    background-color: rgba(255, 255, 255, 1);
+    color: rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+    overflow-y: overlay;
+    scrollbar-color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0.2);
+    ;
+    scrollbar-width: thin;
+}
+
+.evovr-flex-modal-header.evovr-flex-modal-header-fixed {
+    width: 512px;
+    position: absolute;
+}
+
+.close-flex-modal-btn {
+    padding: 6px;
+    opacity: 0.9;
+    border-radius: 50%;
+    margin: 12px;
+    z-index: 99999;
+    cursor: pointer;
+    background-color: #e4e6eb;
+    box-shadow: 0 12px 28px 0 rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+    -webkit-transition: background-color 120ms linear 60ms;
+    -moz-transition: background-color 120ms linear 60ms;
+    -o-transition: background-color 120ms linear 60ms;
+    transition: background-color 120ms linear 60ms;
+}
+
+.evovr-flex-modal-header-fixed .close-flex-modal-btn {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+.close-flex-modal-btn:hover {
+    background-color: #ccced1;
+}
+
+.close-flex-modal-btn:active {
+    box-shadow: 0 0 0 .2rem rgba(108, 117, 125, .5)
+}
+
+.evovr-flex-modal-row {
+    display: block;
+    width: 100%;
+    padding: 20px 0px 0px 0px;
+    text-align: center;
+}
+
+.evovr-flex-modal-body-section {
+    display: block;
+    padding: 0px 20px 20px 20px;
+    text-align: center;
+}
+
+.evovr-flex-modal-title {
+    font-size: 1.5em;
+    line-height: 1.45em;
+}
+
+.evovr-flex-modal-desc {
+    font-weight: 300;
+    line-height: 20px;
+    font-size: 1em;
+    padding-bottom: 20px;
+}
+
+@media (max-width: 575.98px) {
+    .evovr-flex-modal-content {
+        width: 100%;
+    }
+
+    .evovr-flex-madal {
+        padding: 20px 10px;
+    }
+
+    .evovr-flex-modal-header.evovr-flex-modal-header-fixed {
+        width: 100%;
+        position: absolute;
+    }
+
+    .evovr-flex-modal-header-fixed .close-flex-modal-btn {
+        position: absolute;
+        top: 0px;
+        right: 20px;
+    }
+}
+
+.evovr-infohotspot-theme1-style2 .evovr-flex-modal-body-section {
+    display: block;
+    position: relative;
+    width: 88%;
+    padding: 0px 10px 10px 10px;
+    margin-bottom: 20px;
+    margin-top: -65px;
+    background-color: #fff;
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 8px;
+    border: 1px solid #f1f1f1;
+    overflow: hidden;
+}
+
+.evovr-infohotspot-theme1-style3 .evovr-flex-modal-body-section {
+    display: block;
+    position: relative;
+    width: 100%;
+    margin-top: -40px;
+}
+
+.evovr-infohotspot-theme1-style3 .evovr-infohotspot-header:after {
+    content: "";
+    width: 24%;
+    overflow: hidden;
+    position: absolute;
+    left: 32%;
+    top: 5%;
+    height: 80%;
+    background-color: #fff;
+    transform: rotate(80deg);
+}
+
+.evovr-infohotspot-theme1-style3 .evovr-flex-modal-body {
+    overflow: hidden
+}
+
+/* width */
+.evovr-flex-modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* scrollbar Track */
+.evovr-flex-modal-content::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0);
+}
+
+/* scrollbar Handle */
+.evovr-flex-modal-content::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 0 0 10px;
+    border-radius: 6px;
+}
+
+/* scrollbar */
+.evovr-flex-modal-content:hover {
+    color: rgba(204, 206, 209, 0.8);
+}
+
+.evovr-infohotspot-img.slick-dotted.slick-slider {
+    margin-bottom: 0px;
+    overflow: hidden;
+}
+
+.evovr-infohotspot-img .slick-track {
+    height: auto !important;
+    width: auto !important;
+    margin: 0px !important;
+    padding: 0px !important;
+    display: -webkit-box !important;
+}
+
+.evovr-infohotspot-img .slick-slide {
+    display: none;
+    float: left;
+    height: auto;
+    min-height: 1px;
+    border: none !important;
+    cursor: pointer;
+    outline: none;
+}
+
+.evovr-infohotspot-img .slick-list {
+    margin: 0px;
+    padding: 0px;
+}
+
+.evovr-infohotspot-img .slick-dots {
+    bottom: 0px;
+    padding: 10px;
+}
+
+.evovr-infohotspot-img .slick-dots li.slick-active button:before {
+    opacity: 1;
+    color: #ddd;
+    font-size: 8px;
+}
+
+.evovr-infohotspot-img .slick-dots li button:before {
+    opacity: 0.5;
+    color: #ddd;
+}
+
+.evovr-infohotspot-img .slick-prev {
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    width: 25%;
+}
+
+.evovr-infohotspot-img .slick-next {
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    width: 25%;
+}
+
+.evovr-infohotspot-img .slick-prev:before {
+    float: left;
+    opacity: 0.5;
+    margin-left: 10px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 50%;
+}
+
+.evovr-infohotspot-img .slick-next:before {
+    float: right;
+    opacity: 0.5;
+    margin-right: 10px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 50%;
+}
+
+.evovr-infohotspot-img .slick-dots li {
+    margin: 0px;
+}
+
+@media (max-width: 575.98px) {
+    .evovr-infohotspot-img .slick-prev {
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0);
+        width: 40px;
+    }
+
+    .evovr-infohotspot-img .slick-next {
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0);
+        width: 40px;
+    }
+
+    .evovr-infohotspot-img .slick-dots li.slick-active button:before {
+        font-size: 8px;
+    }
+
+    .evovr-infohotspot-img .slick-dots li button:before {
+        font-size: 5px;
+    }
+}
+
+.evovr-infohotspot .evovr-flex-madal {
+    padding: 10px 0px 100px 0px;
+}
+
+.evovr-flex-modal-fade.evovr-infohotspot-editor {
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.evovr-infohotspot-editor .evovr-flex-madal {
+    padding: 40px 0px;
+}
+
+@media (max-width: 575.98px) {
+    .evovr-infohotspot .evovr-flex-madal {
+        padding: 10px 10px 100px 10px;
+    }
+}
+
+/* End Info hotspot */
+.evovr-contact-madal {
+    position: fixed;
+    top: 0px;
+    right: 0;
+    z-index: 99999;
+    display: block;
+    overflow-x: hidden;
+    overflow-y: auto;
+    opacity: 1;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    outline: 0;
+    transition: opacity .15s linear;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-bottom: solid 1px #cbced1;
+}
+
+.evovr-contact-content {
+    webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+    transition: -webkit-transform .3s ease-out;
+    transition: transform .3s ease-out;
+    transition: transform .3s ease-out, -webkit-transform .3s ease-out;
+    max-width: 520px;
+    height: 90%;
+    max-height: 600px;
+    margin: 1.75rem auto;
+    position: relative;
+    width: auto;
+    background-color: rgba(255, 255, 255, 1);
+    -webkit-box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.9);
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.9);
+    border-radius: 8px;
+}
+
+.evovr-contact-content {
+    opacity: 0;
+    animation-name: imgopacity;
+    animation-duration: 0.5s;
+    animation-delay: 0.2s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+.close-contact-form {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    width: auto;
+    z-index: 999999;
+    padding: 6px;
+}
+
+.close-contact-btn {
+    padding: 6px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    margin: 4px;
+    cursor: pointer;
+}
+
+.close-contact-btn:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.close-contact-btn:active {
+    box-shadow: 0 0 0 .2rem rgba(108, 117, 125, .5)
+}
+
+.evovr-content-call {
+    display: flex;
+    padding: 0 10px 0 10px;
+    border-bottom: solid 1px rgba(0, 0, 0, 0.2);
+    z-index: 99999;
+    position: relative;
+    height: 51px;
+}
+
+.evovr-content-header {
+    display: block;
+    padding: 0 10px 0 10px;
+    border-bottom: solid 1px rgba(0, 0, 0, 0.2);
+    z-index: 99999;
+    position: relative;
+    height: 51px;
+    background-color: #fff;
+    border-radius: 6px 6px 0px 0px;
+}
+
+.evovr-content-header .evovr-btn.evovr-btn-neutral:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    -webkit-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.17);
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.17);
+}
+
+.evovr-content-header .evovr-btn.evovr-btn-neutral:active {
+    box-shadow: 0 0 0 .2rem rgba(0, 0, 0, .5);
+    background-color: rgba(255, 255, 255, .1)
+}
+
+.evovr-content-header .evovr-btn.evovr-btn-neutral:focus {
+    background-color: rgba(0, 0, 0, .05) !important;
+}
+
+.evovr-info-content {
+    display: block;
+    padding-top: 51px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+}
+
+.evovr-info-content-scroll {
+    display: block;
+    overflow-y: scroll;
+    width: 100%;
+    height: 100%;
+    padding-bottom: 100px;
+    border-radius: 6px;
+    padding: 10 20 40 20px;
+}
+
+.evovr-modal-info-row {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding-bottom: 10px !important;
+}
+
+.info-h1 {
+    font-size: 1.5em;
+    line-height: 1.45em;
+}
+
+.evovr-modal-info-location a {
+    text-decoration: none;
+    color: rgba(0, 123, 255, 1);
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.evovr-modal-info-location-profile a {
+    text-decoration: none;
+    color: #444444;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.evovr_view-info-desc {
+    color: #444;
+    font-weight: 300;
+    line-height: 24px;
+    font-size: 1em;
+}
+
+.evovr-img-profile {
+    border-radius: 2px;
+    max-width: 80%;
+    max-height: 120px;
+    height: auto;
+    width: auto;
+}
+
+.evovr_view-hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid rgba(0, 0, 0, .1);
+}
+
+.evovr_view-info-profil-name {
+    text-transform: capitalize;
+    font-weight: 300;
+    color: #444;
+    font-size: 1em;
+}
+
+.evovr_view-info-profil-category {
+    text-transform: capitalize;
+    font-weight: 700;
+    color: #9A9A9A;
+    font-size: 0.8em;
+}
+
+.evovr_view-info-label {
+    text-transform: capitalize;
+    font-weight: 700;
+    color: #444;
+    font-size: 1em;
+}
+
+.evovr_view-info-link {
+    text-decoration: none;
+}
+
+
+.evovr_logo_bottom {
+    position: absolute;
+    left: 10px;
+    height: 15px;
+    text-decoration: none;
+    bottom: 0px;
+    text-shadow: 1px 0px 6px black;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 11px;
+    opacity: 0;
+    animation-name: imgopacity;
+    animation-duration: 0.5s;
+    animation-delay: 0.5s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+.evovr-youtube-ifarme {
+    min-height: 315px;
+}
+
+.chat-ifarme {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    padding-top: 51px;
+}
+
+.evovr_view-tour-plan-no-modal {
+    position: relative;
+    display: block;
+}
+
+.evovr_view-tour-plan-modal {
+    position: fixed !important;
+    top: 0px;
+    right: 0;
+    z-index: 99999;
+    display: block;
+    overflow-x: hidden;
+    overflow-y: auto;
+    opacity: 1;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    outline: 0;
+    transition: opacity .15s linear;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-bottom: solid 1px #cbced1;
+}
+
+.evovr_view-tour-plan-modal .evovr-tour-plan-items {
+    webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+    transition: -webkit-transform .3s ease-out;
+    transition: transform .3s ease-out;
+    transition: transform .3s ease-out, -webkit-transform .3s ease-out;
+    max-width: 620px;
+    height: auto;
+    max-height: 600px;
+    margin: 1.75rem auto;
+    position: relative;
+    width: auto;
+    background-color: rgba(255, 255, 255, 1);
+    display: block !important;
+}
+
+.evovr_view-tour-plan-modal .evovr-tour-plan-items .evovr_view-florplan-img-content {
+    width: 100%;
+}
+
+.evovr_view-tour-plan-modal ul li {
+    display: none;
+}
+
+.evovr_view-florplan-img-content {
+    width: 250px;
+}
+
+.evovr_view-florplan-img {
+    opacity: 0.8
+}
+
+.evovr_view-plan-resize {
+    opacity: 0.8;
+    width: 26px;
+    height: 26px;
+    background-color: rgba(0, 0, 0, 1);
+    padding: 4px;
+    border-radius: 4px;
+    position: absolute;
+    right: 20px;
+    top: -10px;
+    z-index: 9999;
+    cursor: pointer;
+}
+
+.evovr_view-tour-plan-modal .evovr-tour-plan-items .evovr_view-florplan-img-content .evovr_view-plan-resize {
+    right: 20px;
+}
+
+.evovr_view-plan-close {
+    opacity: 0.8;
+    width: 26px;
+    height: 26px;
+    background-color: rgba(0, 0, 0, 1);
+    padding: 4px;
+    border-radius: 4px;
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    z-index: 99999;
+    cursor: pointer;
+}
+
+.evovr_view-tour-plan-modal .evovr-tour-plan-items .evovr_view-florplan-img-content .evovr_view-plan-close {
+    display: block !important;
+}
+
+.evovr_view-plan-close:hover {
+    background-color: rgba(0, 0, 0, 1);
+    opacity: 1;
+}
+
+.evovr_view-plan-resize:hover {
+    background-color: rgba(0, 0, 0, 1);
+    opacity: 1;
+}
+
+.evovr-tour-plan-items {
+    transform: translateY(-292px) translateZ(0px);
+    position: fixed;
+    list-style-type: none;
+    margin: 0px 0px 0px 10px;
+    padding: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    height: 250px;
+    overflow: auto;
+    display: inline-block;
+    color: #fff;
+    left: 0px;
+    width: auto;
+    min-width: 150px;
+    max-width: 300px;
+}
+
+.evovr-tour-plan-items li {
+    cursor: pointer;
+    font-size: 13px;
+    padding: 4px 0px 4px 0px;
+    border-bottom: 1px dotted rgba(0, 0, 0, 0.5);
+    color: #ccc;
+}
+
+.evovr-tour-plan-items li:hover {
+    border-bottom: 1px dotted rgba(0, 0, 0, 0.8);
+    color: #ffffff;
+}
+
+.evovr_view-tour-thumbnails {
+    height: 88px;
+}
+
+.evovr_view-tour-thumbnails-content {
+    width: 100%;
+    text-align: center;
+}
+
+.evovr_view-container {
+    display: flex;
+    flex-flow: column;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(0, 0, 0, 1);
+    left: 0;
+    top: 0;
+    z-index: 10000;
+    font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+    user-select: none;
+    /* supported by Chrome and Opera */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+}
+
+.evovr_view-autoplay-speed-btn {
+    font-size: 13px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, .65);
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-top-right-radius: 100px;
+    border-bottom-right-radius: 100px;
+    padding: 4px 6px;
+    cursor: pointer;
+    transition: 200ms;
+    color: #fff;
+    height: 34px;
+    width: 29px;
+    text-align: center;
+    flex: 10000 1 0%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    font-weight: 600;
+}
+
+.evovr_view-autoplay-btn {
+    font-size: 13px;
+    position: absolute;
+    top: 10px;
+    right: 40px;
+    background-color: rgba(0, 0, 0, .65);
+    border-bottom-left-radius: 100px;
+    border-bottom-right-radius: 0px;
+    border-top-left-radius: 100px;
+    border-top-right-radius: 0px;
+    padding: 4px 6px;
+    cursor: pointer;
+    transition: 200ms;
+    color: #fff;
+    height: 34px;
+    text-align: center;
+    flex: 10000 1 0%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    font-weight: 600;
+}
+
+.evovr_view-btn-mt {
+    margin-top: 8px;
+}
+
+.evovr_view-btn-mb {
+    margin-bottom: 8px;
+}
+
+.evovr_view-btn-ml {
+    margin-left: 8px;
+}
+
+.evovr_view-btn-mr {
+    margin-right: 8px;
+}
+
+.evovr_view-group-btn {
+    position: absolute;
+    right: 10px;
+    top: 60px;
+    width: 40px;
+}
+
+.evovr_view-group-bottom-right-btn {
+    position: absolute;
+    right: 10px;
+    bottom: 16px;
+    display: flex;
+    flex-direction: row;
+    transition: all 0.3s;
+}
+
+.evovr_view-tour-plan {
+    position: absolute;
+    bottom: 16px;
+    left: 10px;
+    display: block;
+    z-index: 9999;
+    transition: all 0.3s;
+}
+
+.evovr_view-c-btn {
+    text-align: center;
+    flex: 10000 1 0%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: 200ms;
+    cursor: pointer;
+}
+
+.evovr_view-c-btn:hover {
+    background-color: rgba(0, 0, 0, 0.15);
+}
+
+.evovr_view-c-btn-bg:hover,
+.evovr_view-autoplay-speed-btn:hover,
+.evovr_view-autoplay-btn:hover {
+    background-color: rgba(0, 0, 0, 0.85);
+}
+
+.evovr_view-c-btn img {
+    width: 26px;
+    height: 26px;
+}
+
+.evovr_view-c-btn-bg {
+    background-color: rgba(0, 0, 0, .65);
+}
+
+.a-enter-vr {
+    right: 210px !important;
+    bottom: 16px !important;
+    width: 40px !important;
+    height: 40px !important;
+    transition: 0.3s;
+}
+
+.a-enter-vr-button {
+    min-height: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    padding: 0px !important;
+    border-radius: 50% !important;
+    background-color: transparent !important;
+}
+
+.evovr-call-btn p {
+    display: inline-block;
+    margin: 0px;
+    font-size: 11px;
+}
+
+.evovr-call-btn img {
+    margin-right: 8px;
+}
+
+.evovr-call-btn {
+    color: #25AE88 !important;
+    font-weight: 600 !important;
+    cursor: pointer;
+    text-decoration: none !important;
+    padding: 4px !important;
+}
+
+.evovr-call-btn:hover {
+    background-color: rgba(0, 0, 0, 0.05) !important;
+    -webkit-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.17);
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.17);
+}
+
+.evovr_view-autoplay-btn img {
+    margin-right: 4px;
+    width: 26px !important;
+    height: 26px !important;
+}
+
+.evovr_view-autoplay-speed-btn img {
+    margin-right: 4px
+}
+
+.evovr-tooltiptext {
+    width: 100%;
+    font-size: 11px;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    margin-top: -16px;
+    display: block;
+    background-color: rgba(15, 15, 15, 0.5);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.evovr-btn {
+    margin: 5px 1px;
+    background-color: transparent;
+    color: #FFFFFF;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 13px;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    text-decoration: none
+}
+
+.evovr-btn:focus,
+.evovr-btn:hover {
+    text-decoration: none
+}
+
+.evovr-btn:active {
+    outline: 0;
+    box-shadow: 0 0 0 .2rem rgba(0, 123, 255, .25)
+}
+
+.evovr-btn.disabled,
+.evovr-btn:disabled {
+    opacity: .65
+}
+
+.evovr-btn:not(:disabled):not(.disabled) {
+    cursor: pointer;
+    box-sizing: border-box;
+    outline: none;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    -webkit-tap-highlight-color: transparent;
+    scrollbar-width: thin;
+}
+
+.evovr-btn:not(:disabled):not(.disabled).active,
+.evovr-btn:not(:disabled):not(.disabled):active {
+    background-image: none
+}
+
+a.evovr-btn.disabled,
+fieldset:disabled a.evovr-btn {
+    pointer-events: none
+}
+
+.evovr-btn>a.evovr-btn {
+    border-width: 2px;
+    font-weight: 400;
+    font-size: 0.8571em;
+    line-height: 1.35em;
+    margin: 5px 1px;
+    border: none;
+    margin: 10px 1px;
+    border-radius: 0.1875rem;
+    padding: 11px 22px;
+    cursor: pointer;
+    background-color: #888888;
+    color: #FFFFFF;
+}
+
+.evovr-btn-small {
+    padding: 3px 9px;
+}
+
+.evovr-btn-small img {
+    height: 16px !important;
+    width: 16px !important;
+    position: relative;
+    display: inline-block;
+    margin-right: 4px;
+    vertical-align: text-bottom;
+}
+
+.evovr-btn-primary {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+    color: #FFFFFF;
+}
+
+.evovr-btn-primary:hover {
+    background-color: #138496;
+    border-color: #117a8b;
+    -webkit-box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.17);
+    box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.17);
+}
+
+.evovr-btn-primary:active {
+    box-shadow: 0 0 0 .2rem rgba(23, 162, 184, .5);
+}
+
+.evovr-btn-primary.disabled,
+.evovr-btn-primary:disabled {
+    color: #fff;
+    background-color: #17a2b8;
+    border-color: #17a2b8
+}
+
+.evovr-btn-secondary {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d
+}
+
+.evovr-btn-secondary:hover {
+    color: #fff;
+    background-color: #5a6268;
+    border-color: #545b62
+}
+
+.evovr-btn-secondary:active {
+    box-shadow: 0 0 0 .2rem rgba(108, 117, 125, .5)
+}
+
+.evovr-btn-secondary.disabled,
+.evovr-btn-secondary:disabled {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d
+}
+
+.evovr-btn-danger {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545
+}
+
+.evovr-btn-danger:hover {
+    color: #fff;
+    background-color: #c82333;
+    border-color: #bd2130
+}
+
+.evovr-btn-danger:active {
+    box-shadow: 0 0 0 .2rem rgba(220, 53, 69, .5)
+}
+
+.evovr-btn-danger.disabled,
+.btn-danger:disabled {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545
+}
+
+.evovr-btn-success {
+    color: #fff;
+    background-color: #28a745;
+    border-color: #28a745
+}
+
+.evovr-btn-success:hover {
+    color: #fff;
+    background-color: #218838;
+    border-color: #1e7e34
+}
+
+.evovr-btn-success:active {
+    box-shadow: 0 0 0 .2rem rgba(40, 167, 69, .5)
+}
+
+.evovr-btn-success.disabled,
+.btn-success:disabled {
+    color: #fff;
+    background-color: #28a745;
+    border-color: #28a745
+}
+
+.evovr-btn-blue {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff
+}
+
+.evovr-btn-blue:hover {
+    color: #fff;
+    background-color: #0069d9;
+    border-color: #0062cc
+}
+
+.evovr-btn-blue:active {
+    box-shadow: 0 0 0 .2rem rgba(0, 123, 255, .5)
+}
+
+.evovr-btn-blue.disabled,
+.btn-success:disabled {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff
+}
+
+.evovr-btn-blue-info {
+    color: #fff;
+    background-color: #03a9f4;
+    border-color: #03a9f4
+}
+
+.evovr-btn-blue-info:hover {
+    color: #fff;
+    background-color: #0496d8;
+    border-color: #0383bd
+}
+
+.evovr-btn-blue-info:active {
+    box-shadow: 0 0 0 .2rem rgba(3, 169, 244, .5)
+}
+
+.evovr-btn-blue-info.disabled,
+.btn-blue-info:disabled {
+    color: #fff;
+    background-color: #03a9f4;
+    border-color: #03a9f4
+}
+
+.evovr-btn-neutral {
+    color: #fff;
+    background-color: transparent;
+    border-color: transparent
+}
+
+.evovr-btn-neutral:hover {
+    color: #fff;
+    background-color: transparent;
+    border-color: rgba(255, 255, 255, .5)
+}
+
+.evovr-btn-neutral:active {
+    box-shadow: 0 0 0 .2rem rgba(0, 0, 0, .5);
+    background-color: rgba(255, 255, 255, .1)
+}
+
+.evovr-btn-neutral.disabled,
+.btn-neutral:disabled {
+    color: #fff;
+    background-color: transparent;
+    border-color: transparent
+}
+
+.evovr-btn-black {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 2px solid;
+    border-color: rgba(255, 255, 255, 0.2)
+}
+
+.evovr-btn-black:hover {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, .3)
+}
+
+.evovr-btn-black:active {
+    box-shadow: 0 0 0 .2rem rgba(255, 255, 255, .1);
+    background-color: rgba(255, 255, 255, 0.35)
+}
+
+.evovr-btn-black.disabled,
+.btn-black:disabled {
+    color: #fff;
+    background-color: transparent;
+    border-color: transparent
+}
+
+.evovr-btn-white {
+    color: #666666;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-color: rgba(255, 255, 255, 0.9)
+}
+
+.evovr-btn-white:hover {
+    color: #666666;
+    background-color: rgba(255, 255, 255, 0.99);
+    border-color: rgba(255, 255, 255, 0.99)
+}
+
+.evovr-btn-white:active {
+    box-shadow: 0 0 0 .2rem rgba(255, 255, 255, .4);
+    background-color: rgba(255, 255, 255, 1)
+}
+
+.evovr-btn-white.disabled,
+.btn-white:disabled {
+    color: #fff;
+    background-color: transparent;
+    border-color: transparent
+}
+
+.evovr-btn-bold {
+    font-weight: 600;
+}
+
+.evr-rec-btn {
+    background-color: #fff;
+    color: #000;
+    border-radius: 34px;
+    padding: 6px 10px;
+    font-size: 11px;
+}
+
+.evr-rec-btn img {
+    margin-right: 4px
+}
+
+.evr-rec-btn span {
+    display: inline-block;
+}
+
+.evovr-call-view-content {
+    text-align: center;
+}
+
+.evovr-call-view-img {
+    cursor: pointer;
+}
+
+.evovr-modal-row {
+    padding: 0 0 10px 0;
+}
+
+/* Modal Dialog */
+.evovr-modal-dialog {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 10001;
+    /* Sit on top */
+    padding-top: 100px;
+    /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.8);
+    /* Black w/ opacity */
+    -webkit-box-shadow: 0px 10px 50px 0px rgba(0, 0, 0, 0.8);
+    box-shadow: 0px 10px 50px 0px rgba(0, 0, 0, 0.8)
+}
+
+.evovr-modal-dialog-small {
+    max-width: 500px;
+    margin: 1.75rem auto;
+}
+
+.evovr-modal-dialog-content {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: .3rem;
+    outline: 0;
+    color: #000;
+    background-color: #f1f1f1;
+    -webkit-box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.8);
+    box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.8);
+}
+
+.evovr-modal-dialog-header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 1rem;
+    border-top-left-radius: .3rem;
+    border-top-right-radius: .3rem
+}
+
+.evovr-modal-dialog-body {
+    position: relative;
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1rem
+}
+
+.evovr-modal-dialog-body p {
+    line-height: 1.61em;
+    font-weight: 300;
+    font-size: 1.2em;
+}
+
+.evovr-modal-dialog-footer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: block;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    padding: 0 1rem 1rem 1rem;
+}
+
+.evovr-modal-dialog-title {
+    margin-bottom: 0;
+    line-height: 1.5;
+    font-size: 1.3em;
+    font-weight: 400;
+}
+
+.evovr-modal-dialog-close {
+    color: #000;
+}
+
+.evr-frame {
+    position: absolute;
+    top: 10px;
+    right: 100px;
+    background-color: rgba(0, 0, 0, .35);
+    border-radius: 2px;
+    padding: 4px;
+    cursor: pointer;
+    transition: 200ms;
+}
+
+/* Slider */
+.evovr_view-tour-thumbnails-content .slick-list .slick-track {
+    height: auto !important;
+}
+
+.evovr_view-tour-thumbnails-content .slick-list .slick-track .ett-img {
+    height: 84px !important;
+    overflow: hidden !important;
+    filter: brightness(.7) !important;
+    transition: filter .2s ease !important;
+}
+
+.evovr_view-tour-thumbnails-content .slick-list .slick-track .evovr-image-active {
+    border-color: #ffffff !important;
+    border-radius: 1px !important;
+    filter: brightness(1) !important;
+}
+
+
+.evovr_view-tour-thumbnails-content .slick-list .slick-track .ett-img:hover {
+    border: solid 2px #fff !important;
+    filter: brightness(1.1) !important;
+}
+
+.evovr_view-tour-thumbnails-content .slick-list .slick-track .ett-img img:hover {
+    transition: transform 2s ease-out;
+    transform: scaleX(1.1) scaleY(1.1) translateZ(0);
+}
+
+.evovr_view-tour-thumbnails-content .slick-list .slick-track .slick-slide:active {
+    border: none !important;
+    outline-style: none;
+}
+
+.evovr_view-tour-thumbnails-content .slick-list .slick-track .slick-slide:focus {
+    border: none !important;
+    outline-style: none;
+}
+
+.evovr_view-tour-thumbnails-content .slick-list .slick-track .ett-img img {
+    top: -12px;
+    position: relative;
+    border: 0px !important;
+}
+
+.evovr_view-tour-thumbnails-content .slick-list .slick-track .ett-img .evovr-tooltiptext {
+    top: -20px;
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100px;
+}
+
+.evovr_view-tour-thumbnails .slick-arrow {
+    height: 100% !important;
+}
+
+.slick-slider {
+    position: relative;
+
+    display: block;
+    box-sizing: border-box;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    -webkit-touch-callout: none;
+    -khtml-user-select: none;
+    -ms-touch-action: pan-y;
+    touch-action: pan-y;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.slick-list {
+    position: relative;
+
+    display: block;
+    overflow: hidden;
+
+    margin: 0;
+    padding: 0 0 0 20px;
+
+}
+
+.slick-list:focus {
+    outline: none;
+}
+
+.slick-list.dragging {
+    cursor: pointer;
+    cursor: hand;
+}
+
+.slick-slider .slick-track,
+.slick-slider .slick-list {
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+
+.slick-track {
+    position: relative;
+    top: 0;
+    left: 0;
+
+    display: inline-flex;
+    margin-left: auto;
+    margin-right: auto;
+    /* iliqn */
+    padding: 2px 0px;
+    height: 108px;
+    width: auto !important;
+    /* iliqn end*/
+}
+
+.slick-track:before,
+.slick-track:after {
+    display: table;
+
+    content: '';
+}
+
+.slick-track:after {
+    clear: both;
+}
+
+.slick-loading .slick-track {
+    visibility: hidden;
+}
+
+.evovr_view-container .ett-img {
+    display: block !important;
+    float: left;
+
+    height: 100%;
+    min-height: 1px;
+
+    border: solid 2px #000;
+
+    cursor: pointer;
+    outline: none;
+}
+
+
+[dir='rtl'] .slick-slide {
+    float: right;
+}
+
+.slick-slide img {
+    display: block;
+}
+
+.slick-slide.slick-loading img {
+    display: none;
+}
+
+.slick-slide.dragging img {
+    pointer-events: none;
+}
+
+.slick-initialized .slick-slide {
+    min-width: 100px;
+    display: block;
+}
+
+.slick-loading .slick-slide {
+    visibility: hidden;
+}
+
+.slick-vertical .slick-slide {
+    display: block;
+
+    height: auto;
+
+    border: 1px solid transparent;
+}
+
+.slick-arrow.slick-hidden {
+    display: none;
+}
+
+.slick-loading .slick-list {
+    background: #fff url('ajax-loader.gif') center center no-repeat;
+}
+
+/* Icons */
+@font-face {
+    font-family: 'slick';
+    font-weight: normal;
+    font-style: normal;
+
+    src: url('fonts/slickd41d.eot?#iefix') format('embedded-opentype'), url('fonts/slick.woff') format('woff'), url('fonts/slick.ttf') format('truetype'), url('fonts/slick.svg#slick') format('svg');
+}
+
+/* Arrows */
+.slick-prev,
+.slick-next {
+    font-size: 0;
+    line-height: 0;
+
+    position: absolute;
+    top: 50%;
+
+    display: block;
+
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    -webkit-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+
+    cursor: pointer;
+
+    color: transparent;
+    border: none;
+    outline: none;
+    height: 100px;
+    background-color: rgba(0, 0, 0, 1);
+    z-index: 9999;
+}
+
+.slick-prev:hover,
+.slick-prev:focus,
+.slick-next:hover,
+.slick-next:focus {
+    color: transparent;
+    outline: none;
+}
+
+.slick-prev:hover:before,
+.slick-prev:focus:before,
+.slick-next:hover:before,
+.slick-next:focus:before {
+    opacity: 1;
+}
+
+.slick-prev.slick-disabled:before,
+.slick-next.slick-disabled:before {
+    opacity: .25;
+}
+
+.slick-prev:before,
+.slick-next:before {
+    font-family: 'slick';
+    font-size: 20px;
+    line-height: 1;
+
+    opacity: .75;
+    color: white;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.slick-prev {
+    left: 0px;
+}
+
+[dir='rtl'] .slick-prev {
+    right: -25px;
+    left: auto;
+}
+
+.slick-prev:before {
+    content: '';
+    background-image: url("../icons/left-slider.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 14px 16px;
+    display: block;
+    width: 24px;
+    height: 24px;
+}
+
+[dir='rtl'] .slick-prev:before {
+    content: '';
+    background-image: url("../icons/right-slider.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+    display: block;
+    width: 20px;
+    height: 20px;
+}
+
+.slick-next {
+    right: 0px;
+
+}
+
+[dir='rtl'] .slick-next {
+    right: auto;
+    left: -25px;
+}
+
+.slick-next:before {
+    content: '';
+    background-image: url("../icons/right-slider.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 14px 16px;
+    display: block;
+    width: 24px;
+    height: 24px;
+}
+
+[dir='rtl'] .slick-next:before {
+    content: '';
+    background-image: url("../icons/left-slider.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+    display: block;
+    width: 20px;
+    height: 20px;
+}
+
+/* Dots */
+.slick-dotted.slick-slider {
+    margin-bottom: 30px;
+}
+
+.slick-dots {
+    position: absolute;
+    bottom: -25px;
+
+    display: block;
+
+    width: 100%;
+    padding: 0;
+    margin: 0;
+
+    list-style: none;
+
+    text-align: center;
+}
+
+.slick-dots li {
+    position: relative;
+
+    display: inline-block;
+
+    width: 20px;
+    height: 20px;
+    margin: 0 5px;
+    padding: 0;
+
+    cursor: pointer;
+}
+
+.slick-dots li button {
+    font-size: 0;
+    line-height: 0;
+
+    display: block;
+
+    width: 20px;
+    height: 20px;
+    padding: 5px;
+
+    cursor: pointer;
+
+    color: transparent;
+    border: 0;
+    outline: none;
+    background: transparent;
+}
+
+.slick-dots li button:hover,
+.slick-dots li button:focus {
+    outline: none;
+}
+
+.slick-dots li button:hover:before,
+.slick-dots li button:focus:before {
+    opacity: 1;
+}
+
+.slick-dots li button:before {
+    font-family: 'slick';
+    font-size: 6px;
+    line-height: 20px;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 20px;
+    height: 20px;
+
+    content: '•';
+    text-align: center;
+
+    opacity: .25;
+    color: black;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.slick-dots li.slick-active button:before {
+    opacity: .75;
+    color: black;
+}
+
+.evovr-capture-video {
+    display: block;
+    top: 10px;
+    left: 45%;
+    position: absolute;
+    cursor: pointer;
+    border-radius: 2px;
+    padding: 6px;
+}
+
+.evovr-capture-video span {
+    display: inline-block;
+}
+
+.evovr-capture-video img {
+    margin-right: 4px;
+}
+
+.evovr-video-view {
+    display: block;
+    position: absolute;
+    width: 85%;
+    max-width: 800px;
+    z-index: 9999;
+    top: 50px;
+    left: 10px;
+}
+
+.evovr-video-view video {
+    display: block;
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    webkit-box-shadow: 0 5px 25px 0 rgba(0, 0, 0, .9);
+    box-shadow: 0 5px 25px 0 rgba(0, 0, 0, .9);
+    border-radius: 2px;
+}
+
+.evovr-close-video {
+    display: block;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    background-color: rgba(0, 0, 0, .35);
+    padding: 4px;
+}
+
+.evovr-download-video {
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    padding: 0px;
+    background-color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    border-bottom-right-radius: 2px;
+    border-top-left-radius: 2px;
+    cursor: pointer;
+}
+
+.evovr-download-video a {
+    text-decoration: none;
+    padding: 8px 16px;
+    display: block;
+}
+
+.evovr-video-instr {
+    display: block;
+    position: absolute;
+    top: 60px;
+    color: #fff;
+    left: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 2px;
+}
+
+.evovr-video-instr img {
+    margin-left: 10px;
+}
+
+/* Begin Gallery*/
+.evovr-tours-gallery *,
+::after,
+::before {
+    box-sizing: border-box;
+    /*  color: black; */
+    text-decoration: none;
+}
+
+.evovr-tours-gallery {
+    overflow-anchor: none;
+}
+
+.evovr-tours-gallery {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    /* margin-right: -15px; */
+    /* margin-left: -15px; */
+}
+
+/* columns 5 */
+.evovr-gallery-columns-5 .evovr-gallery-col {
+    /* col-md-6 col-lg-3 заменяме с evovr-gallery-col */
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.flp-pin {
+    cursor: pointer;
+}
+
+@media (min-width: 768px) {
+    .evovr-gallery-columns-5 .evovr-gallery-col {
+        /*col-md-6 col-lg-3 заменяме с evovr-gallery-col */
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+
+@media (min-width: 992px) {
+    .evovr-gallery-columns-5 .evovr-gallery-col {
+        /*col-md-6 col-lg-3 заменяме с evovr-gallery-col */
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 20%;
+        flex: 0 0 20%;
+        max-width: 20%;
+    }
+}
+
+/* columns 4 */
+.evovr-gallery-columns-4 .evovr-gallery-col {
+    /* col-md-6 col-lg-3 заменяме с evovr-gallery-col */
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+@media (min-width: 768px) {
+    .evovr-gallery-columns-4 .evovr-gallery-col {
+        /*col-md-6 col-lg-3 заменяме с evovr-gallery-col */
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+
+@media (min-width: 992px) {
+    .evovr-gallery-columns-4 .evovr-gallery-col {
+        /*col-md-6 col-lg-3 заменяме с evovr-gallery-col */
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 25%;
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+}
+
+/* columns 3 */
+.evovr-gallery-columns-3 .evovr-gallery-col {
+    /* col-md-6 col-lg-3 заменяме с evovr-gallery-col */
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+@media (min-width: 768px) {
+    .evovr-gallery-columns-3 .evovr-gallery-col {
+        /*col-md-6 col-lg-3 заменяме с evovr-gallery-col */
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+
+@media (min-width: 992px) {
+    .evovr-gallery-columns-3 .evovr-gallery-col {
+        /*col-md-6 col-lg-3 заменяме с evovr-gallery-col */
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 33.333%;
+        flex: 0 0 33.333%;
+        max-width: 33.33%;
+    }
+}
+
+/* columns 2 */
+.evovr-gallery-columns-2 .evovr-gallery-col {
+    /* col-md-6 col-lg-3 заменяме с evovr-gallery-col */
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+@media (min-width: 768px) {
+    .evovr-gallery-columns-2 .evovr-gallery-col {
+        /*col-md-6 col-lg-3 заменяме с evovr-gallery-col */
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+
+@media (min-width: 992px) {
+    .evovr-gallery-columns-2 .evovr-gallery-col {
+        /*col-md-6 col-lg-3 заменяме с evovr-gallery-col */
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+
+/* columns 1 */
+.evovr-gallery-columns-1 .evovr-gallery-col {
+    /* col-md-6 col-lg-3 заменяме с evovr-gallery-col */
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+/* End columns */
+
+.evovr-gallery-card {
+    /* card card-tour заменяме с evovr-gallery-card */
+    border-radius: .1875rem;
+    border: 0;
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    margin-bottom: 30px;
+    -webkit-box-shadow: 0 5px 25px 0 rgba(0, 0, 0, .2);
+    box-shadow: 0 5px 25px 0 rgba(0, 0, 0, .2);
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+}
+
+@media (max-width: 575.98px) {
+    .evovr-gallery-card-image.evovr-gallery-card-img-tour .evovr-gallery-rounded {
+        height: 220px;
+    }
+
+    .evovr-contact-content {
+        max-width: 94%;
+        height: 76%;
+        max-height: 76%;
+        margin: 20px auto 0px auto;
+        z-index: 9999999999;
+    }
+
+    .evovr_view-tour-plan-modal .evovr-tour-plan-items {
+        top: 20px;
+        left: 0px;
+        margin: 0px;
+        max-height: none;
+        z-index: 9999999999;
+    }
+
+    .evovr-call-btn p {
+        display: none;
+    }
+
+    #evr_cc_tel p {
+        margin-left: 4px;
+        font-size: 13px;
+        display: initial;
+        font-weight: 600;
+    }
+
+    .evovr-call-btn img {
+        margin-right: 0px;
+    }
+
+    .evovr-youtube-ifarme {
+        min-height: 250px;
+    }
+
+    .chat-ifarme {
+        position: absolute;
+        display: block;
+        top: 0px;
+        padding-top: 51px;
+    }
+}
+
+@media (min-width: 576px) {
+    .evovr-gallery-card-image.evovr-gallery-card-img-tour .evovr-gallery-rounded {
+        height: 510px;
+    }
+}
+
+@media (min-width: 768px) {
+    .evovr-gallery-card-image.evovr-gallery-card-img-tour .evovr-gallery-rounded {
+        height: 330px;
+    }
+}
+
+@media (min-width: 992px) {
+    .evovr-gallery-card-image.evovr-gallery-card-img-tour .evovr-gallery-rounded {
+        height: 210px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .evovr-gallery-card-image.evovr-gallery-card-img-tour .evovr-gallery-rounded {
+        height: 255px;
+    }
+}
+
+.evovr-gallery-card-image.evovr-gallery-card-img-tour .evovr-gallery-rounded {
+    object-fit: cover;
+    width: 100%;
+}
+
+.evovr-gallery-card-image.evovr-gallery-card-img-tour .evovr-gallery-rounded {
+    opacity: 0;
+    animation-name: imgopacity;
+    animation-duration: 1.5s;
+    animation-delay: 0.3s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+    object-fit: cover;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+    border-radius: .1875rem !important;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+
+@keyframes imgopacity {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.evovr-gallery-list-icon-content {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+}
+
+.evovr-gallery-list-icon {
+    position: absolute;
+    top: 0;
+    text-align: center;
+    left: auto;
+    width: 80px;
+    height: 80px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    border: solid 2px rgba(255, 255, 255, .3);
+    margin-left: -40px;
+    margin-top: -40px;
+    -webkit-transition: color 0.8s ease-in-out, border-color 0.8s ease-in-out, background-color 0.8s ease-in-out;
+    transition: color 0.8s ease-in-out, border-color 0.8s ease-in-out, background-color 0.8s ease-in-out;
+}
+
+.evovr-gallery-list-icon img {
+    margin-top: 25%;
+    opacity: .8;
+    -webkit-transition: opacity 2s ease-in-out;
+    -moz-transition: opacity 2s ease-in-out;
+    -o-transition: opacity 2s ease-in-out;
+    transition: opacity 2s ease-in-out;
+}
+
+.evovr-gallery-list-icon p {
+    color: #ffffff;
+    opacity: 0.8;
+    font-size: 13px;
+    font-weight: bold;
+    margin: 0px;
+}
+
+.evovr-gallery-card-tour:hover .evovr-gallery-card-img-tour .evovr-gallery-list-icon-content .evovr-gallery-list-icon {
+    background-color: rgba(0, 0, 0, 0.5);
+    border: solid 2px rgba(255, 255, 255, .5);
+}
+
+.evovr-gallery-card-tour:hover .evovr-gallery-card-img-tour img {
+    transition: transform 2.5s ease-out;
+    transform: scaleX(1.1) scaleY(1.1) translateZ(0);
+}
+
+.evovr-gallery-card-tour:hover .evovr-gallery-card-img-tour .evovr-gallery-list-icon-content .evovr-gallery-list-icon .evovr-gallery-img-vr {
+    display: none;
+}
+
+.evovr-gallery-card-tour .evovr-gallery-card-img-tour .evovr-gallery-list-icon-content .evovr-gallery-list-icon .evovr-gallery-img-play {
+    display: none;
+}
+
+.evovr-gallery-card-tour:hover .evovr-gallery-card-img-tour .evovr-gallery-list-icon-content .evovr-gallery-list-icon .evovr-gallery-img-play {
+    display: inline-block;
+    opacity: 0.8;
+}
+
+.evovr-gallery-card-img-tour {
+    overflow: hidden;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, .1);
+    border-top-left-radius: .1875rem !important;
+    border-top-right-radius: .1875rem !important;
+}
+
+.evovr-gallery-card-body {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 5px 1.25rem;
+}
+
+.evovr-gallery-card-tour .evovr-gallery-card-body .evovr-gallery-h2 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-transform: none;
+    font-size: 13px;
+    margin-bottom: 0px;
+    padding: 8px 0px;
+}
+
+/* End Gallery*/
+
+/* Video Control*/
+:root {
+    --webobook-video: rgba(249, 99, 50, 1);
+    --webobook-video-loaded: rgba(255, 255, 255, 0.5);
+    --webobook-video-cursor: yellow;
+}
+
+video {
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+}
+
+.evovr-video-controls {
+    transition: 0.3s;
+}
+
+.evovr-video .evovr-video-controls {
+    display: block !important;
+}
+
+.evovr-video-controls {
+    right: 0;
+    left: 0;
+    padding: 0px;
+    position: absolute;
+    bottom: 0;
+    transition: all 0.2s ease;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
+    z-index: 1;
+    transform: translate3d(0px, 40px, 0px);
+    transition: 0.3s;
+}
+
+.evovr-video-controls-shown .evovr-video-controls {
+    transform: translate3d(0px, 0px, 0px);
+    transition: 0.3s;
+    padding: 0px 10px;
+}
+
+.evovr-video-controls.hide {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.evovr-video-progress {
+    position: relative;
+    height: 4px;
+    margin-bottom: 8px;
+    text-align: left;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    touch-action: none;
+    z-index: 0;
+}
+
+.evovr-progress {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 2px;
+    width: 100%;
+    height: 2px;
+    pointer-events: none;
+    position: absolute;
+    top: 0px;
+    background: transparent;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    touch-action: none;
+    z-index: 0;
+}
+
+.evovr-progress-loaded {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 2px;
+    width: 100%;
+    height: 2px;
+    pointer-events: none;
+    position: absolute;
+    top: 0px;
+    background-color: rgba(255, 255, 255, 0.2);
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    touch-action: none;
+    z-index: 0;
+}
+
+
+.evovr-video-controls-shown .evovr-progress {
+    height: 4px;
+    transition: 0.3s;
+}
+
+.evovr-video-controls-shown .evovr-progress-loaded {
+    height: 4px;
+    transition: 0.3s;
+}
+
+.evovr-video-controls-shown .evovr-video-input[type=range] {
+    height: 16px;
+    transition: 0.3s;
+    margin-top: -6px;
+    z-index: 9;
+}
+
+.evovr-progress::-webkit-progress-bar {
+    background-color: transparent;
+    border-radius: 2px;
+}
+
+.evovr-progress-loaded::-webkit-progress-bar {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+}
+
+.evovr-progress::-webkit-progress-value {
+    background: var(--webobook-video);
+    border-radius: 2px;
+}
+
+.evovr-progress-loaded::-webkit-progress-value {
+    background: var(--webobook-video-loaded);
+    border-radius: 2px;
+}
+
+.evovr-progress::-moz-progress-bar {
+    background-color: var(--webobook-video);
+}
+
+.evovr-progress-loaded::-moz-progress-bar {
+    background-color: var(--webobook-video-loaded);
+}
+
+
+.evovr-seek {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    cursor: pointer;
+    margin: 0;
+}
+
+.evovr-seek:hover+.evovr-seek-tooltip {
+    display: block;
+}
+
+.evovr-seek-tooltip {
+    display: none;
+    position: absolute;
+    top: -50px;
+    margin-left: -20px;
+    font-size: 12px;
+    padding: 3px;
+    content: attr(data-title);
+    font-weight: bold;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.evovr-bottom-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+    height: 26px;
+}
+
+.evovr-left-controls {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    font-size: 13px;
+}
+
+.evovr-volume-controls {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.evovr-volume-controls input {
+    width: 100px;
+    opacity: 1;
+    transition: all 0.4s ease;
+}
+
+.evovr-volume-controls:hover input,
+.evovr-volume-controls input:focus {
+    width: 100px;
+    opacity: 1;
+}
+
+.evovr-video-control-button {
+    cursor: pointer;
+    position: relative;
+    margin-right: 7px;
+    font-size: 12px;
+    padding: 0px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+
+.evovr-video-control-button * {
+    pointer-events: none;
+}
+
+/*.evovr-video-control-button::before {
+  content: attr(data-title);
+  position: absolute;
+  display: none;
+  right: 0;
+  top: -50px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font-weight: bold;
+  padding: 4px 6px;
+  word-break: keep-all;
+  white-space: pre; 
+}*/
+
+.evovr-video-control-button:hover::before {
+    display: none !important;
+}
+
+.evovr-video-fullscreen-button {
+    margin-right: 0;
+}
+
+.evovr-video-pip-button svg {
+    width: 26px;
+    height: 26px;
+}
+
+.evovr-video .evovr-video-playback-animation {
+    display: flex !important;
+}
+
+.evovr-video-playback-animation {
+    pointer-events: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -40px;
+    margin-top: -40px;
+    width: 80px;
+    height: 80px;
+    border-radius: 80px;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    z-index: 99999;
+}
+
+.evovr-video-input[type=range] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    height: 2px;
+    background: transparent;
+    cursor: pointer;
+    top: 0px;
+}
+
+.evovr-video-input[type=range]:focus {
+    outline: none;
+}
+
+.evovr-video-input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    cursor: pointer;
+    border-radius: 1.3px;
+    -webkit-appearance: none;
+    transition: all 0.4s ease;
+}
+
+.evovr-video-input[type=range]::-webkit-slider-thumb {
+    height: 16px;
+    width: 16px;
+    border-radius: 16px;
+    background: var(--webobook-video);
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-left: -1px;
+    transition: 0.3s;
+}
+
+.evovr-video-progress .evovr-video-input[type=range]::-webkit-slider-thumb {
+    height: 0px;
+    width: 0px;
+    border-radius: 0px;
+    background: var(--webobook-video);
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-left: -1px;
+    transition: 0.3s;
+}
+
+.evovr-video-controls-shown .evovr-video-progress:hover .evovr-video-input[type=range]::-webkit-slider-thumb {
+    height: 16px;
+    width: 16px;
+    border-radius: 16px;
+    transition: 0.3s;
+}
+
+.evovr-video-controls-shown .evovr-video-progress:active .evovr-video-input[type=range]::-webkit-slider-thumb {
+    transition: 0.5s;
+    box-shadow: 0 0 0 .2rem rgba(255, 255, 255, 0.5)
+}
+
+
+.evovr-video-input[type=range]:focus::-webkit-slider-runnable-track {
+    background: transparent;
+}
+
+.evovr-video-input[type=range].evovr-input-volume {
+    height: 4px;
+    background-color: #fff;
+    width: 0px;
+    transition: width 1s;
+    transition: all 1s linear;
+    display: none;
+}
+
+.evovr-volume-controls:hover .evovr-video-input[type=range].evovr-input-volume {
+    width: 100px;
+    transition: width 1s;
+    transition: all 1s linear;
+    display: block;
+    margin-top: 0;
+}
+
+.evovr-video-input[type=range].evovr-input-volume::-webkit-slider-runnable-track {
+    background-color: transparent;
+}
+
+.evovr-video-input[type=range].evovr-input-volume::-webkit-slider-thumb {
+    margin-left: 0;
+    height: 14px;
+    width: 14px;
+    background: #fff;
+}
+
+.evovr-video-input[type=range]::-moz-range-track {
+    width: 100%;
+    height: 4px;
+    cursor: pointer;
+    border: 0px solid transparent;
+    background: transparent;
+    border-radius: 1.3px;
+}
+
+.evovr-video-progress .evovr-video-input[type=range]::-moz-range-thumb {
+    height: 0px;
+    width: 0px;
+    border-radius: 0px;
+    background: var(--webobook-video);
+    cursor: pointer;
+    transition: 0.3s;
+    opacity: 0;
+}
+
+.evovr-video-controls-shown .evovr-video-progress:hover .evovr-video-input[type=range]::-moz-range-thumb {
+    height: 16px;
+    width: 16px;
+    border-radius: 50px;
+    opacity: 1;
+    transition: 0.3s;
+}
+
+.evovr-video-controls-shown .evovr-video-progress:active .evovr-video-input[type=range]::-moz-range-thumb {
+    box-shadow: 0 0 0 .2rem rgba(255, 255, 255, 0.5);
+    transition: 0.3s;
+}
+
+.evovr-video-input[type=range]:focus::-moz-range-track {
+    outline: none;
+}
+
+.evovr-video-input[type=range].evovr-input-volume::-moz-range-thumb {
+    border: 1px solid #fff;
+    background: #fff;
+}
+
+.evovr-video-hidden {
+    display: none;
+}
+
+.evovr-video-svg {
+    width: 26px;
+    height: 26px;
+    fill: #fff;
+    stroke: #fff;
+    cursor: pointer;
+}
+
+/* END Video Control*/
+
+.evovr-video-controls-shown .evovr_logo_bottom {
+    display: none;
+}
+
+.evovr-video-controls-shown .evovr_view-group-bottom-right-btn,
+.evovr-video-controls-shown .a-enter-vr,
+.evovr-video-controls-shown .evovr_view-tour-plan {
+    bottom: 56px !important;
+    transition: 0.3s;
+}
+
+
+@media (max-width: 575.98px) {
+    .evovr-volume-controls {
+        display: none;
+    }
+
+    .evovr-video-controls-shown .evovr-video-progress .evovr-video-input[type=range]::-webkit-slider-thumb {
+        height: 16px;
+        width: 16px;
+        border-radius: 16px;
+        background: var(--webobook-video);
+        cursor: pointer;
+        -webkit-appearance: none;
+        transition: 0.3s;
+        z-index: 9;
+    }
+
+    .evovr-video-controls-shown .evovr-video-progress .evovr-video-input[type=range]::-moz-range-thumb {
+        height: 16px;
+        width: 16px;
+        border-radius: 50px;
+        background: var(--webobook-video);
+        cursor: pointer;
+        transition: 0.3s;
+        opacity: 1;
+    }
+
+    .evovr-seek-tooltip {
+        display: none !important;
+    }
+
+    .evovr_view-btn-ml {
+        margin-left: 2px;
+    }
+
+    .a-enter-vr {
+        right: 186px !important;
+    }
+}
+
+@media (max-width: 346px) {
+    .evovr_view-btn-ml {
+        margin-left: 0px;
+    }
+
+    .a-enter-vr {
+        right: 178px !important;
+    }
+
+}
+
+@media (max-width: 276px) {
+    .evovr_view-btn-ml {
+        margin-left: 0px;
+    }
+
+    .a-enter-vr {
+        display: none !important;
+    }
+
+}

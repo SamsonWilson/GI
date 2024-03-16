@@ -205,14 +205,13 @@
 
             <div class="container">
                 <div class="title pt-0" style="padding: 0px;">
-                    <h4 class="mt-0 mb-3">Samples</h3>
+                    <h4 class="mt-0 mb-3" style="text-align: center";> Listes Des chanbres </h3>
                 </div>
                 @foreach ($logements as $logement)
                     <div class="col-md-6 col-lg-3 ">
 
                         <div class="card card-tour" style="overflow: hidden;">
-                            <a title="View tour"
-                                href="tour/vwkg5UWXsfWPPpiDnnvGrKG7sHpebtrT/Um56fEvVDQufYT07exnay2rXJAaqIkJk.html">
+                            <a title="View tour" href="{{ route('vis', ['id' => $logement->id]) }}">
                                 <div class="card-image card-img-tour">
 
                                     <div class="ms-2">
@@ -233,14 +232,14 @@
                                     </div>
                                 </div>
                             </a>
-                            {{--  <div class="card-body">
+                            <div class="card-body">
                                 <h2 class="h6">
                                     <a
                                         href="tour/vwkg5UWXsfWPPpiDnnvGrKG7sHpebtrT/Um56fEvVDQufYT07exnay2rXJAaqIkJk.html">Virtual
                                         tour of the museum</a>
                                 </h2>
                                 <span>Virtual tour of the Archaeological Museum of Burgas, Bulgaria</span>
-                            </div>  --}}
+                            </div>
                         </div>
 
                     </div>

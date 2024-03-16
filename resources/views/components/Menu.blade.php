@@ -21,6 +21,9 @@
                 @can('demacheur')
                     <li> <a href="{{ route('liste_client') }}"><i class="bx bx-radio-circle"></i> Liste des Clients </a>
                     </li>
+                    <li> <a href="{{ route('liste_typeclient') }}"><i class="bx bx-radio-circle"></i> Liste Des Types des
+                            Clients </a>
+                    </li>
                     <li> <a href="{{ route('liste_logement') }}"><i class="bx bx-radio-circle"></i> Liste des Logements </a>
                     </li>
                     <li> <a href="{{ route('liste_type_logement') }}"><i class="bx bx-radio-circle"></i>Liste des Types de
