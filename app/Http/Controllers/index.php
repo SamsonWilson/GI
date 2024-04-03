@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\client;
 use App\Models\logement;
 use App\Models\quartiers;
+use App\Models\typeClient;
 use App\Models\Ville;
 use App\Models\visite;
 use Illuminate\Http\Request;
@@ -56,6 +57,8 @@ class index extends Controller
         $ajouterClient->email = $request->email;
         $ajouterClient->tel1 = $request->tel1;
         $ajouterClient->tel2 = $request->tel2;
+        // $defaultForeignKeyValue = '1'; // Valeur par défaut de la clé étrangère
+        // $ajouterClient->typeclient_id  = $request->filled('typeclient_id ') ? $request->typeclient_id : $defaultForeignKeyValue;
         $ajouterClient->save();
 
         $ajouterVisite = new visite();
@@ -95,14 +98,14 @@ class index extends Controller
      */
     public function edit(string $id)
     {
-
+        $Tclients = typeClient::orderbydesc("id")->get();
         $logement = Logement::join('type_logements', 'logements.typelogement_id', '=', 'type_logements.id')
             ->join('quartiers', 'logements.quartier_id', '=', 'quartiers.id')
             ->join('villes', 'quartiers.ville_id', '=', 'villes.id') // Jointure avec la table `villes`
             ->orderByDesc('logements.id')
             ->select('logements.*', 'type_logements.nom AS type_logement_nom', 'quartiers.imagequartier AS quartier_image', 'quartiers.nom AS quartier_nom', 'villes.nom AS ville_nom', 'villes.imageville AS ville_image') // Sélection du nom de la ville
             ->find($id);
-        return view('user', compact('logement'));
+        return view('user', compact('logement', 'Tclients'));
         // $logement = logement::find($id);
         // return view('user', compact('logement'));
     }

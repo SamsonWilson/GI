@@ -83,11 +83,11 @@ Route::get('/ajouter_type_logement', [App\Http\Controllers\typeLogementControlle
 
 // <-----------------POUR LOCATION------------------------->
 Route::get('/liste_location', [App\Http\Controllers\locationController::class, 'index'])->name('liste_location');
-Route::post('/enregistrer_location', [App\Http\Controllers\locationController::class, 'store'])->name('enregistrer_locationt');
+Route::post('/enregistrerlocation', [App\Http\Controllers\locationController::class, 'store'])->name('enregistrerlocation');
 Route::delete('/delete/{locationt}', [App\Http\Controllers\locationController::class, 'destroy'])->name('delete_location');
 Route::put('/update_location/{id}', [App\Http\Controllers\locationController::class, 'update'])->name('update_location');
 Route::get('/location={id}', [App\Http\Controllers\locationController::class, 'edit'])->name('edit_locationt');
-Route::post('/enregistrer_location', [App\Http\Controllers\locationController::class, 'store'])->name('enregistrer_location');
+// Route::post('/enregistrer_location', [App\Http\Controllers\locationController::class, 'store'])->name('enregistrer_location');
 
 // <-----------------POUR CLIENT------------------------->
 Route::get('/liste_client', [App\Http\Controllers\clientController::class, 'index'])->name('liste_client');
@@ -120,3 +120,19 @@ Route::post('/enregistrerVisite', [App\Http\Controllers\index::class, 'EnreVisit
 // <-----------------POUR LA PAGE SUPER_ADMIN------------------------->
 
 Route::get('/utilisateur', [App\Http\Controllers\UserController::class, 'index'])->name('utilisateur')->middleware("auth.superadmin");
+
+// <----------------- POUR MODE DE PAYEMENT ------------------------->
+Route::get('/liste_mode_payement', [App\Http\Controllers\modepayementsController::class, 'index'])->name('liste_mode_payement');
+Route::get('/ajouter_Mode_Payement', [App\Http\Controllers\modepayementsController::class, 'afficher'])->name('ajouter_Mode_Payement');
+// Route::post('/enregistreModePayement', [App\Http\Controllers\ModePayementController::class, 'store'])->name('enregistreModePayement');
+Route::post('/enregistremodepayement', [App\Http\Controllers\modepayementsController::class, 'store'])->name('enregistremodepayement');
+
+
+// <----------------- Facture ------------------------->
+Route::get('/listeFacture', [App\Http\Controllers\FactureController::class, 'index'])->name('listeFacture');
+Route::get('/ajouterfacture', [App\Http\Controllers\FactureController::class, 'create'])->name('ajouterfacture');
+Route::get('/facture={id}', [App\Http\Controllers\FactureController::class, 'edit'])->name('edit_facture');
+Route::post('/enregistrefacture', [App\Http\Controllers\FactureController::class, 'store'])->name('enregistrefacture');
+Route::get('/detail', [App\Http\Controllers\FactureController::class, 'affichage'])->name('detail');
+
+// <-------------------------Detail -------------------------------------------------->

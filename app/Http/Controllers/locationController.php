@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\client;
 use App\Models\location;
+use App\Models\logement;
 use Illuminate\Http\Request;
 
 class locationController extends Controller
@@ -12,7 +14,11 @@ class locationController extends Controller
      */
     public function index()
     {
-        //
+        $clients = client::orderByDesc("id")->get();
+        $logements = logement::orderByDesc("id")->get();
+
+
+        return view("Sadmin.LOCATION.liste", compact("clients"), compact("logements"));
     }
 
     /**
@@ -20,7 +26,9 @@ class locationController extends Controller
      */
     public function create()
     {
-        //
+        $clients = client::orderByDesc("id")->get();
+        $logements = logement::orderByDesc("id")->get();
+        return view("Sadmin.LOGEMENT.create", compact("clients"), compact("logements"));
     }
 
     /**
@@ -28,7 +36,22 @@ class locationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            "date_debut" => 'required',
+            "date_fin" => "required",
+
+        ]);
+        // dd($request);
+
+        $ajouterlogement = new location;
+        $ajouterlogement->date_debut = $request->date_debut;
+        $ajouterlogement->date_fin = $request->date_fin;
+
+        $ajouterlogement->client_id = $request->client_id;
+        $ajouterlogement->logement_id = $request->logement_id;
+        $ajouterlogement->save();
+        // return redirect()->route('liste_l')->with('success', ' le Quartier vient d\' être Enregistrer ');
+
     }
 
     /**

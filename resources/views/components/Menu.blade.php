@@ -11,7 +11,7 @@
     </div>
     <!--navigation-->
     <ul class="metismenu" id="menu">
-        <li>
+        {{--  <li>
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class='bx bx-home-alt'></i>
                 </div>
@@ -53,15 +53,102 @@
                     </li>
                     <li> <a href="app-chat-box.html"><i class='bx bx-radio-circle'></i> Type Utilisateur </a>
                     </li>
-                    <li> <a href="app-file-manager.html"><i class='bx bx-radio-circle'></i> Liste des location </a>
+                    <li> <a href="{{ route('liste_location') }}"><i class='bx bx-radio-circle'></i> Liste des location </a>
                     </li>
-                    <li> <a href="app-contact-list.html"><i class='bx bx-radio-circle'></i> Mode de Payement </a>
+                    <li> <a href="{{ route('liste_location') }}"><i class='bx bx-radio-circle'></i> Liste des location </a>
+
+                    <li> <a href="{{ route('liste_mode_payement') }}"><i class='bx bx-radio-circle'></i> Mode de Payement
+                        </a>
                     </li>
-                    <li> <a href="app-to-do.html"><i class='bx bx-radio-circle'></i> La Facture </a>
+                    <li> <a href="{{ route('detail') }}"><i class='bx bx-radio-circle'></i> Deail
+                        </a>
+                    </li>
+                    <li> <a href="{{ route('listeFacture') }}"><i class='bx bx-radio-circle'></i> La Facture </a>
+                    </li>
+                    <li> <a href="{{ route('ajouterfacture') }}"><i class='bx bx-radio-circle'></i> Ajouter facture </a>
                     </li>
                 @endcan
             </ul>
+        </li>  --}}
+        <li>
+            <a href="{{ route('liste_client') }}">
+                <div class="parent-icon"><i class='bx bx-cookie'></i>
+                </div>
+                <div class="menu-title">LISTES DES CLIENT </div>
+            </a>
         </li>
+
+        <li>
+            <a href="{{ route('liste_typeclient') }}">
+                <div class="parent-icon"><i class='bx bx-cookie'></i>
+                </div>
+                <div class="menu-title">LISTES DES TYPES CLIENTS </div>
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ route('liste_logement') }}">
+                <div class="parent-icon"><i class='bx bx-cookie'></i>
+                </div>
+                <div class="menu-title"> LISTES DES LOGEMENTS </div>
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ route('liste_type_logement') }}">
+                <div class="parent-icon"><i class='bx bx-cookie'></i>
+                </div>
+                <div class="menu-title">LISTE DES TYPE LOGEMENTS </div>
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ route('liste_Quartier') }}">
+                <div class="parent-icon"><i class='bx bx-cookie'></i>
+                </div>
+                <div class="menu-title">LISTES DES QUARTIER </div>
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ route('sadmin') }}">
+                <div class="parent-icon"><i class='bx bx-cookie'></i>
+                </div>
+                <div class="menu-title">LISTES DES VILLES</div>
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ route('liste_location') }}">
+                <div class="parent-icon"><i class='bx bx-cookie'></i>
+                </div>
+                <div class="menu-title">LISTES DES LOCATION</div>
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ route('liste_mode_payement') }}">
+                <div class="parent-icon"><i class='bx bx-cookie'></i>
+                </div>
+                <div class="menu-title">LISTES DE MODALITE DE PAYEMENT </div>
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ route('listeFacture') }}">
+                <div class="parent-icon"><i class='bx bx-cookie'></i>
+                </div>
+                <div class="menu-title">LITES DES FACTURE </div>
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('ajouterfacture') }}">
+                <div class="parent-icon"><i class='bx bx-cookie'></i>
+                </div>
+                <div class="menu-title"> AJOUTER UNE FACTURE </div>
+            </a>
+        </li>
+
     </ul>
     <!--end navigation-->
 </div>

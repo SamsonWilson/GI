@@ -19,7 +19,9 @@ return new class extends Migration
             $table->string('tel1');
             $table->string('tel2');
             $table->string('email');
-            $table->foreignId('typeclient_id')->constrained('type_clients');
+            // $table->foreignId('typeclient_id')->constrained('type_clients');
+            $table->foreignId('typeclient_id')->nullable()->constrained('type_clients');
+            // $table->foreignId('typeclient_id')->constrained('type_clients')->default('Visite');
             $table->timestamps();
         });
         schema::enableForeignKeyConstraints();
