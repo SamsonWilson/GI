@@ -1,21 +1,10 @@
-@extends('layouts.Sadmin')
+{{--  @extends('layouts.Sadmin')
 
 @section('contenu')
     <style>
         @media print {
             .hide-on-print {
                 display: none !important;
-            }
-
-            .col-half {
-                width: 50%;
-                float: left;
-                box-sizing: border-box;
-            }
-
-            .column {
-                width: 50%;
-                float: left;
             }
         }
     </style>
@@ -50,7 +39,7 @@
                 </div>
             </div>
             <!--end breadcrumb-->
-            <h6 class="mb-0 text-uppercase"> listes des location </h6>
+            <h6 class="mb-0 text-uppercase"> ETABLIER UNE FACTURE </h6>
             <hr />
             <div class="card">
                 <div class="card-body">
@@ -58,13 +47,14 @@
                         <table id="example2" class="table table-striped table-bordered">
                             <thead>
                                 <tr>
-
+                                    <th style="text-align: center; vertical-align: middle; color: red"> ETABLIER
+                                        LA FACTURE
+                                    </th>
                                     <th style="text-align: center; vertical-align: middle;"> NOM ET PRENOM </th>
-                                    <th style="text-align: center; vertical-align: middle;">MAISON ET TYPE LOGEMENT </th>
-                                    <th style="text-align: center; vertical-align: middle;"> MONTANT/MOIS </th>
-                                    <th style="text-align: center; vertical-align: middle;"> DATE DEBUT/FIN </th>
-                                    <th style="text-align: center; vertical-align: middle;"> AVANCE ET CAUTION </th>
-                                    <th style="text-align: center; vertical-align: middle;">TOTAL </th>
+                                    <th style="text-align: center; vertical-align: middle;">MAISON</th>
+                                    <th style="text-align: center; vertical-align: middle;">LOGEMENT</th>
+                                    <th style="text-align: center; vertical-align: middle;">QUATIER</th>
+                                    <th style="text-align: center; vertical-align: middle;">DATE FIN </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -73,36 +63,22 @@
                                         <td style="text-align: center; vertical-align: middle;">
 
 
-                                            {{ $location->client_nom }} {{ $location->client_prenom }}
+                                            <a href="{{ url('facture=' . $location->id) }}"
+                                                class="btn btn-light btn-sm radius-30 px-4 hide-on-print"
+                                                style="color: rgb(110, 211, 22);">
+                                                LA FACTURE
+                                            </a>
                                         </td>
                                         <td style="text-align: center; vertical-align: middle;">
-                                            {{ $location->Tlogement_nom }}
+                                            {{ $location->clients_nom }} {{ $location->clients_prenom }}
                                         </td>
+                                        <td style="text-align: center; vertical-align: middle;"> San Francisco</td>
                                         <td style="text-align: center; vertical-align: middle;">
-                                            {{ $location->logement_loyer }}</td>
+                                            {{ $location->logement_nom }}</td>
                                         <td style="text-align: center; vertical-align: middle;">
-                                            DATE DEBUT :
-                                            {{ $location->location_Ddebut }}
-                                            <br>
-                                            DATE FIN AVANCE :
-                                            {{ $location->location_dfin }}
-                                        </td>
+                                            {{ $location->quartier_nom }}</td>
                                         <td style="text-align: center; vertical-align: middle;">
-
-                                            <div class="column">
-                                                Avance Payer/Mois: {{ $location->location_avance }} Total =
-                                                {{ $location->location_tavance }}
-                                            </div>
-                                            <br>
-                                            <div class="column">
-                                                Caution Payer/Mois: {{ $location->location_caution }} Total =
-                                                {{ $location->location_tcaution }}
-                                            </div>
-
-                                        </td>
-                                        <td style="text-align: center; vertical-align: middle;">
-                                            MONTANT TOTAL : {{ $location->location_total }} </td>
-
+                                            {{ $location->location_date_fin }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -161,4 +137,4 @@
             </ul>
         </div>
     </div>
-@endsection
+@endsection  --}}

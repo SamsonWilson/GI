@@ -6,17 +6,6 @@
             .hide-on-print {
                 display: none !important;
             }
-
-            .col-half {
-                width: 50%;
-                float: left;
-                box-sizing: border-box;
-            }
-
-            .column {
-                width: 50%;
-                float: left;
-            }
         }
     </style>
     <div class="page-wrapper">
@@ -50,7 +39,7 @@
                 </div>
             </div>
             <!--end breadcrumb-->
-            <h6 class="mb-0 text-uppercase"> listes des location </h6>
+            <h6 class="mb-0 text-uppercase"> ETABLIER UNE FACTURE </h6>
             <hr />
             <div class="card">
                 <div class="card-body">
@@ -60,49 +49,49 @@
                                 <tr>
 
                                     <th style="text-align: center; vertical-align: middle;"> NOM ET PRENOM </th>
-                                    <th style="text-align: center; vertical-align: middle;">MAISON ET TYPE LOGEMENT </th>
-                                    <th style="text-align: center; vertical-align: middle;"> MONTANT/MOIS </th>
-                                    <th style="text-align: center; vertical-align: middle;"> DATE DEBUT/FIN </th>
-                                    <th style="text-align: center; vertical-align: middle;"> AVANCE ET CAUTION </th>
-                                    <th style="text-align: center; vertical-align: middle;">TOTAL </th>
+                                    <th style="text-align: center; vertical-align: middle;">MAISON/LOGEMENT</th>
+                                    <th style="text-align: center; vertical-align: middle;">QUATIER</th>
+                                    <th style="text-align: center; vertical-align: middle;">DATE FIN AVANCE</th>
+                                    <th style="text-align: center; vertical-align: middle;">MOIS DEJA REGLE </th>
+                                    <th style="text-align: center; vertical-align: middle;"> MODALITER DE PAYEMENT
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($locations as $location)
+                                @foreach ($factures as $facture)
                                     <tr>
-                                        <td style="text-align: center; vertical-align: middle;">
+                                        {{--  <td style="text-align: center; vertical-align: middle;">
 
 
-                                            {{ $location->client_nom }} {{ $location->client_prenom }}
+                                            <a href="{{ url('facture=' . $facture->id) }}"
+                                                class="btn btn-light btn-sm radius-30 px-4 hide-on-print"
+                                                style="color: rgb(110, 211, 22);">
+                                                LA FACTURE
+                                            </a>
+                                        </td>  --}}
+                                        <td style="text-align: center; vertical-align: middle;">
+                                            {{ $facture->clients_nom }} {{ $facture->clients_prenom }}
                                         </td>
+                                        <td style="text-align: center; vertical-align: middle;"> San Francisco</td>
                                         <td style="text-align: center; vertical-align: middle;">
-                                            {{ $location->Tlogement_nom }}
-                                        </td>
+                                            {{ $facture->quartier_nom }}</td>
                                         <td style="text-align: center; vertical-align: middle;">
-                                            {{ $location->logement_loyer }}</td>
-                                        <td style="text-align: center; vertical-align: middle;">
-                                            DATE DEBUT :
-                                            {{ $location->location_Ddebut }}
-                                            <br>
-                                            DATE FIN AVANCE :
-                                            {{ $location->location_dfin }}
-                                        </td>
-                                        <td style="text-align: center; vertical-align: middle;">
-
-                                            <div class="column">
-                                                Avance Payer/Mois: {{ $location->location_avance }} Total =
-                                                {{ $location->location_tavance }}
-                                            </div>
-                                            <br>
-                                            <div class="column">
-                                                Caution Payer/Mois: {{ $location->location_caution }} Total =
-                                                {{ $location->location_tcaution }}
-                                            </div>
+                                            @if (\Carbon\Carbon::now()->isAfter($facture->location_date_fin))
+                                                <span style="color:red;">{{ $facture->location_date_fin }}</span>
+                                            @else
+                                                {{ $facture->location_date_fin }}
+                                            @endif
 
                                         </td>
                                         <td style="text-align: center; vertical-align: middle;">
-                                            MONTANT TOTAL : {{ $location->location_total }} </td>
-
+                                            @if (\Carbon\Carbon::now()->isAfter($facture->facture_mois_payer))
+                                                <span style="color:red;">{{ $facture->facture_mois_payer }}</span>
+                                            @else
+                                                {{ $facture->facture_mois_payer }}
+                                            @endif
+                                        <td style="text-align: center; vertical-align: middle;">
+                                            {{ $facture->mode_payer }}
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

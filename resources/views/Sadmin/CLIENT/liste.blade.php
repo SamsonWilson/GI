@@ -36,6 +36,18 @@
                 </div>
             </div>
 
+
+
+            <div class="d-lg-flex align-items-center mb-4 gap-3">
+
+                <div class="ms-auto"><a href="javascript:;" class="btn btn-light radius-30 mt-2 mt-lg-0"><i
+                            class="bx bxs-plus-square"></i>Toute New les villes </a></div>
+                <div><a name="" id="" class="btn btn-primary" href="{{ route('ajouterClient') }}"
+                        role="button">Ajouter un clients</a></div>
+            </div>
+
+
+
             <h6 class="mb-0 text-uppercase">Listes des clients </h6>
             <hr>
             <div class="card">
@@ -60,7 +72,7 @@
                                                     style="width: 115.719px;">TELEPHONE</th>
                                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
                                                     colspan="1" aria-label="Age: activate to sort column ascending"
-                                                    style="width: 52.6875px;">TELEPHONE</th>
+                                                    style="width: 52.6875px;">sexe</th>
                                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
                                                     colspan="1"
                                                     aria-label="Start date: activate to sort column ascending"
@@ -73,12 +85,17 @@
                                         <tbody>
                                             @foreach ($clients as $client)
                                                 <tr role="row" class="odd">
-                                                    {{--  <td class="sorting_1">{{ $client->nom }} {{ $client->prenom }}</td>  --}}
-                                                    <td>{{ $client->client_nom }}</td>
-                                                    <td>Tokyo</td>
-                                                    <td>33</td>
-                                                    <td>2008/11/28</td>
-                                                    <td>$162,700</td>
+                                                    <td>{{ $client->client_nom }} {{ $client->prenom }}</td>
+                                                    <td>{{ $client->client_adress }}</td>
+                                                    <td>{{ $client->client_tel1 }} / {{ $client->client_tel2 }}</td>
+                                                    <td>{{ $client->client_adress }} </td>
+                                                    <td>{{ $client->client_email }}</td>
+                                                    <td>
+                                                        <div
+                                                            style="color: {{ $client->type_clients_nom === 'visite' ? 'red' : 'white' }}">
+                                                            {{ $client->type_clients_nom }}
+                                                        </div>
+                                                    </td>
                                                 </tr>
                                             @endforeach
 

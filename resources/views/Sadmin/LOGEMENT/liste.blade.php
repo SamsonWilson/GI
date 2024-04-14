@@ -63,7 +63,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <table id="example2" class="table table-striped table-bordered dataTable"
+                                    <table id="example" class="table table-striped table-bordered dataTable"
                                         role="grid" aria-describedby="example2_info">
                                         <thead>
                                             <tr role="row">
@@ -143,9 +143,25 @@
                                                     <td style="text-align: center; vertical-align: middle;">
                                                         {{ $logement->surperficie }}</td>
 
-                                                    <td style="text-align: center; vertical-align: middle;"><button
-                                                            type="button" class="btn btn-light btn-sm radius-30 px-4">Les
-                                                            detail de la ville </button></td>
+                                                    <td style="text-align: center; vertical-align: middle;">
+                                                        <div>
+                                                            @if ($logement->active)
+                                                                <form method="POST"
+                                                                    action="{{ route('logements.desactiver', $logement->id) }}">
+                                                                    @csrf
+                                                                    @method('PUT')
+                                                                    <button type="submit">Désactiver</button>
+                                                                </form>
+                                                            @else
+                                                                <form method="POST"
+                                                                    action="{{ route('logements.activer', $logement->id) }}">
+                                                                    @csrf
+                                                                    @method('PUT')
+                                                                    <button type="submit">Activer</button>
+                                                                </form>
+                                                            @endif
+                                                        </div>
+                                                    </td>
                                                     <td style="text-align: center; vertical-align: middle;">
                                                         <div class="d-flex order-actions">
                                                             <a href="{{ url('quartier=' . $logement->id) }}"

@@ -13,11 +13,12 @@ class clientController extends Controller
      */
     public function index()
     {
-        $clients = client::join('type_clients', 'clients.typeclient_id', '=', 'type_clients.id')
-            // ->join('clients', 'clients.id', '=', 'clients.id')
+
+        $clients = client::leftJoin('type_clients', 'clients.typeclient_id', '=', 'type_clients.id')
             ->orderByDesc('clients.id')
-            ->select('clients.*', 'type_clients.nom AS type_clients_nom', 'clients.nom as client_nom')
+            ->selectRaw('clients.*, COALESCE(type_clients.nom, "visite") AS type_clients_nom, clients.nom as client_nom , clients.adress as client_adress , clients.tel1 as client_tel1, clients.tel2 as client_tel2,clients.email as client_email')
             ->get();
+
         return view("Sadmin.CLIENT.liste", compact("clients"));
     }
 

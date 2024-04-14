@@ -23,6 +23,9 @@ return new class extends Migration
             $table->foreignId('quartier_id')->constrained('quartiers');
             $table->foreignId('users_id')->constrained('users');
             $table->foreignId('typelogement_id')->constrained('type_logements');
+            $table->foreignId('maison_id')->constrained('maison');
+
+            $table->boolean('active')->default(false);
             $table->timestamps();
         });
         schema::enableForeignKeyConstraints();
@@ -37,6 +40,7 @@ return new class extends Migration
             $table->dropForeign('quartier_id');
             $table->dropForeign('utilisateur_id');
             $table->dropForeign('typelogement_id');
+            $table->dropForeign('maison_id');
         });
         Schema::dropIfExists('logements');
     }

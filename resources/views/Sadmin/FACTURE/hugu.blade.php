@@ -39,8 +39,6 @@
                 display: none !important;
             }
 
-            /* Ajustements de style pour l'impression */
-            /* Ajoutez vos styles d'impression personnalisés ici */
         }
     </style>
     <!--start page wrapper -->
@@ -84,7 +82,7 @@
                             <div class="card-title d-flex align-items-center">
                                 <div><i class="bx bxs-user me-1 font-22 text-white"></i>
                                 </div>
-                                @foreach ($locations as $location)
+                                @foreach ($locationss as $location)
                                     <h5 class="mb-0 text-white">
                                         {{ $location->clients_nom }}
                                         {{ $location->clients_prenom }}
@@ -125,49 +123,57 @@
                                 </div>
                                 <hr>
                                 <hr>
-                                @foreach ($locations as $location)
+                                @foreach ($locationss as $location)
                                     <input type="hidden" value="{{ $location->id }}" name="location_id" readonly required>
                                     <div class="col-md-6">
                                         <label for="inputFirstName" class="form-label">Nom</label>
-                                        <input type="text" class="form-control" value="{{ $location->clients_nom }}">
+                                        <input type="text" class="form-control"
+                                            value="{{ $location->clients_nom }}"readonly>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="inputLastName" class="form-label">Prenom</label>
-                                        <input type="text" class="form-control" value="{{ $location->clients_prenom }}">
+                                        <input type="text" class="form-control"
+                                            value="{{ $location->clients_prenom }}"readonly>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="inputEmail" class="form-label">Email</label>
-                                        <input type="email" class="form-control" value="{{ $location->clients_email }}">
+                                        <input type="email" class="form-control"
+                                            value="{{ $location->clients_email }}"readonly>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="inputPassword" class="form-label">Telephone</label>
-                                        <input type="text" class="form-control" value="{{ $location->clients_tel1 }}">
+                                        <input type="text" class="form-control"
+                                            value="{{ $location->clients_tel1 }}"readonly>
                                     </div>
                                     <div class="col-6">
                                         <label for="inputAddress" class="form-label">Telephone2 </label>
-                                        <input type="text" class="form-control" value="{{ $location->clients_tel2 }}">
+                                        <input type="text" class="form-control"
+                                            value="{{ $location->clients_tel2 }}"readonly>
                                     </div>
                                     <div class="col-6">
                                         <label for="inputAddress" class="form-label">sexe</label>
-                                        <input type="text" class="form-control"
-                                            value="{{ $location->clients_nom }} ">
+                                        {{--  <input type="text" class="form-control"
+                                            value="{{ $location->clients_nom }}"readonly>  --}}
                                     </div>
                                     <div class="col-6">
                                         <label for="inputAddress" class="form-label">logement</label>
                                         <input type="text" class="form-control"
-                                            value="{{ $location->logement_nom }} {{ $location->type_logement_nom }}">
+                                            value="{{ $location->logement_nom }} {{ $location->type_logement_nom }}"readonly>
                                     </div>
                                     <div class="col-6">
                                         <label for="inputAddress" class="form-label">Maison </label>
-                                        <input type="text" class="form-control" value="{{ $location->clients_nom }}">
+                                        {{--  <input type="text" class="form-control"
+                                            value="{{ $location->clients_nom }}"readonly>  --}}
                                     </div>
                                     <div class="col-6">
                                         <label for="inputAddress" class="form-label"> ville </label>
-                                        <input type="text" class="form-control" value="{{ $location->clients_nom }}">
+                                        {{--  <input type="text" class="form-control"
+                                            value="{{ $location->clients_nom }}"readonly>  --}}
                                     </div>
                                     <div class="col-md-6">
                                         <label for="inputCity" class="form-label">Quartier</label>
-                                        <input type="text" class="form-control" value="{{ $location->clients_nom }}">
+                                        {{--  <input type="text" class="form-control"
+                                            value="{{ $location->clients_nom }}"readonly>  --}}
                                     </div>
                                 @endforeach
                                 <div class="col-12">

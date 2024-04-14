@@ -84,6 +84,17 @@ class logementController extends Controller
             return redirect()->route('liste_logement')->with('success', ' le Quartier vient d\' être Enregistrer ');
         }
     }
+    public function activer(Logement $logement)
+    {
+        $logement->update(['active' => true]);
+        return redirect()->back()->with('success', 'Le logement a été activé avec succès');
+    }
+
+    public function desactiver(Logement $logement)
+    {
+        $logement->update(['active' => false]);
+        return redirect()->back()->with('success', 'Le logement a été désactivé avec succès');
+    }
 
     /**
      * Display the specified resource.

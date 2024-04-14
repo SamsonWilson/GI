@@ -14,7 +14,13 @@ return new class extends Migration
         Schema::create('locations', function (Blueprint $table) {
             $table->id();
             $table->string('date_debut');
-            $table->string('date_fin');
+            $table->string('date_finavance');
+            $table->string('date_fin')->nullable();
+            $table->string('avance');
+            $table->string('caution');
+            $table->string('Tcaution');
+            $table->string('Tavance');
+            $table->string('total');
             $table->foreignId('logement_id')->constrained('logements');
             $table->foreignId('client_id')->constrained('clients');
             $table->timestamps();

@@ -21,7 +21,8 @@ class index extends Controller
         // $quartiers = quartiers::orderbydesc("id")->get();
         $logements = Logement::join('type_logements', 'logements.typelogement_id', '=', 'type_logements.id')
             ->join('quartiers', 'logements.quartier_id', '=', 'quartiers.id')
-            ->join('villes', 'quartiers.ville_id', '=', 'villes.id') // Jointure avec la table `villes`
+            ->join('villes', 'quartiers.ville_id', '=', 'villes.id')
+            ->where('logements.active', true)
             ->orderByDesc('logements.id')
             ->select('logements.*', 'type_logements.nom AS type_logement_nom', 'quartiers.nom AS quartier_nom', 'villes.nom AS ville_nom') // Sélection du nom de la ville
             ->get();

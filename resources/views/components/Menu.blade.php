@@ -4,14 +4,14 @@
             <img src="assetsc/images/logo-icon.png" class="logo-icon" alt="logo icon">
         </div>
         <div>
-            <h4 class="logo-text">Dashtreme</h4>
+            <h4 class="logo-text">ATANYS</h4>
         </div>
         <div class="toggle-icon ms-auto"><i class='bx bx-arrow-back'></i>
         </div>
     </div>
     <!--navigation-->
     <ul class="metismenu" id="menu">
-        {{--  <li>
+        <li>
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class='bx bx-home-alt'></i>
                 </div>
@@ -35,8 +35,6 @@
                     </li>
                 @endcan
             </ul>
-
-
         </li>
         <li>
             <a href="javascript:;" class="has-arrow">
@@ -53,102 +51,65 @@
                     </li>
                     <li> <a href="app-chat-box.html"><i class='bx bx-radio-circle'></i> Type Utilisateur </a>
                     </li>
-                    <li> <a href="{{ route('liste_location') }}"><i class='bx bx-radio-circle'></i> Liste des location </a>
+                    <li> <a href="{{ route('liste_logementLOCO') }}"><i class='bx bx-radio-circle'></i> Effection une
+                            location
+                        </a>
                     </li>
-                    <li> <a href="{{ route('liste_location') }}"><i class='bx bx-radio-circle'></i> Liste des location </a>
+                    <li> <a href="{{ route('liste_location') }}"><i class='bx bx-radio-circle'></i> Liste des location
+                        </a>
+                    </li>
 
                     <li> <a href="{{ route('liste_mode_payement') }}"><i class='bx bx-radio-circle'></i> Mode de Payement
                         </a>
                     </li>
-                    <li> <a href="{{ route('detail') }}"><i class='bx bx-radio-circle'></i> Deail
+                    {{--  <li> <a href="{{ route('detail') }}"><i class='bx bx-radio-circle'></i> Deail
                         </a>
-                    </li>
+                    </li>  --}}
                     <li> <a href="{{ route('listeFacture') }}"><i class='bx bx-radio-circle'></i> La Facture </a>
                     </li>
-                    <li> <a href="{{ route('ajouterfacture') }}"><i class='bx bx-radio-circle'></i> Ajouter facture </a>
+                    <li> <a href="{{ route('ListesF') }}"><i class='bx bx-radio-circle'></i> Liste Des Facture </a>
                     </li>
                 @endcan
             </ul>
-        </li>  --}}
-        <li>
-            <a href="{{ route('liste_client') }}">
-                <div class="parent-icon"><i class='bx bx-cookie'></i>
-                </div>
-                <div class="menu-title">LISTES DES CLIENT </div>
-            </a>
-        </li>
-
-        <li>
-            <a href="{{ route('liste_typeclient') }}">
-                <div class="parent-icon"><i class='bx bx-cookie'></i>
-                </div>
-                <div class="menu-title">LISTES DES TYPES CLIENTS </div>
-            </a>
-        </li>
-
-        <li>
-            <a href="{{ route('liste_logement') }}">
-                <div class="parent-icon"><i class='bx bx-cookie'></i>
-                </div>
-                <div class="menu-title"> LISTES DES LOGEMENTS </div>
-            </a>
-        </li>
-
-        <li>
-            <a href="{{ route('liste_type_logement') }}">
-                <div class="parent-icon"><i class='bx bx-cookie'></i>
-                </div>
-                <div class="menu-title">LISTE DES TYPE LOGEMENTS </div>
-            </a>
-        </li>
-
-        <li>
-            <a href="{{ route('liste_Quartier') }}">
-                <div class="parent-icon"><i class='bx bx-cookie'></i>
-                </div>
-                <div class="menu-title">LISTES DES QUARTIER </div>
-            </a>
-        </li>
-
-        <li>
-            <a href="{{ route('sadmin') }}">
-                <div class="parent-icon"><i class='bx bx-cookie'></i>
-                </div>
-                <div class="menu-title">LISTES DES VILLES</div>
-            </a>
-        </li>
-
-        <li>
-            <a href="{{ route('liste_location') }}">
-                <div class="parent-icon"><i class='bx bx-cookie'></i>
-                </div>
-                <div class="menu-title">LISTES DES LOCATION</div>
-            </a>
-        </li>
-
-        <li>
-            <a href="{{ route('liste_mode_payement') }}">
-                <div class="parent-icon"><i class='bx bx-cookie'></i>
-                </div>
-                <div class="menu-title">LISTES DE MODALITE DE PAYEMENT </div>
-            </a>
-        </li>
-
-        <li>
-            <a href="{{ route('listeFacture') }}">
-                <div class="parent-icon"><i class='bx bx-cookie'></i>
-                </div>
-                <div class="menu-title">LITES DES FACTURE </div>
-            </a>
         </li>
         <li>
-            <a href="{{ route('ajouterfacture') }}">
-                <div class="parent-icon"><i class='bx bx-cookie'></i>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="bx bx-category"></i>
                 </div>
-                <div class="menu-title"> AJOUTER UNE FACTURE </div>
+                <div class="menu-title"> HISTORIQUE DES DONNES </div>
             </a>
+            <ul>
+                @can('manager')
+                    {{--  <li> <a href="{{ route('liste_utilisateur') }}"><i class='bx bx-radio-circle'></i> Creation des
+                            Utilisateurs </a>
+                    </li>  --}}
+                    <li> <a href="#"><i class='bx bx-radio-circle'></i> HISTORIQUE DES LOGEMENTS </a>
+                    </li>
+                    <li> <a href="#"><i class='bx bx-radio-circle'></i> HISTORIQUE DES LOCATIONS </a>
+                    </li>
+                    <li> <a href="#"><i class='bx bx-radio-circle'></i> HISTORIQUE DES FACTURE </a>
+                    </li>
+                @endcan
+            </ul>
         </li>
-
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="bx bx-category"></i>
+                </div>
+                <div class="menu-title"> LES LOGENMENTS ACTIVER/DESATIVER </div>
+            </a>
+            <ul>
+                @can('manager')
+                    {{--  <li> <a href="{{ route('liste_utilisateur') }}"><i class='bx bx-radio-circle'></i> Creation des
+                            Utilisateurs </a>
+                    </li>  --}}
+                    <li> <a href="#"><i class='bx bx-radio-circle'></i> LES LOGEMENTS ACTIVER</a>
+                    </li>
+                    <li> <a href="#"><i class='bx bx-radio-circle'></i> LES LOGEMENTS DESATIVER </a>
+                    </li>
+                @endcan
+            </ul>
+        </li>
     </ul>
     <!--end navigation-->
 </div>

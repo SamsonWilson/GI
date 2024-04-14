@@ -6,17 +6,6 @@
             .hide-on-print {
                 display: none !important;
             }
-
-            .col-half {
-                width: 50%;
-                float: left;
-                box-sizing: border-box;
-            }
-
-            .column {
-                width: 50%;
-                float: left;
-            }
         }
     </style>
     <div class="page-wrapper">
@@ -50,59 +39,45 @@
                 </div>
             </div>
             <!--end breadcrumb-->
-            <h6 class="mb-0 text-uppercase"> listes des location </h6>
+            <h6 class="mb-0 text-uppercase"> Effectuer une location </h6>
             <hr />
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="example2" class="table table-striped table-bordered">
+                        <table id="example" class="table table-striped table-bordered">
                             <thead>
                                 <tr>
-
-                                    <th style="text-align: center; vertical-align: middle;"> NOM ET PRENOM </th>
-                                    <th style="text-align: center; vertical-align: middle;">MAISON ET TYPE LOGEMENT </th>
-                                    <th style="text-align: center; vertical-align: middle;"> MONTANT/MOIS </th>
-                                    <th style="text-align: center; vertical-align: middle;"> DATE DEBUT/FIN </th>
-                                    <th style="text-align: center; vertical-align: middle;"> AVANCE ET CAUTION </th>
-                                    <th style="text-align: center; vertical-align: middle;">TOTAL </th>
+                                    <th style="text-align: center; vertical-align: middle; color: red"> LOCATION DE CHAMBRE
+                                    </th>
+                                    <th style="text-align: center; vertical-align: middle;"> TYPE LOGEMENT </th>
+                                    <th style="text-align: center; vertical-align: middle;">MAISON</th>
+                                    <th style="text-align: center; vertical-align: middle;"> CAUTION ET LOYER </th>
+                                    <th style="text-align: center; vertical-align: middle;"> VILLE ET QUATIER</th>
+                                    <th style="text-align: center; vertical-align: middle;"> SUPERFICIE </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($locations as $location)
+                                @foreach ($logements as $logement)
                                     <tr>
                                         <td style="text-align: center; vertical-align: middle;">
 
 
-                                            {{ $location->client_nom }} {{ $location->client_prenom }}
+                                            <a href="{{ url('location=' . $logement->id) }}"
+                                                class="btn btn-light btn-sm radius-30 px-4 hide-on-print"
+                                                style="color: rgb(110, 211, 22);">
+                                                LA FACTURE
+                                            </a>
                                         </td>
                                         <td style="text-align: center; vertical-align: middle;">
-                                            {{ $location->Tlogement_nom }}
+                                            {{ $logement->type_logement_nom }}
                                         </td>
+                                        <td style="text-align: center; vertical-align: middle;"> San Francisco</td>
                                         <td style="text-align: center; vertical-align: middle;">
-                                            {{ $location->logement_loyer }}</td>
+                                            {{ $logement->logement_loyer }}</td>
                                         <td style="text-align: center; vertical-align: middle;">
-                                            DATE DEBUT :
-                                            {{ $location->location_Ddebut }}
-                                            <br>
-                                            DATE FIN AVANCE :
-                                            {{ $location->location_dfin }}
-                                        </td>
+                                            {{ $logement->ville_nom }} dans le Quatier {{ $logement->quartier_nom }}</td>
                                         <td style="text-align: center; vertical-align: middle;">
-
-                                            <div class="column">
-                                                Avance Payer/Mois: {{ $location->location_avance }} Total =
-                                                {{ $location->location_tavance }}
-                                            </div>
-                                            <br>
-                                            <div class="column">
-                                                Caution Payer/Mois: {{ $location->location_caution }} Total =
-                                                {{ $location->location_tcaution }}
-                                            </div>
-
-                                        </td>
-                                        <td style="text-align: center; vertical-align: middle;">
-                                            MONTANT TOTAL : {{ $location->location_total }} </td>
-
+                                            {{ $logement->logement_superficie }}
                                     </tr>
                                 @endforeach
                             </tbody>

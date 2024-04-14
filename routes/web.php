@@ -72,6 +72,8 @@ Route::delete('/delete/{logement}', [App\Http\Controllers\logementController::cl
 Route::put('/update_logement/{id}', [App\Http\Controllers\logementController::class, 'update'])->name('update_logement');
 Route::get('/Type_logement={id}', [App\Http\Controllers\logementController::class, 'edit'])->name('edit_Type_logement');
 Route::get('/ajouter_logement', [App\Http\Controllers\logementController::class, 'create'])->name('ajouter_logement');
+Route::put('/logements/{logement}/activer', [App\Http\Controllers\logementController::class, 'activer'])->name('logements.activer');
+Route::put('/logements/{logement}/desactiver', [App\Http\Controllers\logementController::class, 'desactiver'])->name('logements.desactiver');
 
 // <-----------------POUR TYPE_LOGEMENT------------------------->
 Route::get('/liste_type_logement', [App\Http\Controllers\typeLogementController::class, 'index'])->name('liste_type_logement');
@@ -82,12 +84,13 @@ Route::get('/type_logement={id}', [App\Http\Controllers\typeLogementController::
 Route::get('/ajouter_type_logement', [App\Http\Controllers\typeLogementController::class, 'affichage'])->name('ajouter_type_logement');
 
 // <-----------------POUR LOCATION------------------------->
+Route::get('/liste_logementLOCO', [App\Http\Controllers\locationController::class, 'create'])->name('liste_logementLOCO');
 Route::get('/liste_location', [App\Http\Controllers\locationController::class, 'index'])->name('liste_location');
 Route::post('/enregistrerlocation', [App\Http\Controllers\locationController::class, 'store'])->name('enregistrerlocation');
 Route::delete('/delete/{locationt}', [App\Http\Controllers\locationController::class, 'destroy'])->name('delete_location');
 Route::put('/update_location/{id}', [App\Http\Controllers\locationController::class, 'update'])->name('update_location');
-Route::get('/location={id}', [App\Http\Controllers\locationController::class, 'edit'])->name('edit_locationt');
-// Route::post('/enregistrer_location', [App\Http\Controllers\locationController::class, 'store'])->name('enregistrer_location');
+Route::get('/location={id}', [App\Http\Controllers\locationController::class, 'edit'])->name('edit_location');
+// Route::get('/location', [App\Http\Controllers\locationController::class, 'create'])->name('location');
 
 // <-----------------POUR CLIENT------------------------->
 Route::get('/liste_client', [App\Http\Controllers\clientController::class, 'index'])->name('liste_client');
@@ -133,6 +136,6 @@ Route::get('/listeFacture', [App\Http\Controllers\FactureController::class, 'ind
 Route::get('/ajouterfacture', [App\Http\Controllers\FactureController::class, 'create'])->name('ajouterfacture');
 Route::get('/facture={id}', [App\Http\Controllers\FactureController::class, 'edit'])->name('edit_facture');
 Route::post('/enregistrefacture', [App\Http\Controllers\FactureController::class, 'store'])->name('enregistrefacture');
-Route::get('/detail', [App\Http\Controllers\FactureController::class, 'affichage'])->name('detail');
+Route::get('/ListesF', [App\Http\Controllers\FactureController::class, 'affichage'])->name('ListesF');
 
 // <-------------------------Detail -------------------------------------------------->

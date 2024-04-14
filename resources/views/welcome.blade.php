@@ -208,41 +208,43 @@
                     <h4 class="mt-0 mb-3" style="text-align: center";> Listes Des chanbres </h3>
                 </div>
                 @foreach ($logements as $logement)
-                    <div class="col-md-6 col-lg-3 ">
+                    @if ($logement->active)
+                        <div class="col-md-6 col-lg-3 ">
 
-                        <div class="card card-tour" style="overflow: hidden;">
-                            <a title="View tour" href="{{ route('vis', ['id' => $logement->id]) }}">
-                                <div class="card-image card-img-tour">
+                            <div class="card card-tour" style="overflow: hidden;">
+                                <a title="View tour" href="{{ route('vis', ['id' => $logement->id]) }}">
+                                    <div class="card-image card-img-tour">
 
-                                    <div class="ms-2">
-                                        <img src= "/storage/imagelogement/{{ $logement->photo }}" alt="Uploaded Image"
-                                            style="width: 300px; height: 200px;">
-                                    </div>
-                                    <div class="list-icon-content">
-                                        <div class="list-icon">
-                                            {{--  <img src="icons/web/vr.svg" alt="Smiley face" height="30"
+                                        <div class="ms-2">
+                                            <img src= "/storage/imagelogement/{{ $logement->photo }}"
+                                                alt="Uploaded Image" style="width: 300px; height: 200px;">
+                                        </div>
+                                        <div class="list-icon-content">
+                                            <div class="list-icon">
+                                                {{--  <img src="icons/web/vr.svg" alt="Smiley face" height="30"
                                                 width="30" class="img-vr">  --}}
-                                            {{--  <img src="icons/web/play.svg" alt="Smiley face" height="30"
+                                                {{--  <img src="icons/web/play.svg" alt="Smiley face" height="30"
                                                 width="30" class="img-play">  --}}
-                                            <p style="text-align: center";> Quartier {{ $logement->quartier_nom }} Dans
-                                                la ville {{ $logement->ville_nom }} chambre
-                                                {{ $logement->type_logement_nom }} </p>
-                                            <p style="text-align: center";>360°</p>
+                                                <p style="text-align: center";> Quartier {{ $logement->quartier_nom }}
+                                                    Dans
+                                                    la ville {{ $logement->ville_nom }} chambre
+                                                    {{ $logement->type_logement_nom }} </p>
+                                                <p style="text-align: center";>360°</p>
+                                            </div>
                                         </div>
                                     </div>
+                                </a>
+                                <div class="card-body">
+                                    <h2 class="h6">
+                                        <a
+                                            href="tour/vwkg5UWXsfWPPpiDnnvGrKG7sHpebtrT/Um56fEvVDQufYT07exnay2rXJAaqIkJk.html">Virtual
+                                            tour of the museum</a>
+                                    </h2>
+                                    <span>Virtual tour of the Archaeological Museum of Burgas, Bulgaria</span>
                                 </div>
-                            </a>
-                            <div class="card-body">
-                                <h2 class="h6">
-                                    <a
-                                        href="tour/vwkg5UWXsfWPPpiDnnvGrKG7sHpebtrT/Um56fEvVDQufYT07exnay2rXJAaqIkJk.html">Virtual
-                                        tour of the museum</a>
-                                </h2>
-                                <span>Virtual tour of the Archaeological Museum of Burgas, Bulgaria</span>
                             </div>
                         </div>
-
-                    </div>
+                    @endif
                 @endforeach
             </div>
 
