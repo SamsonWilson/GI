@@ -35,7 +35,7 @@
             <!--end breadcrumb-->
             <div class="row">
                 <div class="col-xl-7 mx-auto">
-                    <h6 class="mb-0 text-uppercase">Basic Form</h6>
+                    <h6 class="mb-0 text-uppercase">Client</h6>
                     <hr />
                     <div class="card border-top border-0 border-4 border-white">
                         <div class="card-body p-5">
@@ -64,9 +64,18 @@
                                     <label for="inputPassword" class="form-label"> Téléphone</label>
                                     <input type="tel" class="form-control" id="inputPassword" name="tel2">
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <label for="inputPassword" class="form-label"> Email </label>
                                     <input type="email" class="form-control" id="inputPassword" name="email">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="single-select-field" class="form-label">Sexe
+                                    </label>
+                                    <select class="form-select" id="single-select-field"
+                                        data-placeholder="Sélectionnez le sexe " name="sexe">
+                                        <option value="F">Feminin</option>
+                                        <option value="M">Masculin</option>
+                                    </select>
                                 </div>
                                 <div class="col-12">
                                     <label for="inputAddress" class="form-label">Address</label>

@@ -24,14 +24,14 @@
                     <div class="col-12 col-lg-12 col-xl-12 d-flex">
                         <div class="card radius-10 w-100">
                             <div class="card-body">
-                                <h6 class="mb-0 text-uppercase"> Form with icons </h6>
+                                <h6 class="mb-0 text-uppercase">logements </h6>
                                 <hr />
                                 <div class="card border-top border-0 border-4 border-white">
                                     <div class="card-body p-5">
                                         <div class="card-title d-flex align-items-center">
                                             <div><i class="bx bxs-user me-1 font-22 text-white"> </i>
                                             </div>
-                                            <h5 class="mb-0 text-white"> Enregistrement des Utilisateur </h5>
+                                            <h5 class="mb-0 text-white"> Enregistrement des Logements </h5>
                                         </div>
                                         <hr>
 
@@ -65,7 +65,7 @@
                                         </div>
                                         <hr>
                                         <div class="mb-3">
-                                            <label class="form-label">loyer:</label>
+                                            <label class="form-label">loyer/Mois:</label>
                                             <input type="text" class="form-control" name="mt_logement_par_mois">
                                         </div>
                                         <hr>
@@ -88,6 +88,16 @@
                                                 data-placeholder="Sélectionnez un quartier" name="quartier_id">
                                                 @foreach ($quartiers as $quatier)
                                                     <option value="{{ $quatier->id }}">{{ $quatier->nom }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="mb-4">
+                                            <label for="single-select-field" class="form-label">Maison
+                                            </label>
+                                            <select class="form-select" id="single-select-field"
+                                                data-placeholder="Sélectionnez un quartier" name="maison_id">
+                                                @foreach ($MAIS as $maison)
+                                                    <option value="{{ $maison->id }}">{{ $maison->nom }}</option>
                                                 @endforeach
                                             </select>
                                         </div>

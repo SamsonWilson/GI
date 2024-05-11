@@ -49,6 +49,7 @@ class clientController extends Controller
             "tel2" => "required",
             "email" => "required",
             "adress" => "required",
+            "sexe" => "required",
 
         ]);
         $ajouterClient = new client();
@@ -58,8 +59,8 @@ class clientController extends Controller
         $ajouterClient->tel1 = $request->tel1;
         $ajouterClient->tel2 = $request->tel2;
         $ajouterClient->email = $request->email;
+        $ajouterClient->sexe = $request->sexe;
         // $ajouterClient->quartier_id = $request->quartier_id;
-
         $ajouterClient->typeclient_id = $request->typeclient_id;
         $ajouterClient->save();
         return redirect()->route('liste_client')->with('success', ' le Quartier vient d\' être Enregistrer ');

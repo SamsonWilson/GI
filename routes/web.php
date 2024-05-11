@@ -90,6 +90,8 @@ Route::post('/enregistrerlocation', [App\Http\Controllers\locationController::cl
 Route::delete('/delete/{locationt}', [App\Http\Controllers\locationController::class, 'destroy'])->name('delete_location');
 Route::put('/update_location/{id}', [App\Http\Controllers\locationController::class, 'update'])->name('update_location');
 Route::get('/location={id}', [App\Http\Controllers\locationController::class, 'edit'])->name('edit_location');
+Route::get('/location_contrat={contrat}', [App\Http\Controllers\locationController::class, 'contrat'])->name('location_contrat');
+
 // Route::get('/location', [App\Http\Controllers\locationController::class, 'create'])->name('location');
 
 // <-----------------POUR CLIENT------------------------->
@@ -139,3 +141,31 @@ Route::post('/enregistrefacture', [App\Http\Controllers\FactureController::class
 Route::get('/ListesF', [App\Http\Controllers\FactureController::class, 'affichage'])->name('ListesF');
 
 // <-------------------------Detail -------------------------------------------------->
+// <-----------------POUR MMAISON ------------------------->
+Route::get('/listeMaison', [App\Http\Controllers\MaisonController::class, 'index'])->name('listeMaison');
+Route::post('/enregistrer_maison', [App\Http\Controllers\MaisonController::class, 'store'])->name('enregistrer_maison');
+// Route::post('/enregistrer_Quartier', [App\Http\Controllers\Sadminquartier::class, 'store'])->name('enregistrer_Quartier');
+// Route::delete('/delete_quartier/{quartier}', [App\Http\Controllers\Sadminquartier::class, 'destroy'])->name('delete_quartier');
+// Route::put('/update_quartier/{id}', [App\Http\Controllers\Sadminquartier::class, 'update'])->name('update_quartier');
+// Route::get('/quartier={id}', [App\Http\Controllers\Sadminquartier::class, 'edit'])->name('edit_quartier');
+// Route::get('/ajouter_Quartier', [App\Http\Controllers\Sadminquartier::class, 'afficher'])->name('ajouter_Quartier');
+
+
+// <-----------------POUR PROPRIETAIRE------------------------->
+Route::get('/listeProprietaire', [App\Http\Controllers\ProprietaireController::class, 'index'])->name('listeProprietaire');
+Route::post('/enregistrerProprietaire', [App\Http\Controllers\ProprietaireController::class, 'store'])->name('enregistrerProprietaire');
+Route::delete('/delete_Proprietaire/{Proprietaire}', [App\Http\Controllers\ProprietaireController::class, 'destroy'])->name('delete_Proprietaire');
+Route::put('/update_Proprietaire/{id}', [App\Http\Controllers\ProprietaireController::class, 'update'])->name('update_quartier');
+Route::get('/Proprietaire={id}', [App\Http\Controllers\ProprietaireController::class, 'edit'])->name('edit_Proprietaire');
+Route::get('/ProprietaireModifi={id}', [App\Http\Controllers\ProprietaireController::class, 'editModification'])->name('editMdification');
+// Route::get('/afiche', [App\Http\Controllers\ProprietaireController::class, 'affi'])->name('afiche');
+Route::get('/ajouterProprietaire', [App\Http\Controllers\ProprietaireController::class, 'afficher'])->name('ajouterProprietaire');
+
+// <-----------------POUR propreitaire maison ------------------------->
+Route::get('/ajouter_P_M', [App\Http\Controllers\ProprioMaisonController::class, 'index'])->name('ajouter_P_M');
+Route::get('/liste_maisonProprie', [App\Http\Controllers\ProprioMaisonController::class, 'affiche'])->name('liste_maisonProprie');
+Route::post('/enregistrer_Pmaison', [App\Http\Controllers\ProprioMaisonController::class, 'store'])->name('enregistrer_Pmaison');
+// Route::delete('/delete_quartier/{quartier}', [App\Http\Controllers\Sadminquartier::class, 'destroy'])->name('delete_quartier');
+// Route::put('/update_quartier/{id}', [App\Http\Controllers\Sadminquartier::class, 'update'])->name('update_quartier');
+// Route::get('/quartier={id}', [App\Http\Controllers\Sadminquartier::class, 'edit'])->name('edit_quartier');
+// Route::get('/ajouter_Quartier', [App\Http\Controllers\Sadminquartier::class, 'afficher'])->name('ajouter_Quartier');

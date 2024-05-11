@@ -6,6 +6,17 @@
             .hide-on-print {
                 display: none !important;
             }
+
+            .col-half {
+                width: 50%;
+                float: left;
+                box-sizing: border-box;
+            }
+
+            .column {
+                width: 50%;
+                float: left;
+            }
         }
     </style>
     <div class="page-wrapper">
@@ -38,58 +49,53 @@
                     </div>
                 </div>
             </div>
+            <div class="d-lg-flex align-items-center mb-4 gap-3">
+                <div class="ms-auto"><a name="" id="" class="btn btn-success"
+                        href="{{ route('ajouterProprietaire') }}" role="button"> Ajouter une Proprietaire </a></div>
+            </div>
             <!--end breadcrumb-->
-            <h6 class="mb-0 text-uppercase"> Effectuer une location </h6>
+            <h6 class="mb-0 text-uppercase"> listes des location </h6>
             <hr />
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="example" class="table table-striped table-bordered">
+                        <table id="example2" class="table table-striped table-bordered">
                             <thead>
                                 <tr>
-                                    <th style="text-align: center; vertical-align: middle; color: red"> LOCATION DE CHAMBRE
-                                    </th>
-                                    <th style="text-align: center; vertical-align: middle;"> TYPE LOGEMENT </th>
-                                    <th style="text-align: center; vertical-align: middle;">MAISON</th>
-                                    <th style="text-align: center; vertical-align: middle;"> CAUTION ET LOYER </th>
-                                    <th style="text-align: center; vertical-align: middle;"> VILLE ET QUATIER</th>
-                                    <th style="text-align: center; vertical-align: middle;"> SUPERFICIE </th>
+                                    <th style="text-align: center; vertical-align: middle;"> NOM ET PRENOM </th>
+                                    <th style="text-align: center; vertical-align: middle;">TELEPHONE </th>
+                                    <th style="text-align: center; vertical-align: middle;"> EMAIL </th>
+                                    <th style="text-align: center; vertical-align: middle;"> ADRESSE </th>
+                                    <th style="text-align: center; vertical-align: middle;"> SEXE </th>
+                                    <th style="text-align: center; vertical-align: middle;"> DETAIL </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($logements as $logement)
+                                @foreach ($proprietaires as $proprietaire)
                                     <tr>
                                         <td style="text-align: center; vertical-align: middle;">
-
-
-                                            <a href="{{ url('location=' . $logement->id) }}"
-                                                class="btn btn-light btn-sm radius-30 px-4 hide-on-print"
-                                                style="color: rgb(110, 211, 22);">
-                                                LOGEMENTS
-                                            </a>
-                                            <hr>
-                                            <a href="{{ url('location_contrat=' . $logement->id) }}"
-                                                class="btn btn-light btn-sm radius-30 px-4 hide-on-print"
-                                                style="color: rgb(110, 211, 22);">
-                                                FIN CONTRAT
-                                            </a>
-                                            <hr>
-                                            <a href="{{ url('location=' . $logement->id) }}"
-                                                class="btn btn-light btn-sm radius-30 px-4 hide-on-print"
-                                                style="color: rgb(110, 211, 22);">
-                                                MODIFICATION
-                                            </a>
+                                            {{ $proprietaire->nom }} {{ $proprietaire->prenom }}
                                         </td>
                                         <td style="text-align: center; vertical-align: middle;">
-                                            {{ $logement->type_logement_nom }}
+                                            {{ $proprietaire->tel1 }} / {{ $proprietaire->tel2 }}
                                         </td>
-                                        <td style="text-align: center; vertical-align: middle;">{{ $logement->maison }}</td>
                                         <td style="text-align: center; vertical-align: middle;">
-                                            {{ $logement->logement_loyer }} /Mois</td>
+                                            {{ $proprietaire->email }}</td>
                                         <td style="text-align: center; vertical-align: middle;">
-                                            {{ $logement->ville_nom }} dans le Quatier {{ $logement->quartier_nom }}</td>
+                                            {{ $proprietaire->adress }}
+                                        </td>
                                         <td style="text-align: center; vertical-align: middle;">
-                                            {{ $logement->logement_superficie }} M²
+                                            {{ $proprietaire->sex }}
+                                        </td>
+                                        <td style="text-align: center; vertical-align: middle;">
+                                            <div class="d-flex order-actions">
+                                                <a href="{{ url('ProprietaireModifi=' . $proprietaire->id) }}"
+                                                    class=""><i class="bx bxs-edit"></i></a>
+                                                <a class="ms-3" href="{{ url('Proprietaire=' . $proprietaire->id) }}"><i
+                                                        class="bx bxs-detail"></i></a>
+                                            </div>
+
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

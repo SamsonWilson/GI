@@ -23,8 +23,7 @@ return new class extends Migration
             $table->foreignId('quartier_id')->constrained('quartiers');
             $table->foreignId('users_id')->constrained('users');
             $table->foreignId('typelogement_id')->constrained('type_logements');
-            $table->foreignId('maison_id')->constrained('maison');
-
+            $table->foreignId('maison_id')->constrained('maisons');
             $table->boolean('active')->default(false);
             $table->timestamps();
         });

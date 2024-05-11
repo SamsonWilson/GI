@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\client;
+use App\Models\facture;
 use App\Models\location;
 use App\Models\logement;
+use App\Models\maison;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class locationController extends Controller
 {
@@ -32,10 +35,11 @@ class locationController extends Controller
     {
 
         $logements = logement::join('type_logements', 'logements.typelogement_id', '=', 'type_logements.id')
+            ->join('maisons', 'maisons.id', '=', 'logements.maison_id')
             ->join('quartiers', 'logements.quartier_id', '=', 'quartiers.id')
             ->join('villes', 'quartiers.ville_id', '=', 'villes.id')
             ->orderByDesc('logements.id')
-            ->select('logements.*', 'type_logements.nom AS type_logement_nom', 'quartiers.nom AS quartier_nom', 'villes.nom AS ville_nom', 'logements.surperficie AS logement_superficie', 'logements.mt_logement_par_mois AS logement_loyer')
+            ->select('logements.*', 'type_logements.nom AS type_logement_nom', 'quartiers.nom AS quartier_nom', 'villes.nom AS ville_nom', 'logements.surperficie AS logement_superficie', 'logements.mt_logement_par_mois AS logement_loyer', 'maisons.nom as maison')
             ->get();
         return view('Sadmin.LOCATION.listeLogement', compact("logements"));
         // $clients = client::orderByDesc("id")->get();
@@ -58,7 +62,9 @@ class locationController extends Controller
             "caution" => "required",
             "Tavance" => "required",
             "Tcaution" => "required",
-            "Total" => "required"
+            "Total" => "required",
+            "commision" => "required"
+
         ]);
         // dd($request);
 
@@ -71,6 +77,7 @@ class locationController extends Controller
         $ajouterlogement->Tcaution = $request->Tcaution;
         $ajouterlogement->Total = $request->Total;
         $ajouterlogement->date_finavance = $request->date_finavance;
+        $ajouterlogement->commision = $request->commision;
 
         $ajouterlogement->client_id = $request->client_id;
         $ajouterlogement->logement_id = $request->logement_id;
@@ -102,18 +109,55 @@ class locationController extends Controller
         $clients = client::orderbydesc("id")->get();
         $logements = logement::find($id)
             ->join('type_logements', 'logements.typelogement_id', '=', 'type_logements.id')
+            ->join('maisons', 'maisons.id', '=', 'logements.maison_id')
             ->join('quartiers', 'logements.quartier_id', '=', 'quartiers.id')
             ->join('villes', 'quartiers.ville_id', '=', 'villes.id')
             ->orderByDesc('logements.id')
-            ->select('logements.*', 'type_logements.nom AS type_logement_nom', 'quartiers.nom AS quartier_nom', 'villes.nom AS ville_nom', 'logements.surperficie AS logement_superficie', 'logements.mt_logement_par_mois AS logement_loyer')
+            ->select('logements.*', 'type_logements.nom AS type_logement_nom', 'quartiers.nom AS quartier_nom', 'villes.nom AS ville_nom', 'logements.surperficie AS logement_superficie', 'logements.mt_logement_par_mois AS logement_loyer', 'maisons.nom as maison', 'maisons.tx_commission as txCommission')
+            ->get();
+        return view('Sadmin.LOCATION.create', compact('logements', 'clients'));
+    }
+    public function contrat($contrat)
+    {
+        $factures = facture::orderbydesc("id")->get();
+        $locations = DB::table('locations')
+            // location::find($contrat)
+            ->join('logements', 'logements.id', '=', 'locations.logement_id')
+            ->join('maisons', 'maisons.id', '=', 'logements.maison_id')
+            ->join('clients', 'clients.id', '=', 'locations.client_id')
+            ->join('type_logements', 'logements.typelogement_id', '=', 'type_logements.id')
+            ->join('quartiers', 'logements.quartier_id', '=', 'quartiers.id')
+            ->join('villes', 'quartiers.ville_id', '=', 'villes.id')
+            ->where('locations.id', $contrat)
+            ->orderByDesc('locations.id')
+            ->select('locations.*', 'type_logements.nom AS type_logement_nom', 'quartiers.nom AS quartier_nom', 'villes.nom AS ville_nom', 'logements.surperficie AS logement_superficie', 'logements.mt_logement_par_mois AS logement_loyer', 'maisons.nom as maison')
             ->get();
 
-        return view('Sadmin.LOCATION.create', compact('logements', 'clients'));
+        return view('Sadmin.LOCATION.finContrat', compact('locations', 'factures'));
     }
 
     /**
      * Update the specified resource in storage.
      */
+
+    public function updateFinContrat(Request $request, $id)
+    {
+        // $this->validate($request, [
+        //     'nom' => 'required|',
+        //     'description' => 'required',
+
+        // ]);
+        // $villes = Ville::find($id);
+        // $villes->nom = $request->nom;
+        // $villes->description = $request->description;
+        // $villes->update($request->all());
+        // // $datas = Ville::orderbydesc("id")->get();
+        // // return View("sadmin.liste", compact("datas"));
+        // return redirect()->route('sadmin')->with('success', ' la ville vient d\' être Enregistrer ');
+
+        // return back();
+
+    }
     public function update(Request $request, location $location)
     {
         //

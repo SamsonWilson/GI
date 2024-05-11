@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class maison extends Model
 {
     use HasFactory;
+    protected $fillable = ['nom', 'adresse', 'c_postal', 'nombrePiece'];
 }

@@ -15,7 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('date_debut');
             $table->string('date_finavance');
+            $table->string('commision');
             $table->string('date_fin')->nullable();
+            $table->string('descrip_prelevement')->nullable();
+            $table->string('Mt_prelever')->nullable();
+            $table->string('Mt_rembouser')->nullable();
             $table->string('avance');
             $table->string('caution');
             $table->string('Tcaution');

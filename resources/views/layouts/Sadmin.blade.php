@@ -10,13 +10,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--favicon-->
     <link rel="icon" href="assetsc/images/favicon-32x32.png" type="image/png" />
+    <!--plugins pour le proprietaire-->
+    <link href="assetsc/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
+    <link href="assetsc/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
+    <link href="assetsc/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet" />
+    <link href="assetsc/plugins/bs-stepper/css/bs-stepper.css" rel="stylesheet" />
     <!--plugins-->
+
     <link href="assetsc/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
     <link href="assetsc/plugins/fancy-file-uploader/fancy_fileupload.css" rel="stylesheet" />
     <link href="assetsc/plugins/Drag-And-Drop/dist/imageuploadify.min.css" rel="stylesheet" />
     <link href="assetsc/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
     <link href="assetsc/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet" />
 
+    <!--plugins selecte-->
+    <link href="assetsc/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../../../cdn.jsdelivr.net/npm/select2%404.1.0-rc.0/dist/css/select2.min.css" />
+    <link rel="stylesheet"
+        href="../../../../cdn.jsdelivr.net/npm/select2-bootstrap-5-theme%401.3.0/dist/select2-bootstrap-5-theme.min.css" />
+    <link href="assetsc/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
+    <link href="assetsc/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet" />
 
     <!--plugins-->
     <link href="assetsc/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
@@ -29,7 +42,7 @@
     <link href="assetsc/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
     <link href="assetsc/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet" />
 
-    <!--plugins-->
+    <!--plugins -->
     <link href="assetsc/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
     <link rel="stylesheet" href="../../../../cdn.jsdelivr.net/npm/select2%404.1.0-rc.0/dist/css/select2.min.css" />
     <link rel="stylesheet"
@@ -222,6 +235,10 @@
                     .appendTo('#example2_wrapper .col-md-6:eq(0)');
             });
         </script>
+        <!-- plugins selecte -->
+        <script src="assetsc/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
+        <script src="../../../../cdn.jsdelivr.net/npm/select2%404.1.0-rc.0/dist/js/select2.min.js"></script>
+        <script src="assetsc/plugins/select2/js/select2-custom.js"></script>
 
         {{--  <script>
             $('#fancy-file-upload').FancyFileUpload({

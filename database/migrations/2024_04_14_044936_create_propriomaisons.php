@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('proprio_maison', function (Blueprint $table) {
+        Schema::create('proprio_maisons', function (Blueprint $table) {
             $table->id();
             $table->string('nombre_de_proprio');
+            $table->string('description');
             $table->foreignId('proprietaire_id')->constrained('proprietaires');
-            $table->foreignId('maison_id')->constrained('maison');
+            $table->foreignId('maison_id')->constrained('maisons');
             $table->timestamps();
         });
         schema::enableForeignKeyConstraints();

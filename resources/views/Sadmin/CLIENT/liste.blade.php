@@ -35,9 +35,6 @@
                     </div>
                 </div>
             </div>
-
-
-
             <div class="d-lg-flex align-items-center mb-4 gap-3">
 
                 <div class="ms-auto"><a href="javascript:;" class="btn btn-light radius-30 mt-2 mt-lg-0"><i
@@ -45,9 +42,6 @@
                 <div><a name="" id="" class="btn btn-primary" href="{{ route('ajouterClient') }}"
                         role="button">Ajouter un clients</a></div>
             </div>
-
-
-
             <h6 class="mb-0 text-uppercase">Listes des clients </h6>
             <hr>
             <div class="card">

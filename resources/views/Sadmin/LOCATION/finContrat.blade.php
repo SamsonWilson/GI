@@ -37,49 +37,99 @@
                 @csrf
                 <div class="card">
                     <div class="card-body p-4">
-                        <h5 class="card-title">Add New Product</h5>
+                        <h5 class="card-title">FIN CONTRAT</h5>
                         <hr />
                         <div class="form-body mt-4">
                             <div class="row">
-                                @foreach ($logements as $logement)
+                                @foreach ($locations as $location)
+                                    <h1 class="col-12" style="text-align: center; vertical-align: middle;">
+                                        {{ $location->maison }}
+                                    </h1>
+
                                     <div class="col-lg-6">
                                         <div class="border border-3 p-4 rounded">
-                                            <input type="hidden" value="{{ $logement->id }}" name="logement_id" readonly
-                                                required>
                                             <div class="row mb-3">
                                                 <div class="col">
                                                     <label class="form-label"> MAISON </label>
                                                     <input type="text" class="form-control"
-                                                        value="{{ $logement->maison }}" disabled />
+                                                        value="{{ $location->maison }}" disabled />
                                                 </div>
                                                 <div class="col">
                                                     <label class="form-label"> TYPE DE LOGEMENT </label>
                                                     <input type="text" class="form-control"
-                                                        value="{{ $logement->type_logement_nom }}" disabled />
+                                                        value="{{ $location->type_logement_nom }}" disabled />
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
                                                 <div class="col">
                                                     <label class="form-label"> VILLE </label>
                                                     <input type="text" class="form-control"
-                                                        value="{{ $logement->ville_nom }}"disabled />
+                                                        value="{{ $location->ville_nom }}"disabled />
                                                 </div>
                                                 <div class="col">
                                                     <label class="form-label"> QUARTIER </label>
                                                     <input type="text" class="form-control"
-                                                        value="{{ $logement->quartier_nom }}"disabled />
+                                                        value="{{ $location->quartier_nom }}"disabled />
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
                                                 <div class="col">
                                                     <label class="form-label">SUPERFICIE </label>
                                                     <input type="text" class="form-control"
-                                                        value="{{ $logement->logement_superficie }} M²"disabled />
+                                                        value=" {{ $location->logement_superficie }} M²"disabled />
                                                 </div>
                                                 <div class="col">
                                                     <label class="form-label"> LOYER </label>
                                                     <input type="text" class="form-control" id="loyer"
-                                                        value="{{ $logement->logement_loyer }} / Mois" disabled />
+                                                        value=" {{ $location->logement_loyer }}/ Mois" disabled />
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <br>
+                                        <br>
+
+                                    </div>
+
+
+                                    <div class="col-lg-6">
+                                        <div class="border border-3 p-4 rounded">
+
+                                            <div class="row mb-3">
+                                                <div class="col">
+                                                    <label class="form-label"> Avance/Mois </label>
+                                                    <input type="text"class="form-control" id="date_fin"
+                                                        name="date_finavance" value="{{ $location->avance }}" readonly />
+                                                </div>
+                                                <div class="col">
+                                                    <label class="form-label"> Montant Total Avance </label>
+                                                    <input type="text" class="form-control"
+                                                        value="{{ $location->Tavance }}" disabled />
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col">
+                                                    <label class="form-label"> Coution/Mois </label>
+                                                    <input type="text"class="form-control" id="date_fin"
+                                                        value="{{ $location->caution }}" name="date_finavance" readonly />
+                                                </div>
+                                                <div class="col">
+                                                    <label class="form-label"> Montant Total Caution </label>
+                                                    <input type="text" class="form-control"
+                                                        value="{{ $location->Tcaution }}"disabled />
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col">
+                                                    <label class="form-label">Date Debut </label>
+                                                    <input type="text" class="form-control"
+                                                        value="{{ $location->date_debut }}" disabled />
+                                                </div>
+                                                <div class="col">
+                                                    <label class="form-label"> Date fin Avance </label>
+                                                    <input type="text" class="form-control" id="loyer"
+                                                        value="{{ $location->date_finavance }}" disabled />
                                                 </div>
                                             </div>
                                         </div>
@@ -88,91 +138,49 @@
 
 
                                     </div>
+
+                                    {{--  pour le client  --}}
+                                    <div class="col-lg-12">
+                                        <div class="border border-3 p-4 rounded">
+                                            <div class="mb-4">
+                                                <label for="single-select-field" class="form-label"
+                                                    style="text-align: center; vertical-align: middle;">TOUT LES
+                                                    LOYER</label>
+                                                <select class="form-select" id="single-select-field"
+                                                    data-placeholder="selectionne le client" name="client_id">
+                                                    <option></option>
+                                                    @foreach ($factures as $facture)
+                                                        <option value="{{ $facture->id }}">{{ $facture->mois_payer }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                                <br>
+                                                <div class="mb-3">
+                                                    <label class="form-label"> ETAT DE LA CHAMBRE/MOIS NON REGLE </label>
+                                                    <textarea class="form-control" id="inputAddress" placeholder="Address..." rows="3" name="adress"></textarea>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <div class="col">
+                                                        <label class="form-label"> MONTANT PRELEVER DANS LA CAUTION
+                                                        </label>
+                                                        <input type="text" class="form-control"
+                                                            value=" M²"disabled />
+                                                    </div>
+                                                    <div class="col">
+                                                        <label class="form-label"> MONTANT RENBOUSER </label>
+                                                        <input type="text" class="form-control" id="loyer"
+                                                            value="/ Mois" disabled />
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label"> DATE DE FIN CONTRAT </label>
+                                                    <input type="date" class="form-control datepicker"
+                                                        name="date_debut" id="date_debut" oninput="updateDateFin()" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 @endforeach
-                                {{--  pour le client  --}}
-                                <div class="col-lg-6">
-                                    <div class="border border-3 p-4 rounded">
-                                        <div class="mb-4">
-                                            <label for="single-select-field" class="form-label"
-                                                style="text-align: center; vertical-align: middle;">SELECTIONNE LE
-                                                CLIENT</label>
-                                            <select class="form-select" id="single-select-field"
-                                                data-placeholder="selectionne le client" name="client_id">
-                                                <option></option>
-                                                @foreach ($clients as $client)
-                                                    <option value="{{ $client->id }}">{{ $client->nom }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <div class="mb-3">
-                                        <label class="form-label"> DATE DE DEBUT </label>
-                                        <input type="date" class="form-control datepicker" name="date_debut"
-                                            id="date_debut" oninput="updateDateFin()" />
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label"> DATE DE FIN AVANCE </label>
-                                        <input type="text"class="form-control" id="date_fin" name="date_finavance"
-                                            readonly />
-                                    </div>
-
-
-
-                                </div>
-                                <div class="col-lg-12">
-                                    <div class="border border-3 p-4 rounded">
-                                        <div class="row mb-3">
-                                            <div class="col">
-                                                <label class="form-label"> CAUTION </label>
-                                                <input type="number" class="form-control" id="caution"
-                                                    oninput="calculateTotals()" name="caution" />
-                                            </div>
-                                            <div class="col">
-                                                <label class="form-label"> AVANCE </label>
-                                                <input type="number" class="form-control" id="avance"
-                                                    oninput="calculateTotals()" oninput="updateDateFin()"name="avance" />
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <div class="col">
-                                                <label class="form-label"> TATOL CAUTION </label>
-                                                <input type="text" class="form-control" id="total_caution"
-                                                    name ="Tcaution" readonly />
-                                            </div>
-                                            <div class="col">
-                                                <label class="form-label"> TOTAL AVANCE </label>
-                                                <input type="text" class="form-control" id="total_avance"
-                                                    name="Tavance" readonly />
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <div class="col">
-                                                <label class="form-label"> TAUX COMMISION </label>
-                                                @foreach ($logements as $logement)
-                                                    <input type="text" class="form-control" id="taux_commission"
-                                                        name ="#" value="{{ $logement->txCommission }} %"
-                                                        readonly />
-                                                @endforeach
-                                            </div>
-                                            <div class="col">
-                                                <label class="form-label text-danger fs-7"> COMMISSION DE LA SOCIETE
-                                                </label>
-                                                <input type="text" class="form-control text-danger fs-7"
-                                                    id="total_commission" name="commision" readonly />
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-
-                                    <div class="mb-3 text-center">
-                                        <label class="form-label text-danger fs-3"> TOTAL </label>
-                                        <input type="text" class="form-control text-danger fs-4" id="total"
-                                            name="Total" readonly />
-                                    </div>
-
-                                </div>
                             </div><!--end row-->
                             <hr>
                             <div class="col-12" style="text-align: center; vertical-align: middle;">
@@ -218,23 +226,19 @@
             });
         });
     </script>
-
     <script>
         function calculateTotals() {
             var loyer = parseFloat(document.getElementById("loyer").value);
-            var taux_commission = parseFloat(document.getElementById("taux_commission").value);
             var caution = parseFloat(document.getElementById("caution").value);
             var avance = parseFloat(document.getElementById("avance").value);
 
-            if (!isNaN(loyer) && !isNaN(caution) && !isNaN(avance) && !isNaN(taux_commission)) {
+            if (!isNaN(loyer) && !isNaN(caution) && !isNaN(avance)) {
                 var total_caution = loyer * caution;
                 var total_avance = loyer * avance;
-                var total_commission = (total_avance * taux_commission) / 100;
-                var total = (total_caution + total_avance) - total_commission;
+                var total = total_caution + total_avance;
 
                 document.getElementById("total_caution").value = total_caution;
                 document.getElementById("total_avance").value = total_avance;
-                document.getElementById("total_commission").value = total_commission;
                 document.getElementById("total").value = total;
             } else {
                 document.getElementById("total_caution").value = "";

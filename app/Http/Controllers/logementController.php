@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\logement;
+use App\Models\maison;
 use App\Models\quartiers;
 use App\Models\type_logement;
 use Illuminate\Http\Request;
@@ -31,11 +32,10 @@ class logementController extends Controller
     public function create()
     {
         try {
+            $MAIS = maison::orderByDesc("id")->get();
             $quartiers = quartiers::orderByDesc("id")->get();
             $typelogements = type_logement::orderByDesc("id")->get();
-
-
-            return view("Sadmin.LOGEMENT.create", compact("typelogements"), compact("quartiers"));
+            return view("Sadmin.LOGEMENT.create", compact("MAIS", "quartiers", "typelogements"));
         } catch (\Exception $e) {
             // Gérer les erreurs éventuelles, par exemple, journaliser l'erreur
             Log::error("Une erreur s'est produite lors du chargement des données pour la création d'un logement : " . $e->getMessage());
@@ -59,6 +59,7 @@ class logementController extends Controller
             "MT_visite" => "required",
             "surperficie" => "required",
             "mt_logement_par_mois" => "required",
+            "maison_id" => "required",
 
         ]);
         // dd($request);
@@ -80,6 +81,7 @@ class logementController extends Controller
             $ajouterlogement->users_id = $users_id;
             $ajouterlogement->quartier_id = $request->quartier_id;
             $ajouterlogement->typelogement_id = $request->typelogement_id;
+            $ajouterlogement->maison_id = $request->maison_id;
             $ajouterlogement->save();
             return redirect()->route('liste_logement')->with('success', ' le Quartier vient d\' être Enregistrer ');
         }
