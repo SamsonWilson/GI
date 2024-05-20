@@ -41,6 +41,13 @@
                         </li>
                         <li> <a href="{{ route('sadmin') }}"><i class="bx bx-radio-circle"></i>Liste des villes</a>
                         </li>
+                        <li> <a href="{{ route('listeFinContrat') }}"><i class="bx bx-radio-circle"></i> Listes pour
+                                effectuer la fin du contrats</a>
+                        </li>
+                        <li> <a href="{{ route('listeFinContratEffectuer') }}"><i class="bx bx-radio-circle"></i> Listes fin
+                                Contrat
+                            </a>
+                        </li>
                     @endcan
                 </ul>
             </li>

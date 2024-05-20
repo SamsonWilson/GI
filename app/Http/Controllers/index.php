@@ -48,6 +48,7 @@ class index extends Controller
             "tel1" => "required",
             "tel2" => "required",
             "adress" => "required",
+            "sexe" => "required"
 
         ]);
 
@@ -58,6 +59,7 @@ class index extends Controller
         $ajouterClient->email = $request->email;
         $ajouterClient->tel1 = $request->tel1;
         $ajouterClient->tel2 = $request->tel2;
+        $ajouterClient->sexe = $request->sexe;
         // $defaultForeignKeyValue = '1'; // Valeur par défaut de la clé étrangère
         // $ajouterClient->typeclient_id  = $request->filled('typeclient_id ') ? $request->typeclient_id : $defaultForeignKeyValue;
         $ajouterClient->save();
@@ -66,6 +68,8 @@ class index extends Controller
         $ajouterVisite->client_id = $ajouterClient->id;
         $ajouterVisite->logement_id = $request->logement_id;
         $ajouterVisite->save();
+        return redirect()->route('welcome')->with('success', ' le Quartier vient d\' être Enregistrer ');
+
 
 
 

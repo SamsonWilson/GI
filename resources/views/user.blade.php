@@ -89,7 +89,8 @@
 
         input[type="text"],
         input[type="email"],
-        input[type="password"] {
+        input[type="password"],
+        select[type="text"] {
             width: calc(100% - 12px);
             padding: 8px;
             margin-bottom: 15px;
@@ -172,11 +173,18 @@
                 <label for="prenom">Prénom :</label>
                 <input type="text" id="prenom" name="prenom" required>
 
+
                 <label for="email">Email :</label>
                 <input type="email" id="email" name="email" required>
 
-                <label for="mot_de_passe">Téléphone :</label>
-                <input type="text" id="mot_de_passe" name="tel1" required>
+                <label for="mot_de_passe"> Sexe :</label>
+                <select name="sexe" id="" type='text'>
+                    <option value="masculin">masculin</option>
+                    <option value="feminin">feminin</option>
+                </select>
+
+                <label for="confirmation_mot_de_passe">Téléphone :</label>
+                <input type="text" id="confirmation_mot_de_passe" name="tel1" required>
 
                 <label for="confirmation_mot_de_passe">Confirmation Téléphone :</label>
                 <input type="text" id="confirmation_mot_de_passe" name="tel2" required>

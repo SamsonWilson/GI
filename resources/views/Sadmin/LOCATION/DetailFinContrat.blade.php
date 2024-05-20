@@ -33,8 +33,7 @@
                 </div>
             </div>
             <!--end breadcrumb-->
-            <form method="POST"
-                action="{{ url('contrat_location/' . $locations->first()->id) }}",enctype="multipart/form-data">
+            <form method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="card">
@@ -44,7 +43,7 @@
                         <div class="form-body mt-4">
                             <div class="row">
                                 {{--  @foreach ($locations as $location)  --}}
-                                <h1 class="col-12" style="text-align: center; vertical-align: middle;">
+                                <h1 class="col-12" style="text-align: center; vertical-align: middle;color: red">
                                     {{ $locations->first()->nom_client }} {{ $locations->first()->prenom_client }}
                                 </h1>
 
@@ -162,37 +161,42 @@
                                             <br>
                                             <div class="mb-3">
                                                 <label class="form-label"> ETAT DE LA CHAMBRE/MOIS NON REGLE </label>
-                                                <textarea class="form-control" id="inputAddress" placeholder="Address..." rows="3"
-                                                    name="descrip_prelevement"></textarea>
+                                                {{--  <textarea class="form-control" id="inputAddress" placeholder="Address..." rows="3" name="descrip_prelevement"
+                                                    value=" {{ $locations->first()->descrip_prelevement }}"></textarea>  --}}
+                                                <input type="text" class="form-control"
+                                                    value=" {{ $locations->first()->descrip_prelevement }} M²"disabled />
+
                                             </div>
                                             <div class="row mb-3">
                                                 <div class="col">
                                                     <label class="form-label"> MONTANT PRELEVER DANS LA CAUTION
                                                     </label>
                                                     <input type="text" class="form-control" name="Mt_prelever"
-                                                        oninput="calculateTotals()" id="prelevement" />
+                                                        oninput="calculateTotals()"
+                                                        value="{{ $locations->first()->Mt_prelever }}" id="prelevement"
+                                                        readonly />
                                                 </div>
                                                 <div class="col">
                                                     <label class="form-label"> MONTANT RENBOUSER </label>
                                                     <input type="text" class="form-control"
                                                         oninput="calculateTotals()" id="totalRenbourser"
-                                                        name="Mt_rembouser" readonly />
+                                                        name="Mt_rembouser"
+                                                        value="{{ $locations->first()->Mt_rembouser }} CFA" readonly />
                                                 </div>
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label"> DATE DE FIN CONTRAT </label>
-                                                <input type="date" class="form-control datepicker" name="date_fin"
-                                                    id="date_fin" oninput="updateDateFin()" />
+                                                {{--  <input type="date" class="form-control datepicker" name="date_fin"
+                                                    id="date_fin" oninput="updateDateFin()"
+                                                    value="{{ $locations->first()->date_fin }}" readonly />  --}}
+                                                <input type="text" class="form-control"
+                                                    value="{{ $locations->first()->date_fin }}" disabled />
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 {{--  @endforeach  --}}
                             </div><!--end row-->
-                            <hr>
-                            <div class="col-12" style="text-align: center; vertical-align: middle;">
-                                <button type="submit" class="btn btn-light px-5"> Enregistrer </button>
-                            </div>
                         </div>
                     </div>
             </form>

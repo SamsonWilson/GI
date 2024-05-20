@@ -100,7 +100,8 @@
                                                 data-placeholder="selectionne le client" name="client_id">
                                                 <option></option>
                                                 @foreach ($clients as $client)
-                                                    <option value="{{ $client->id }}">{{ $client->nom }}</option>
+                                                    <option value="{{ $client->id }}">{{ $client->nom }}
+                                                        {{ $client->prenom }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -163,9 +164,6 @@
                                             </div>
                                         </div>
                                     </div>
-
-
-
                                     <div class="mb-3 text-center">
                                         <label class="form-label text-danger fs-3"> TOTAL </label>
                                         <input type="text" class="form-control text-danger fs-4" id="total"

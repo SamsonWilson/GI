@@ -72,7 +72,7 @@
                                         <td style="text-align: center; vertical-align: middle;">
                                             {{ $facture->clients_nom }} {{ $facture->clients_prenom }}
                                         </td>
-                                        <td style="text-align: center; vertical-align: middle;"> San Francisco</td>
+                                        <td style="text-align: center; vertical-align: middle;">{{ $facture->maison }}</td>
                                         <td style="text-align: center; vertical-align: middle;">
                                             {{ $facture->quartier_nom }}</td>
                                         <td style="text-align: center; vertical-align: middle;">

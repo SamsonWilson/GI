@@ -39,7 +39,7 @@
                 </div>
             </div>
             <!--end breadcrumb-->
-            <h6 class="mb-0 text-uppercase"> ETABLIER UNE FACTURE </h6>
+            <h6 class="mb-0 text-uppercase"> Effectuer une location </h6>
             <hr />
             <div class="card">
                 <div class="card-body">
@@ -47,50 +47,37 @@
                         <table id="example" class="table table-striped table-bordered">
                             <thead>
                                 <tr>
-                                    <th style="text-align: center; vertical-align: middle; color: red"> ETABLIER
-                                        LA FACTURE
+                                    <th style="text-align: center; vertical-align: middle; color: red"> NOM ET PRENOM
                                     </th>
-                                    <th style="text-align: center; vertical-align: middle;"> NOM ET PRENOM </th>
-                                    <th style="text-align: center; vertical-align: middle;">MAISON</th>
-                                    <th style="text-align: center; vertical-align: middle;">LOGEMENT</th>
-                                    <th style="text-align: center; vertical-align: middle;">QUATIER</th>
-                                    <th style="text-align: center; vertical-align: middle;">DATE FIN </th>
+                                    <th style="text-align: center; vertical-align: middle;"> MAISON / TYPE LOGEMENT </th>
+                                    <th style="text-align: center; vertical-align: middle;">DATE DEBUT
+                                    </th>
+                                    <th style="text-align: center; vertical-align: middle;"> VILLE ET QUATIER </th>
+                                    <th style="text-align: center; vertical-align: middle;">AVANCE / TOTAL AVANCE </th>
+                                    <th style="text-align: center; vertical-align: middle;"> DATE FIN CONTRAT </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($clientsPayes as $location)
+                                @foreach ($locations as $location)
                                     <tr>
                                         <td style="text-align: center; vertical-align: middle;">
-
-
-                                            <a href="{{ url('facture=' . $location->id) }}"
+                                            <a href="{{ url('location_contrat=' . $location->id) }}"
                                                 class="btn btn-light btn-sm radius-30 px-4 hide-on-print"
                                                 style="color: rgb(110, 211, 22);">
-                                                LA FACTURE
+                                                {{ $location->nomclient }} {{ $location->prenomclient }}
                                             </a>
+
                                         </td>
                                         <td style="text-align: center; vertical-align: middle;">
-                                            {{ $location->clients_nom }} {{ $location->clients_prenom }}
+                                            {{ $location->type_logement_nom }}
                                         </td>
-                                        <td style="text-align: center; vertical-align: middle;"> San Francisco</td>
+                                        <td style="text-align: center; vertical-align: middle;">{{ $location->maison }}</td>
                                         <td style="text-align: center; vertical-align: middle;">
-                                            {{ $location->logement_nom }}</td>
+                                            {{ $location->ville_nom }} dans le Quatier {{ $location->quartier_nom }} </td>
                                         <td style="text-align: center; vertical-align: middle;">
-                                            {{ $location->quartier_nom }}</td>
+                                            {{ $location->avance }}/Mois /{{ $location->Tavance }} CFA </td>
                                         <td style="text-align: center; vertical-align: middle;">
-                                            @if ($location->mois_payer)
-                                                @if (\Carbon\Carbon::now()->isAfter(\Carbon\Carbon::parse($location->mois_payer)))
-                                                    <span style="color:red;">{{ $location->mois_payer }}</span>
-                                                @else
-                                                    {{ $location->mois_payer }}
-                                                @endif
-                                            @else
-                                                @if (\Carbon\Carbon::now()->isAfter(\Carbon\Carbon::parse($location->location_date_fin)))
-                                                    <span style="color:red;">{{ $location->location_date_fin }}</span>
-                                                @else
-                                                    {{ $location->location_date_fin }}
-                                                @endif
-                                            @endif
+                                            {{ $location->caution }}/Mois /{{ $location->Tcaution }}
                                     </tr>
                                 @endforeach
                             </tbody>
