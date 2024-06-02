@@ -53,7 +53,7 @@ class ProprioMaisonController extends Controller
         $ajouterPMaison->proprietaire_id = $request->proprietaire_id;
         $ajouterPMaison->maison_id = $request->maison_id;
         $ajouterPMaison->save();
-        return redirect()->route('liste_Quartier')->with('success', ' le Quartier vient d\' être Enregistrer ');
+        return redirect()->route('listeProprietaire')->with('success', ' le Quartier vient d\' être Enregistrer ');
         // dd($ajouterVille);
         // $datas = quartiers::orderbydesc("id")->get();
         // return View("admin.affichage", compact("datas"));

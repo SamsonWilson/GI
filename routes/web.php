@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\FactureController;
 use App\Livewire\Utilisateur;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -142,6 +144,7 @@ Route::get('/listeFacture', [App\Http\Controllers\FactureController::class, 'ind
 Route::get('/ajouterfacture', [App\Http\Controllers\FactureController::class, 'create'])->name('ajouterfacture');
 Route::get('/facture={id}', [App\Http\Controllers\FactureController::class, 'edit'])->name('edit_facture');
 Route::post('/enregistrefacture', [App\Http\Controllers\FactureController::class, 'store'])->name('enregistrefacture');
+// Route::post('/enregistrefacture/{contrat}', [FactureController::class, 'store'])->name('enregistrefacture');
 Route::get('/ListesF', [App\Http\Controllers\FactureController::class, 'affichage'])->name('ListesF');
 
 // <-------------------------Detail -------------------------------------------------->
@@ -173,3 +176,25 @@ Route::post('/enregistrer_Pmaison', [App\Http\Controllers\ProprioMaisonControlle
 // Route::put('/update_quartier/{id}', [App\Http\Controllers\Sadminquartier::class, 'update'])->name('update_quartier');
 // Route::get('/quartier={id}', [App\Http\Controllers\Sadminquartier::class, 'edit'])->name('edit_quartier');
 // Route::get('/ajouter_Quartier', [App\Http\Controllers\Sadminquartier::class, 'afficher'])->name('ajouter_Quartier');
+
+
+
+// <----------------EMAIL------------------------->
+
+Route::get('/hugues',  function () {
+    Mail::raw('bonjours bro', function ($message) {
+        $message->to('kyram027@gmail.com')
+            ->subject('Test Email');
+    });
+
+    return 'Test email sent';
+});
+
+// Route::get('/test-email', function () {
+//     Mail::raw('bonjour bro', function ($message) {
+//         $message->to('kyram027@gmail.com')
+//             ->subject('Test Email');
+//     });
+
+//     return 'Test email sent';
+// });

@@ -68,7 +68,7 @@ class index extends Controller
         $ajouterVisite->client_id = $ajouterClient->id;
         $ajouterVisite->logement_id = $request->logement_id;
         $ajouterVisite->save();
-        return redirect()->route('welcome')->with('success', ' le Quartier vient d\' être Enregistrer ');
+        return redirect()->route('cc')->with('success', ' le Quartier vient d\' être Enregistrer ');
 
 
 

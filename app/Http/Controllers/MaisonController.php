@@ -55,7 +55,7 @@ class MaisonController extends Controller
         $ajouterMaison->save();
         // $datas = Ville::orderbydesc("id")->get();
         // return View("sadmin.liste", compact("datas"));
-        return redirect()->route('sadmin')->with('success', 'La ville vient d\'être enregistrée avec succès.');
+        return redirect()->route('ajouter_P_M')->with('success', 'La ville vient d\'être enregistrée avec succès.');
     }
 
     /**

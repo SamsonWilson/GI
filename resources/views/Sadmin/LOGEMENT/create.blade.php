@@ -34,15 +34,6 @@
                                             <h5 class="mb-0 text-white"> Enregistrement des Logements </h5>
                                         </div>
                                         <hr>
-
-                                        <div class="col-md-12">
-                                            <label for="inputLastName1" class="form-label"> Nom </label>
-                                            <div class="input-group"> <span class="input-group-text"><i
-                                                        class='bx bxs-user'></i></span>
-                                                <input type="text" class="form-control border-start-0"
-                                                    id="inputLastName1" placeholder="First Name" / name="nom">
-                                            </div>
-                                        </div>
                                         <hr>
                                         <div class="col-12">
                                             <label for="inputPhoneNo" class="form-label"> adresse: </label>

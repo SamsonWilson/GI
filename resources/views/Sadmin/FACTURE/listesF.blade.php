@@ -81,7 +81,6 @@
                                             @else
                                                 {{ $facture->location_date_fin }}
                                             @endif
-
                                         </td>
                                         <td style="text-align: center; vertical-align: middle;">
                                             @if (\Carbon\Carbon::now()->isAfter($facture->facture_mois_payer))

@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\LocationCreatedMail;
 use App\Models\client;
 use App\Models\facture;
 use App\Models\location;
 use App\Models\logement;
 use App\Models\maison;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class locationController extends Controller
 {
@@ -34,15 +37,36 @@ class locationController extends Controller
     public function create()
     {
 
-        $logements = logement::join('type_logements', 'logements.typelogement_id', '=', 'type_logements.id')
+
+        $logements = Logement::join('type_logements', 'logements.typelogement_id', '=', 'type_logements.id')
             ->join('maisons', 'maisons.id', '=', 'logements.maison_id')
             ->join('quartiers', 'logements.quartier_id', '=', 'quartiers.id')
             ->join('villes', 'quartiers.ville_id', '=', 'villes.id')
+            ->where('logements.active', true)
             ->orderByDesc('logements.id')
-            ->select('logements.*', 'type_logements.nom AS type_logement_nom', 'quartiers.nom AS quartier_nom', 'villes.nom AS ville_nom', 'logements.surperficie AS logement_superficie', 'logements.mt_logement_par_mois AS logement_loyer', 'maisons.nom as maison')
+            ->select(
+                'logements.*',
+                'type_logements.nom AS type_logement_nom',
+                'quartiers.nom AS quartier_nom',
+                'villes.nom AS ville_nom',
+                'logements.surperficie AS logement_superficie',
+                'logements.mt_logement_par_mois AS logement_loyer',
+                'maisons.nom as maison',
+                'logements.adress as adresse',
+            )
             ->get();
+
         return view('Sadmin.LOCATION.listeLogement', compact("logements"));
-        // $clients = client::orderByDesc("id")->get();
+
+        // $logements = logement::join('type_logements', 'logements.typelogement_id', '=', 'type_logements.id')
+        //     ->join('maisons', 'maisons.id', '=', 'logements.maison_id')
+        //     ->join('quartiers', 'logements.quartier_id', '=', 'quartiers.id')
+        //     ->join('villes', 'quartiers.ville_id', '=', 'villes.id')
+        //     ->orderByDesc('logements.id')
+        //     ->select('logements.*', 'type_logements.nom AS type_logement_nom', 'quartiers.nom AS quartier_nom', 'villes.nom AS ville_nom', 'logements.surperficie AS logement_superficie', 'logements.mt_logement_par_mois AS logement_loyer', 'maisons.nom as maison')
+        //     ->get();
+        // return view('Sadmin.LOCATION.listeLogement', compact("logements"));
+        // // $clients = client::orderByDesc("id")->get();
         // $logements = logement::orderByDesc("id")->get();
         // return view("Sadmin.LOCATION.create", compact("clients"), compact("logements"));
     }
@@ -137,6 +161,11 @@ class locationController extends Controller
             // return redirect()->route('liste_l')->with('success', ' le Quartier vient d\' être Enregistrer ');
 
         }
+        // Envoyer un email au preneur de location
+        $client = Client::find($request->client_id);
+        if ($client) {
+            Mail::to($client->email)->send(new LocationCreatedMail($ajouterlogement));
+        }
     }
 
 
@@ -193,7 +222,6 @@ class locationController extends Controller
             ->orderByDesc('locations.id')
             ->select('locations.*', 'clients.nom as nom_client', 'clients.prenom as prenom_client', 'type_logements.nom AS type_logement_nom', 'quartiers.nom AS quartier_nom', 'villes.nom AS ville_nom', 'logements.surperficie AS logement_superficie', 'logements.mt_logement_par_mois AS logement_loyer', 'maisons.nom as maison')
             ->get();
-
         $factures = facture::orderByDesc("id")->get();
         // $clients = client::orderByDesc("id")->get();
 
@@ -224,7 +252,7 @@ class locationController extends Controller
     public function updateFinContrat(Request $request, $contrat)
     {
         $this->validate($request, [
-            'descrip_prelevement' => 'required|',
+            'descrip_prelevement' => 'required',
             'Mt_prelever' => 'required',
             'Mt_rembouser' => 'required',
             'date_fin' => 'required'
@@ -243,11 +271,12 @@ class locationController extends Controller
         $locations->Mt_prelever = $request->Mt_prelever;
         $locations->Mt_rembouser = $request->Mt_rembouser;
         $locations->date_fin = $request->date_fin;
-        // $locations->update($request->all());
         $locations->save();
-        // $datas = Ville::orderbydesc("id")->get();
-        // return View("sadmin.liste", compact("datas"));
-        return redirect()->route('sadmin')->with('success', ' la ville vient d\' être Enregistrer ');
+        $logement = logement::find($locations->logement_id);
+        if ($logement) {
+            $logement->active = true;
+            $logement->save();
+        }
     }
     public function update(Request $request, location $location)
     {

@@ -41,54 +41,54 @@
                         <hr />
                         <div class="form-body mt-4">
                             <div class="row">
-                                @foreach ($logements as $logement)
-                                    <div class="col-lg-6">
-                                        <div class="border border-3 p-4 rounded">
-                                            <input type="hidden" value="{{ $logement->id }}" name="logement_id" readonly
-                                                required>
-                                            <div class="row mb-3">
-                                                <div class="col">
-                                                    <label class="form-label"> MAISON </label>
-                                                    <input type="text" class="form-control"
-                                                        value="{{ $logement->maison }}" disabled />
-                                                </div>
-                                                <div class="col">
-                                                    <label class="form-label"> TYPE DE LOGEMENT </label>
-                                                    <input type="text" class="form-control"
-                                                        value="{{ $logement->type_logement_nom }}" disabled />
-                                                </div>
+
+                                <div class="col-lg-6">
+                                    {{--  @foreach ($logements as $logement)  --}}
+                                    <div class="border border-3 p-4 rounded">
+                                        <input type="hidden" value="{{ $logements->first()->id }}" name="logement_id"
+                                            readonly required>
+                                        <div class="row mb-3">
+                                            <div class="col">
+                                                <label class="form-label"> MAISON </label>
+                                                <input type="text" class="form-control"
+                                                    value="{{ $logements->first()->maison }}" disabled />
                                             </div>
-                                            <div class="row mb-3">
-                                                <div class="col">
-                                                    <label class="form-label"> VILLE </label>
-                                                    <input type="text" class="form-control"
-                                                        value="{{ $logement->ville_nom }}"disabled />
-                                                </div>
-                                                <div class="col">
-                                                    <label class="form-label"> QUARTIER </label>
-                                                    <input type="text" class="form-control"
-                                                        value="{{ $logement->quartier_nom }}"disabled />
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3">
-                                                <div class="col">
-                                                    <label class="form-label">SUPERFICIE </label>
-                                                    <input type="text" class="form-control"
-                                                        value="{{ $logement->logement_superficie }} M²"disabled />
-                                                </div>
-                                                <div class="col">
-                                                    <label class="form-label"> LOYER </label>
-                                                    <input type="text" class="form-control" id="loyer"
-                                                        value="{{ $logement->logement_loyer }} / Mois" disabled />
-                                                </div>
+                                            <div class="col">
+                                                <label class="form-label"> TYPE DE LOGEMENT </label>
+                                                <input type="text" class="form-control"
+                                                    value="{{ $logements->first()->type_logement_nom }}" disabled />
                                             </div>
                                         </div>
-                                        <br>
-                                        <br>
-
-
+                                        <div class="row mb-3">
+                                            <div class="col">
+                                                <label class="form-label"> VILLE </label>
+                                                <input type="text" class="form-control"
+                                                    value="{{ $logements->first()->ville_nom }}"disabled />
+                                            </div>
+                                            <div class="col">
+                                                <label class="form-label"> QUARTIER </label>
+                                                <input type="text" class="form-control"
+                                                    value="{{ $logements->first()->quartier_nom }}"disabled />
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col">
+                                                <label class="form-label">SUPERFICIE </label>
+                                                <input type="text" class="form-control"
+                                                    value="{{ $logements->first()->logement_superficie }} M²"disabled />
+                                            </div>
+                                            <div class="col">
+                                                <label class="form-label"> LOYER </label>
+                                                <input type="text" class="form-control" id="loyer"
+                                                    value="{{ $logements->first()->logement_loyer }} / Mois" disabled />
+                                            </div>
+                                        </div>
                                     </div>
-                                @endforeach
+                                    <br>
+                                    <br>
+                                    {{--  @endforeach  --}}
+                                </div>
+
                                 {{--  pour le client  --}}
                                 <div class="col-lg-6">
                                     <div class="border border-3 p-4 rounded">
@@ -117,9 +117,6 @@
                                         <input type="text"class="form-control" id="date_fin" name="date_finavance"
                                             readonly />
                                     </div>
-
-
-
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="border border-3 p-4 rounded">
@@ -150,11 +147,11 @@
                                         <div class="row mb-3">
                                             <div class="col">
                                                 <label class="form-label"> TAUX COMMISION </label>
-                                                @foreach ($logements as $logement)
-                                                    <input type="text" class="form-control" id="taux_commission"
-                                                        name ="#" value="{{ $logement->txCommission }} %"
-                                                        readonly />
-                                                @endforeach
+                                                {{--  @foreach ($logements as $logement)  --}}
+                                                <input type="text" class="form-control" id="taux_commission"
+                                                    name ="#" value="{{ $logements->first()->txCommission }} %"
+                                                    readonly />
+                                                {{--  @endforeach  --}}
                                             </div>
                                             <div class="col">
                                                 <label class="form-label text-danger fs-7"> COMMISSION DE LA SOCIETE

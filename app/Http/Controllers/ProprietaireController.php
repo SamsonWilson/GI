@@ -79,7 +79,7 @@ class ProprietaireController extends Controller
             $ajouterProprietaire->save();
             // $datas = Ville::orderbydesc("id")->get();
             // return View("sadmin.liste", compact("datas"));
-            return redirect()->route('sadmin')->with('success', 'La ville vient d\'être enregistrée avec succès.');
+            return redirect()->route('listeProprietaire')->with('success', 'La ville vient d\'être enregistrée avec succès.');
 
             // return redirect()->route('sadmin')->with('success', ' la ville vient d\' être Enregistrer ');
         }

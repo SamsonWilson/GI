@@ -58,7 +58,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($clientsPayes as $location)
+                                @foreach ($locations as $location)
                                     <tr>
                                         <td style="text-align: center; vertical-align: middle;">
 
@@ -74,11 +74,11 @@
                                         </td>
                                         <td style="text-align: center; vertical-align: middle;"> San Francisco</td>
                                         <td style="text-align: center; vertical-align: middle;">
-                                            {{ $location->logement_nom }}</td>
+                                            {{ $location->clients_nom }}</td>
                                         <td style="text-align: center; vertical-align: middle;">
                                             {{ $location->quartier_nom }}</td>
                                         <td style="text-align: center; vertical-align: middle;">
-                                            @if ($location->mois_payer)
+                                            {{--  @if ($location->mois_payer)
                                                 @if (\Carbon\Carbon::now()->isAfter(\Carbon\Carbon::parse($location->mois_payer)))
                                                     <span style="color:red;">{{ $location->mois_payer }}</span>
                                                 @else
@@ -90,6 +90,12 @@
                                                 @else
                                                     {{ $location->location_date_fin }}
                                                 @endif
+                                            @endif  --}}
+                                            @if (\Carbon\Carbon::now()->isAfter(\Carbon\Carbon::parse($location->date_finavance_or_mois_payer)))
+                                                <span
+                                                    style="color:red;">{{ $location->date_finavance_or_mois_payer }}</span>
+                                            @else
+                                                {{ $location->date_finavance_or_mois_payer }}
                                             @endif
                                     </tr>
                                 @endforeach

@@ -53,7 +53,6 @@ class logementController extends Controller
         $users_id = Auth::id();
         $request->validate([
             "photo" => 'required|mimes:jpeg,png,jpg,gif|max:2048',
-            "nom" => "required",
             "description" => "required",
             "adress" => "required",
             "MT_visite" => "required",
@@ -71,7 +70,6 @@ class logementController extends Controller
             $path = $request->file('photo')->storeAs('public/imagelogement', $fileNameToStore);
 
             $ajouterlogement = new logement;
-            $ajouterlogement->nom = $request->nom;
             $ajouterlogement->description = $request->description;
             $ajouterlogement->adress = $request->adress;
             $ajouterlogement->MT_visite = $request->MT_visite;

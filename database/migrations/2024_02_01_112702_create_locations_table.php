@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('descrip_prelevement')->nullable();
             $table->string('Mt_prelever')->nullable();
             $table->string('Mt_rembouser')->nullable();
+            $table->string('DJregler')->nullable();
             $table->string('avance');
             $table->string('caution');
             $table->string('Tcaution');

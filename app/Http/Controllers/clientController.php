@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ClientCreatedMail;
 use App\Models\client;
 use App\Models\typeClient;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class clientController extends Controller
 {
@@ -63,6 +65,10 @@ class clientController extends Controller
         // $ajouterClient->quartier_id = $request->quartier_id;
         $ajouterClient->typeclient_id = $request->typeclient_id;
         $ajouterClient->save();
+
+
+        Mail::to($ajouterClient->email)->send(new ClientCreatedMail($ajouterClient));
+
         return redirect()->route('liste_client')->with('success', ' le Quartier vient d\' être Enregistrer ');
     }
 

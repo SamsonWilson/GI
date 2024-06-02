@@ -158,7 +158,7 @@
                                     <div class="col-6">
                                         <label for="inputAddress" class="form-label">logement</label>
                                         <input type="text" class="form-control"
-                                            value="{{ $location->logement_nom }} {{ $location->type_logement_nom }}"readonly>
+                                            value="{{ $location->type_logement_nom }}"readonly>
                                     </div>
                                     <div class="col-6">
                                         <label for="inputAddress" class="form-label">Maison </label>
@@ -184,8 +184,6 @@
                                     <button onclick="imprimerFacture()" class="btn btn-light px-5 hide-on-print">Imprimer
                                         la
                                         facture</button>
-
-
                                 </div>
                             </form>
                         </div>

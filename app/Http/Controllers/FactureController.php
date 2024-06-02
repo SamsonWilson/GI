@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\FactureCreatedMail;
 use App\Models\facture;
 use App\Http\Requests\StorefactureRequest;
 use App\Http\Requests\UpdatefactureRequest;
@@ -11,6 +12,7 @@ use App\Models\ModePayement;
 use Dompdf\Dompdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\View;
 
 
@@ -22,38 +24,92 @@ class FactureController extends Controller
     public function index()
     {
 
-        // $locations = facture::join('locations', 'locations.id', '=', 'factures.location_id')
+        // $locations = DB::table('locations')
+        //     ->leftJoin('factures', 'factures.location_id', '=', 'locations.id')
         //     ->join('logements', 'locations.logement_id', '=', 'logements.id')
         //     ->join('type_logements', 'logements.typelogement_id', '=', 'type_logements.id')
         //     ->join('quartiers', 'logements.quartier_id', '=', 'quartiers.id')
         //     ->join('villes', 'quartiers.ville_id', '=', 'villes.id')
         //     ->join('clients', 'locations.client_id', '=', 'clients.id')
-        //     ->orderByDesc('factures.id')
-        //     ->select('factures.*', 'locations.date_debut AS location_date_debut', 'locations.date_finavance AS location_date_fin', 'clients.nom AS clients_nom', 'clients.prenom AS clients_prenom', 'type_logements.nom AS type_logement_nom', 'quartiers.nom AS quartier_nom', 'villes.nom AS ville_nom', 'logements.nom AS logement_nom', 'factures.mois_payer as mois_payer')
-        //     ->whereNull('locations.date_fin')
-        //     ->get();
-        // // 'type_logements.nom AS type_logement_nom', 'quartiers.nom AS quartier_nom', 'villes.nom AS ville_nom', 'logements.photo AS logement_photo'
-        // return view("Sadmin.FACTURE.liste", compact("locations"));
-
-        // $locations = DB::table('factures')
-        //     ->join('locations', 'locations.id', '=', 'factures.location_id')
-        //     ->join('logements', 'locations.logement_id', '=', 'logements.id')
-        //     ->join('type_logements', 'logements.typelogement_id', '=', 'type_logements.id')
-        //     ->join('quartiers', 'logements.quartier_id', '=', 'quartiers.id')
-        //     ->join('villes', 'quartiers.ville_id', '=', 'villes.id')
-        //     ->join('clients', 'locations.client_id', '=', 'clients.id')
-        //     ->orderByDesc('factures.id')
+        //     ->orderByDesc('locations.id')
         //     ->select(
-        //         'factures.*',
+        //         'locations.*',
         //         'locations.date_debut AS location_date_debut',
-        //         'locations.date_finavance AS location_date_fin',
+        //         DB::raw('CASE
+        //         WHEN factures.location_id IS NOT NULL
+        //         THEN factures.mois_payer
+        //         ELSE locations.date_finavance
+        //      END AS date_finavance_or_mois_payer'),
         //         'clients.nom AS clients_nom',
         //         'clients.prenom AS clients_prenom',
         //         'type_logements.nom AS type_logement_nom',
         //         'quartiers.nom AS quartier_nom',
-        //         'villes.nom AS ville_nom',
-        //         'logements.nom AS logement_nom',
-        //         'factures.mois_payer as mois_payer'
+        //         'villes.nom AS ville_nom'
+        //     )
+        //     ->get();
+
+        // return view("Sadmin.FACTURE.liste", compact("locations"));
+
+
+
+        $latestFactures = DB::table('factures')
+            ->select('factures.*')
+            ->join(
+                DB::raw('(SELECT MAX(id) as id FROM factures GROUP BY location_id) as latest_factures'),
+                'factures.id',
+                '=',
+                'latest_factures.id'
+            );
+
+        // Main query to get the required information
+        $locations = DB::table('locations')
+            ->leftJoinSub($latestFactures, 'factures', 'factures.location_id', '=', 'locations.id')
+            ->join('logements', 'locations.logement_id', '=', 'logements.id')
+            ->join('type_logements', 'logements.typelogement_id', '=', 'type_logements.id')
+            ->join('quartiers', 'logements.quartier_id', '=', 'quartiers.id')
+            ->join('villes', 'quartiers.ville_id', '=', 'villes.id')
+            ->join('clients', 'locations.client_id', '=', 'clients.id')
+            ->orderByDesc('locations.id')
+            ->select(
+                'locations.*',
+                'locations.date_debut AS location_date_debut',
+                DB::raw('CASE
+                    WHEN factures.location_id IS NOT NULL
+                    THEN factures.mois_payer
+                    ELSE locations.date_finavance
+                 END AS date_finavance_or_mois_payer'),
+                'clients.nom AS clients_nom',
+                'clients.prenom AS clients_prenom',
+                'type_logements.nom AS type_logement_nom',
+                'quartiers.nom AS quartier_nom',
+                'villes.nom AS ville_nom'
+            )
+            ->get();
+
+        return view("Sadmin.FACTURE.liste", compact("locations"));
+
+
+
+        // $locations = facture::join('locations', 'factures.location_id', '=', 'locations.id')
+        //     ->join('logements', 'locations.logement_id', '=', 'logements.id')
+        //     ->join('type_logements', 'logements.typelogement_id', '=', 'type_logements.id')
+        //     ->join('quartiers', 'logements.quartier_id', '=', 'quartiers.id')
+        //     ->join('villes', 'quartiers.ville_id', '=', 'villes.id')
+        //     ->join('clients', 'locations.client_id', '=', 'clients.id')
+        //     ->orderByDesc('locations.id')
+        //     ->select(
+        //         'locations.*',
+        //         'locations.date_debut AS location_date_debut',
+        //         DB::raw('CASE
+        //                     WHEN factures.location_id = locations.id
+        //                     THEN factures.mois_payer
+        //                     ELSE locations.date_finavance
+        //                  END AS date_finavance_or_mois_payer'),
+        //         'clients.nom AS clients_nom',
+        //         'clients.prenom AS clients_prenom',
+        //         'type_logements.nom AS type_logement_nom',
+        //         'quartiers.nom AS quartier_nom',
+        //         'villes.nom AS ville_nom'
         //     )
         //     ->get();
 
@@ -67,63 +123,6 @@ class FactureController extends Controller
 
 
 
-
-
-
-        // Récupérer les clients qui ont payé
-        $clientsPayes = DB::table('factures')
-            ->join('locations', 'locations.id', '=', 'factures.location_id')
-            ->join('clients', 'locations.client_id', '=', 'clients.id')
-            ->join('logements', 'locations.logement_id', '=', 'logements.id')
-            ->join('type_logements', 'logements.typelogement_id', '=', 'type_logements.id')
-            ->join('quartiers', 'logements.quartier_id', '=', 'quartiers.id')
-            ->join('villes', 'quartiers.ville_id', '=', 'villes.id')
-            ->select(
-                'factures.mois_payer',
-                'clients.id AS client_id',
-                'clients.nom AS clients_nom',
-                'clients.prenom AS clients_prenom',
-                'locations.date_finavance AS location_date_fin',
-                'type_logements.nom AS type_logement_nom',
-                'quartiers.nom AS quartier_nom',
-                'villes.nom AS ville_nom',
-                'logements.nom AS logement_nom'
-            )
-            ->whereNotNull('factures.mois_payer')
-            ->orderByDesc('factures.id')
-            ->get();
-
-        // Récupérer les IDs des clients qui ont payé
-        $clientsPayesIds = $clientsPayes->pluck('client_id');
-
-        // Récupérer les clients qui n'ont pas réglé
-        $clientsNonRegles = DB::table('locations')
-            ->join('clients', 'locations.client_id', '=', 'clients.id')
-            ->join('logements', 'locations.logement_id', '=', 'logements.id')
-            ->join('type_logements', 'logements.typelogement_id', '=', 'type_logements.id')
-            ->join('quartiers', 'logements.quartier_id', '=', 'quartiers.id')
-            ->join('villes', 'quartiers.ville_id', '=', 'villes.id')
-            ->leftJoin('factures', function ($join) {
-                $join->on('locations.id', '=', 'factures.location_id')
-                    ->whereNotNull('factures.mois_payer');
-            })
-            ->select(
-                'clients.id AS client_id',
-                'clients.nom AS clients_nom',
-                'clients.prenom AS clients_prenom',
-                'locations.date_finavance AS location_date_fin',
-                'type_logements.nom AS type_logement_nom',
-                'quartiers.nom AS quartier_nom',
-                'villes.nom AS ville_nom',
-                'logements.nom AS logement_nom'
-            )
-            ->whereNull('factures.mois_payer')
-            ->where('locations.date_finavance', '<', \Carbon\Carbon::now())
-            ->whereNotIn('clients.id', $clientsPayesIds) // Exclure les clients qui ont déjà payé
-            ->orderByDesc('locations.id')
-            ->get();
-
-        return view("Sadmin.FACTURE.liste", compact('clientsPayes', 'clientsNonRegles'));
     }
 
     /**
@@ -160,8 +159,8 @@ class FactureController extends Controller
                 $join->on('factures.id', '=', 'latest_factures.max_id');
             })
             ->orderByDesc('factures.id')
-            ->select('factures.*', 'factures.mois_payer as facture_mois_payer', 'locations.date_debut AS location_date_debut', 'locations.date_fin AS location_date_fin', 'clients.nom AS clients_nom', 'clients.prenom AS clients_prenom', 'type_logements.nom AS type_logement_nom', 'quartiers.nom AS quartier_nom', 'villes.nom AS ville_nom', 'logements.nom AS logement_nom', 'mode_payements.nom as mode_payer', 'maisons.nom as maison')
-            ->groupBy('factures.id', 'factures.updated_at', 'factures.created_at', 'factures.mois_payer', 'factures.date_payement', 'factures.location_id', 'factures.mode_payement_id', 'locations.date_debut', 'locations.date_fin', 'clients.nom', 'clients.prenom', 'type_logements.nom', 'quartiers.nom', 'villes.nom', 'logements.nom', 'clients.id', 'mode_payements.nom', 'maisons.nom')
+            ->select('factures.*', 'factures.mois_payer as facture_mois_payer', 'locations.date_debut AS location_date_debut', 'locations.date_fin AS location_date_fin', 'clients.nom AS clients_nom', 'clients.prenom AS clients_prenom', 'type_logements.nom AS type_logement_nom', 'quartiers.nom AS quartier_nom', 'villes.nom AS ville_nom', 'mode_payements.nom as mode_payer', 'maisons.nom as maison')
+            ->groupBy('factures.id', 'factures.updated_at', 'factures.created_at', 'factures.mois_payer', 'factures.date_payement', 'factures.location_id', 'factures.mode_payement_id', 'locations.date_debut', 'locations.date_fin', 'clients.nom', 'clients.prenom', 'type_logements.nom', 'quartiers.nom', 'villes.nom', 'clients.id', 'mode_payements.nom', 'maisons.nom')
             ->get();
 
         return view('Sadmin.FACTURE.listesF', compact("factures"));
@@ -220,7 +219,8 @@ class FactureController extends Controller
             "date_payement" => "required",
             "mode_payement_id" => 'required',
             "mois_payer" => "required",
-            "location_id" => "required"
+            "location_id" => "required",
+            // ' DJregler' => 'required'
 
         ]);
         // dd($request);
@@ -231,6 +231,33 @@ class FactureController extends Controller
         $ajouterfacture->mois_payer = $request->mois_payer;
         $ajouterfacture->location_id = $request->location_id;
         $ajouterfacture->save();
+
+        // Récupérer la location associée
+        $location = Location::find($request->location_id);
+
+        if ($location) {
+            // Récupérer le client associé à la location
+            $client = $location->client;
+
+            if ($client) {
+                // Envoyer un email de confirmation de paiement de facture
+                Mail::to($client->email)->send(new FactureCreatedMail($ajouterfacture));
+            }
+        }
+
+        // $location = new location();
+        // $location->DJregler = $request->DJregler;
+        // $location->save();
+
+
+        // $location = Location::find($request->location_id);
+        // if ($location) {
+        //     $location->DJregler = $request->DJregler;
+        //     $location->save();
+        // }
+
+
+
         // Répondre avec une redirection ou une réponse JSON, selon vos besoins
         // return response()->json(['message' => 'Facture enregistrée avec succès'], 200);
         // return redirect()->route('liste_l')->with('success', ' le Quartier vient d\' être Enregistrer ');
@@ -250,6 +277,8 @@ class FactureController extends Controller
      */
     public function edit($id)
     {
+
+
         $MDPS = ModePayement::orderbydesc("id")->get();
         $locationss = DB::table('locations')
             ->join('logements', 'locations.logement_id', '=', 'logements.id')
@@ -259,7 +288,7 @@ class FactureController extends Controller
             ->join('clients', 'locations.client_id', '=', 'clients.id')
             ->where('locations.id', $id)
             ->orderByDesc('locations.id')
-            ->select('locations.*', 'clients.tel1 AS clients_tel1', 'clients.tel2 AS clients_tel2', 'clients.email AS clients_email', 'clients.nom AS clients_nom', 'clients.email AS clients_email', 'clients.prenom AS clients_prenom', 'type_logements.nom AS type_logement_nom', 'quartiers.nom AS quartier_nom', 'villes.nom AS ville_nom', 'logements.nom AS logement_nom')
+            ->select('locations.*', 'clients.tel1 AS clients_tel1', 'clients.tel2 AS clients_tel2', 'clients.email AS clients_email', 'clients.nom AS clients_nom', 'clients.email AS clients_email', 'clients.prenom AS clients_prenom', 'type_logements.nom AS type_logement_nom', 'quartiers.nom AS quartier_nom', 'villes.nom AS ville_nom')
             ->get();
         // $locationss = location::find($id)
         //     ->join('logements', 'locations.logement_id', '=', 'logements.id')

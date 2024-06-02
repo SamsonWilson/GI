@@ -67,18 +67,18 @@
                                                 style="color: rgb(110, 211, 22);">
                                                 LOGEMENTS
                                             </a>
-                                            <hr>
-                                            <a href="{{ url('location_contrat=' . $logement->id) }}"
+
+                                            {{--  <a href="{{ url('location_contrat=' . $logement->id) }}"
                                                 class="btn btn-light btn-sm radius-30 px-4 hide-on-print"
                                                 style="color: rgb(110, 211, 22);">
                                                 FIN CONTRAT
-                                            </a>
+                                            </a>  --}}
                                             <hr>
-                                            <a href="{{ url('location=' . $logement->id) }}"
+                                            {{--  <a href="{{ url('location=' . $logement->id) }}"
                                                 class="btn btn-light btn-sm radius-30 px-4 hide-on-print"
                                                 style="color: rgb(110, 211, 22);">
                                                 MODIFICATION
-                                            </a>
+                                            </a>  --}}
                                         </td>
                                         <td style="text-align: center; vertical-align: middle;">
                                             {{ $logement->type_logement_nom }}
@@ -89,7 +89,7 @@
                                         <td style="text-align: center; vertical-align: middle;">
                                             {{ $logement->ville_nom }} dans le Quatier {{ $logement->quartier_nom }}</td>
                                         <td style="text-align: center; vertical-align: middle;">
-                                            {{ $logement->logement_superficie }} M²
+                                            {{ $logement->logement_superficie }} M² {{ $logement->adresse }}
                                     </tr>
                                 @endforeach
                             </tbody>
